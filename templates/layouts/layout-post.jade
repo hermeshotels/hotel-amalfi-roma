@@ -1,0 +1,29 @@
+include ../mixins/flash-messages
+
+doctype html
+html
+
+	include partials/head
+
+	//- HTML BODY
+	body
+
+		.navbar-post
+			include partials/navbar
+
+		#header.header
+			.background.noimage
+				.background-filter
+					.header-content
+						.header-row-logo
+							.header-logo
+								a(href='/'): img.img-responsive(src='/images/logo-black.png')
+						.header-row-title
+							.header-title.text-center
+		//-- end header
+
+		block content
+
+		include partials/footer
+		
+		include partials/scripts

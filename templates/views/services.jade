@@ -1,0 +1,66 @@
+extends ../layouts/homepage
+
+block header
+	#header.header
+		.background
+			div(style="background-image:url('" + data.page._.headerImage.fit(2000,1000) + "')" )
+				.background-filter
+					.header-content
+						.header-row-logo
+							.header-logo
+								a(href='/'): img.img-responsive(src='/images/logo-white.png')
+						.header-row-title
+							.header-title.text-center
+								h1.text-uppercase #{data.page.title}
+								.container-fluid
+									.row
+										.col-xs-5.col-sm-5.col-md-5.col-lg-5
+										.col-xs-2.col-sm-2.col-md-2.col-lg-2
+										.col-xs-5.col-sm-5.col-md-5.col-lg-5
+								h2.text-uppercase #{data.page.subTitle}
+		//-- end header
+
+block content
+
+	if services.length
+		.container-fluid.rooms
+			each service, index in services
+				.row
+					- var classPush = (index % 2 === 0 ? 'col-md-push-6 col-lg-push-6' : 'gray')
+					div.col-xs-12.col-sm-12.col-md-6.col-lg-6.nopadding(class=classPush)
+						.room-item
+							.room-block
+							.room-content
+								.room-table
+									.room-cell
+										h2=service.name
+										=service.description
+					- var classPull = (index % 2 === 0 ? 'col-md-pull-6 col-lg-pull-6' : '')
+					div.col-xs-12.col-sm-12.col-md-6.col-lg-6.nopadding(class=classPull)
+						.room-item
+							.room-block
+							.room-content
+								.room-table
+									.room-images
+										div(class="master-slider ms-skin-default" id="masterslider"+service.order)
+											each image in service.photos
+												div(class="ms-slide")
+													img.img-responsive(src=image.fit(1000,650))
+
+
+
+block js
+	script(type="text/javascript").
+		$(function () {
+			$('[data-toggle="tooltip"]').tooltip();
+
+			var slider1 = new MasterSlider();
+			slider1.control('arrows');
+			slider1.setup('masterslider1' , {width: 1000,height: 650,space:5,layout: 'fillwidth',autoplay: true,arrows: true,loop: true});
+			var slider2 = new MasterSlider();
+			slider2.control('arrows');
+			slider2.setup('masterslider2' , {width: 1000,height: 650,space:5,layout: 'fillwidth',autoplay: true,arrows: true,loop: true});
+			var slider3 = new MasterSlider();
+			slider3.control('arrows');
+			slider3.setup('masterslider3' , {width: 1000,height: 650,space:5,layout: 'fillwidth',autoplay: true,arrows: true,loop: true});
+		});

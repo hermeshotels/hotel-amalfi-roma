@@ -1,0 +1,98 @@
+extends ../layouts/homepage
+
+block header
+	#header.header
+		.background
+			div(style="background-image:url('" + data.page._.headerImage.fit(2000,1000) + "')" )
+				.background-filter
+					.header-content
+						.header-row-logo
+							.header-logo
+								a(href='/'): img.img-responsive(src='/images/logo-white.png')
+						.header-row-title
+							.header-title.text-center
+								h1.text-uppercase #{data.page.title}
+								.container-fluid
+									.row
+										.col-xs-5.col-sm-5.col-md-5.col-lg-5
+										.col-xs-2.col-sm-2.col-md-2.col-lg-2
+										.col-xs-5.col-sm-5.col-md-5.col-lg-5
+								h2.text-uppercase #{data.page.subTitle}
+		//-- end header
+
+block content
+
+	.row.rooms-amount.text-center.text-uppercase
+		.col-sm-15.col-md-15
+			p
+				span.amount #{data.page.rooms.roomBlock1Title}
+				span.type #{data.page.rooms.roomBlock1SubTitle}
+		.col-sm-15.col-md-15
+			p
+				span.amount #{data.page.rooms.roomBlock2Title}
+				span.type #{data.page.rooms.roomBlock2SubTitle}
+		.col-sm-15.col-md-15
+			p
+				span.amount #{data.page.rooms.roomBlock3Title}
+				span.type #{data.page.rooms.roomBlock3SubTitle}
+		.col-sm-15.col-md-15
+			p
+				span.amount #{data.page.rooms.roomBlock4Title}
+				span.type #{data.page.rooms.roomBlock4SubTitle}
+		.col-sm-15.col-md-15
+			p
+				span.amount #{data.page.rooms.roomBlock5Title}
+				span.type #{data.page.rooms.roomBlock5SubTitle}
+
+	if rooms.length
+		.container-fluid.rooms
+			each room, index in rooms
+				.row
+					- var classPush = (index % 2 === 0 ? 'col-md-push-6 col-lg-push-6' : 'gray')
+					div.col-xs-12.col-sm-12.col-md-6.col-lg-6.nopadding(class=classPush)
+						.room-item
+							.room-block
+							.room-content
+								.room-table
+									.room-cell
+										h2=room.name
+										=room.description
+										if room.roomOptions.length
+											ul
+												each option in room.roomOptions
+													li
+														img(src='/images/room-icons/90px/'+option.icon+'.png' data-toggle="tooltip" data-placement="bottom" title=option.name)
+					- var classPull = (index % 2 === 0 ? 'col-md-pull-6 col-lg-pull-6' : '')
+					div.col-xs-12.col-sm-12.col-md-6.col-lg-6.nopadding(class=classPull)
+						.room-item
+							.room-block
+							.room-content
+								.room-table
+									.room-images
+										div(class="master-slider ms-skin-default" id="masterslider"+room.order)
+											div(class="ms-slide")
+												img.img-responsive(src=room._.heroPhoto.fit(1000,650))
+											each image in room.otherPhotos
+												div(class="ms-slide")
+													img.img-responsive(src=image.fit(1000,650))
+
+
+
+block js
+	script(type="text/javascript").
+		$(function () {
+			$('[data-toggle="tooltip"]').tooltip();
+
+			var slider1 = new MasterSlider();
+			slider1.control('arrows');
+			slider1.setup('masterslider1' , {width: 1000,height: 650,space:5,layout: 'fillwidth',autoplay: true,arrows: true,loop: true});
+			var slider2 = new MasterSlider();
+			slider2.control('arrows');
+			slider2.setup('masterslider2' , {width: 1000,height: 650,space:5,layout: 'fillwidth',autoplay: true,arrows: true,loop: true});
+			var slider3 = new MasterSlider();
+			slider3.control('arrows');
+			slider3.setup('masterslider3' , {width: 1000,height: 650,space:5,layout: 'fillwidth',autoplay: true,arrows: true,loop: true});
+			var slider4 = new MasterSlider();
+			slider4.control('arrows');
+			slider4.setup('masterslider4' , {width: 1000,height: 650,space:5,layout: 'fillwidth',autoplay: true,arrows: true,loop: true});
+		});

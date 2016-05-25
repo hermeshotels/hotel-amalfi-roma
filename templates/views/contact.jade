@@ -1,0 +1,61 @@
+extends ../layouts/layout-contact
+
+block content
+	.container-fluid.contact
+		if enquirySubmitted
+			h3 #{__("Thanks for getting in touch.")}
+		else
+			.row.text-center.contact-content: .col-sm-12.col-md-12
+				
+				h3.text-uppercase #{__("contacth3a")}
+				p #{__("contactp1")}
+				p #{__("contactp2")}
+				p #{__("contactp3")}
+				p #{__("contactp4")}
+				p #{__("contactp5")}
+				
+				h3.text-uppercase #{__("contacth3b")}
+				h4.text-uppercase.second-color #{__("contacth4a")}
+				p #{__("contactp6")}
+				p #{__("contactp7")}
+				h4.text-uppercase.second-color #{__("contacth4b")}
+				p #{__("contactp8")}
+				h4.text-uppercase.second-color #{__("contacth4c")}
+				p #{__("contactp9")}
+				
+			.control-group &nbsp;
+			.row.contact-info.text-center
+				.col-sm-12.col-md-6
+					h4.text-uppercase.second-color.text-center #{__("contacth4d")}
+					.control-group &nbsp;
+					p
+						i.fa.fa-map-marker.second-color.h2(aria-hidden="true")
+						span Via Merulana, 278 - 00185 Roma, Italia
+					p
+						i.fa.fa-phone.second-color.h2(aria-hidden="true")
+						span +39 06.474.43.13
+					p
+						i.fa.fa-fax.second-color.h2(aria-hidden="true")
+						span +39 06.482.05.75
+					p
+						i.fa.fa-envelope.second-color.h2(aria-hidden="true")
+						span info@hotelamalfiroma.it
+				.col-sm-12.col-md-6
+					h4.text-uppercase.second-color.text-center #{__("contacth4e")}
+					.control-group &nbsp;
+					div.text-left
+						form(method='post')
+							input(type='hidden', name='action', value='contact')
+							.form-group(class=validationErrors.email ? 'has-error' : null)
+								label #{__("Email")}
+								input(type='email', name='email', value=formData.email).form-control
+							.form-group(class=validationErrors.name ? 'has-error' : null)
+								label #{__("Name")}
+								input(type='text', name='name.full', value=formData['name.full']).form-control
+							.form-group(class=validationErrors.message ? 'has-error' : null)
+								label #{__("Message")}
+								textarea(name='message', placeholder=__('Leave us a message...') rows=4).form-control= formData.message
+							.form-actions
+								button(type='submit').btn.btn-primary #{__("Send")}
+							
+			.control-group &nbsp;

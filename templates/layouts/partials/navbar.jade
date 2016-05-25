@@ -1,0 +1,62 @@
+nav.navbar.navbar-default.navbar-fixed-top
+	.container-fludid
+		.navbar-header
+			button.navbar-toggle.menu-opener(type='button')
+				span.sr-only Toggle navigation
+				span.icon-bar
+				span.icon-bar
+				span.icon-bar
+			ul.nav.navbar-nav.navbar-left
+				li
+					a(href='javascript:void(0)').menu-opener MENU
+		//-- Collect the nav links, forms, and other content for toggling
+		#bs-example-navbar-collapse-1.collapse.navbar-collapse
+			ul.nav.navbar-nav
+				li.dropdown
+					a.dropdown-toggle.current-language.text-uppercase(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+						| IT
+						span.caret
+					ul.dropdown-menu.select-language
+						li
+							a(href='/it' data-lang='it') IT
+						li
+							a(href='/en' data-lang='en') EN
+							ul.nav.navbar-nav.navbar-left
+			li.nav.navbar-nav.navbar-logo
+				a(href='/'): img.img-responsive(src='/images/logo-white.png')
+			ul.nav.navbar-nav.navbar-right
+				li
+					a.text-uppercase.booknow-opener(href='#') #{__('BOOKNOW')}
+//-- end navbar
+
+.menu
+	.row
+		.menu-content.col-xs-4.col-sm-4.col-md-4.col-lg-4
+			.menu-header.row
+				.col-xs-2.col-sm-2.col-md-2.col-lg-2
+					a.menu-closer(href='#')
+						img(src='/images/close.png', align='middle')
+				.col-xs-8.col-sm-8.col-md-8.col-lg-8
+					h3.text-center
+						span.text-uppercase
+							| #{__('Roma')}
+							span
+								small &nbsp; - 20 Aprile - 14:50 PM
+				.col-xs-2.col-sm-2.col-md-2.col-lg-2
+			.control-group &nbsp;
+			.row
+				.col-xs-12.col-sm-12.col-md-12.col-lg-12.text-center
+					ul
+						each link in navLinks
+							if link.header
+								li(class=(section == link.key ? 'active' : null)): a.text-uppercase(href=link.href)= __(link.label)
+			.control-group &nbsp;
+			.menu-footer.row
+				.col-xs-8.col-sm-8.col-md-8.col-lg-8
+					ul
+						each link in socialLinks
+							li: a.text-uppercase(class=link.icon href=link.href)
+				.col-xs-4.col-sm-4.col-md-4.col-lg-4.text-right.text-uppercase
+					p.booknow
+						a.booknow-opener(href='#') #{__('BOOKNOW')}
+//-- end menu

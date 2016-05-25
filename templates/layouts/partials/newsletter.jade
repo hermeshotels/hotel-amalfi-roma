@@ -1,0 +1,14 @@
+.control-group &nbsp;
+.container-newsletter
+	.control-group &nbsp;
+	h3.text-uppercase.text-center #{__('Newsletterh3')}
+	h4.text-uppercase.second-color.text-center #{__('Newsletterh4')}
+	.control-group &nbsp;
+	form.form-inline.text-center.col-xs-12.col-sm-12.col-md-12.col-lg-12
+		.form-group
+			label.sr-only.text-uppercase(for='newsletteremail') #{__('NewsletterLabel')}
+			input#newsletteremail.form-control(type='email', placeholder=__('NewsletterInput'))
+			button.btn.btn-default.text-uppercase(type='submit') #{__('NewsletterIscriviti')}
+	.control-group &nbsp;
+	.control-group &nbsp;
+//-- end newsletter

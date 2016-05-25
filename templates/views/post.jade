@@ -1,0 +1,64 @@
+extends ../layouts/layout-post
+
+block content
+	.container-fluid.single-post: .row: .col-sm-12.col-md-12
+		article
+			if !data.post
+				h2 Invalid Post.
+			else
+				header
+					h1.text-uppercase.text-center= data.post.title
+
+				.control-group &nbsp;
+				.control-group &nbsp;
+				.post-images
+					div(class="master-slider ms-skin-default" id="masterslider")
+						div(class="ms-slide")
+							img.img-responsive(src=data.post._.heroImage.fit(1900,1000))
+						each item in data.post.image
+							div(class="ms-slide")
+								img.img-responsive(src=item.fit(1900,1000))
+				.control-group &nbsp;
+				.control-group &nbsp;
+				.row
+					.col-sm-7.col-md-7
+						!= data.post.content.full
+					.col-sm-3.col-md-3.col-sm-offset-1.col-md-offset-1
+						if data.post.author
+							h3.text-uppercase #{__("Published by")}
+								| #{data.post.author.name.first} 
+								if data.post.publishedDate
+									| #{__("on")} #{data.post._.publishedDate.format('MMMM Do, YYYY')} 
+						
+						if data.post.categories
+							h3.text-uppercase #{__("Blog category")}
+							a(href='/blog/' + data.post.categories.key)= data.post.categories.name
+						
+						h3.text-uppercase #{__("Share")}
+						
+	.navigation-posts
+		.pull-left
+			if locals.data.previous && locals.data.previous.length
+				each previous in locals.data.previous
+					.caption.text-left.text-uppercase #{__("Previous post")}
+					h3.text-left.text-uppercase
+						i.fa.fa-chevron-left(aria-hidden="true")
+						a(href='/blog/post/' + previous.slug)= previous.title
+		.pull-right
+			if locals.data.next && locals.data.next.length
+				each next in locals.data.next
+					.caption.text-right.text-uppercase #{__("Next post")}
+					h3.text-right.text-uppercase
+						a(href='/blog/post/' + next.slug)= next.title
+						i.fa.fa-chevron-right(aria-hidden="true")
+		.clearfix
+
+block js
+	script(type="text/javascript").
+		$(function () {
+			$('[data-toggle="tooltip"]').tooltip();
+
+			var slider1 = new MasterSlider();
+			slider1.control('arrows');
+			slider1.setup('masterslider' , {width: 1000,height: 650,space:5,layout: 'fillwidth',autoplay: true,arrows: true,loop: true});
+		});

@@ -1,0 +1,36 @@
+extends ../layouts/layout-gallery
+
+block css
+	link(href="/styles/lightbox.css" rel="stylesheet")
+
+block content
+	.container-fluid.gallery
+		if galleries.length
+			each gallery, index in galleries
+				.row.gallery-images
+					if gallery.heroImage.exists
+						.col-sm-3.col-md-3
+							.gallery-image
+								.gallery-image-content
+									div
+										a(href=gallery._.heroImage.limit(1900,1900) data-lightbox="roadtrip")
+											img(src=gallery._.heroImage.limit(680,680))
+					each image in gallery.images
+						.col-sm-3.col-md-3
+							.gallery-image
+								.gallery-image-content
+									div
+										a(href=image.limit(1900,1900) data-lightbox="roadtrip")
+											img(src=image.limit(680,680))
+
+
+block js
+	script(src='/js/lightbox.js')
+
+	script(type="text/javascript").
+		$(function () {
+			lightbox.option({
+				'resizeDuration': 200,
+				'wrapAround': true
+			});
+		});

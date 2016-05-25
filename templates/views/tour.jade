@@ -1,0 +1,29 @@
+extends ../layouts/default
+
+block content
+	.container: .row: .col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2
+		article
+			p: a(href='/blog') &larr; back to the blog
+			hr
+			if !tour
+				h2 Invalid Post.
+			else
+				header
+					h1= tour.title
+					h5 Posted 
+						if tour.publishedDate
+							| on #{tour._.publishedDate.format('MMMM Do, YYYY')} 
+						if tour.categories && tour.categories.length
+							| in 
+							each cat, cat_i in data.Tour.categories
+								a(href='/blog/' + cat.key)= cat.name
+								if cat_i < data.Tour.categories.length - 1
+									| , 
+								else
+									|  
+						if tour.author
+							| by #{data.Tour.author.name.first}
+				.post
+					if tour.heroImage.exists
+						.image-wrap: img(src=tour._.heroImage.fit(750,450)).img-responsive
+					!= tour.content.full
