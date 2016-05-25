@@ -135,11 +135,11 @@ exports.requireUser = function(req, res, next) {
 
 };
 
-exports.langSelection = function(req, res, next) {
+exports.langSelection = function(req, res, next){
 	var match = req.url.match(/^\/([A-Z]{2})([\/\?].*)?$/i);
-	if (match) {
-		i18n.setLocale(req, match[1]);
-		req.url = match[2] || '/';
+	if (match){
+			i18n.setLocale(req, match[1]);
+			req.url = match[2] || '/';
 	}
 	next();
 }

@@ -29,7 +29,7 @@ keystone.pre('routes', middleware.initLocals);
 keystone.pre('render', middleware.flashMessages);
 keystone.pre('routes', middleware.langSelection);
 
-//i18n.setLocale('it');
+i18n.setLocale('en');
 
 // Import Route Controllers
 var routes = {

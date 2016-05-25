@@ -49,10 +49,10 @@ keystone.set('google api key', 'AIzaSyBgufrjPoBcjLEr4cd-v3EGlNxVQMOAtoc');
 //Init i18n
 i18n.configure({
 	locales: ['it', 'en'],
-	directory: __dirname + '/i18n',
+	directory: __dirname + '/locales',
 	register: global,
-	defaultLocale: 'it',
-})
+	defaultLocale: 'de',
+});
 
 // Load your project's Routes
 
