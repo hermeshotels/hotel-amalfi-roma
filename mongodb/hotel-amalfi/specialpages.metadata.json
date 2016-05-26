@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":1,"key":{"_id":1},"name":"_id_","ns":"hotel-amalfi.specialpages"},{"v":1,"key":{"meta":1},"name":"meta_1","ns":"hotel-amalfi.specialpages","background":true,"safe":null}]}

@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":1,"key":{"_id":1},"name":"_id_","ns":"hotel-amalfi.places"},{"v":1,"key":{"name":1},"name":"name_1","ns":"hotel-amalfi.places","background":true,"safe":null},{"v":1,"key":{"location.geo":"2dsphere"},"name":"location.geo_2dsphere","ns":"hotel-amalfi.places","background":true,"safe":null,"2dsphereIndexVersion":3}]}
