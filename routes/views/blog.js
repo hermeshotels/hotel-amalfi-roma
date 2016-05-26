@@ -2,10 +2,10 @@ var keystone = require('keystone');
 var async = require('async');
 
 exports = module.exports = function(req, res) {
-	
+
 	var view = new keystone.View(req, res);
 	var locals = res.locals;
-	
+
 	// Init locals
 	locals.section = 'blog';
 	locals.filters = {
@@ -15,37 +15,53 @@ exports = module.exports = function(req, res) {
 		posts: [],
 		categories: []
 	};
-	
+
+	// Load page content
+	view.on('init', function(next) {
+		keystone.list('SpecialPage').model.findOne()
+			.where('page', 'Blog')
+			.where('active', true)
+			.exec(function(err, page) {
+				if (err) {
+					console.log(err);
+					return next(err);
+				} else {
+					locals.data.page = page.blog;
+					next(err);
+				}
+			});
+	});
+
 	// Load all categories
 	view.on('init', function(next) {
-		
+
 		keystone.list('PostCategory').model.find().sort('name').exec(function(err, results) {
-			
+
 			if (err || !results.length) {
 				return next(err);
 			}
-			
+
 			locals.data.categories = results;
-			
+
 			// Load the counts for each category
 			async.each(locals.data.categories, function(category, next) {
-				
+
 				keystone.list('Post').model.count().where('categories').in([category.id]).exec(function(err, count) {
 					category.postCount = count;
 					next(err);
 				});
-				
+
 			}, function(err) {
 				next(err);
 			});
-			
+
 		});
-		
+
 	});
-	
+
 	// Load the current category filter
 	view.on('init', function(next) {
-		
+
 		if (req.params.category) {
 			keystone.list('PostCategory').model.findOne({ key: locals.filters.category }).exec(function(err, result) {
 				locals.data.category = result;
@@ -54,12 +70,12 @@ exports = module.exports = function(req, res) {
 		} else {
 			next();
 		}
-		
+
 	});
-	
+
 	// Load the posts
 	view.on('init', function(next) {
-		
+
 		var q = keystone.list('Post').paginate({
 				page: req.query.page || 1,
 				perPage: 10,
@@ -70,19 +86,36 @@ exports = module.exports = function(req, res) {
 			})
 			.sort('-publishedDate')
 			.populate('author categories');
-		
+
 		if (locals.data.category) {
 			q.where('categories').in([locals.data.category]);
 		}
-		
+
 		q.exec(function(err, results) {
 			locals.data.posts = results;
 			next(err);
 		});
-		
+
 	});
-	
+
+	// Load page content
+	view.on('init', function(next) {
+		keystone.list('SpecialPage').model.findOne()
+			.where('page', 'SocialAndFooter')
+			.where('active', true)
+			.exec(function(err, page) {
+				if (err) {
+					console.log(err);
+					return next(err);
+				} else {
+					locals.data.socialAndFooter = page.socialAndFooter;
+					next(err);
+				}
+			});
+	});
+
+
 	// Render the view
 	view.render('blog');
-	
+
 };

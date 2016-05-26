@@ -14,6 +14,40 @@ exports = module.exports = function(req, res) {
 		posts: []
 	};
 
+
+	// Load page content
+	view.on('init', function(next) {
+		keystone.list('SpecialPage').model.findOne()
+			.where('page', 'Blog')
+			.where('active', true)
+			.exec(function(err, page) {
+				if (err) {
+					console.log(err);
+					return next(err);
+				} else {
+					locals.data.page = page.blog;
+					next(err);
+				}
+			});
+	});
+
+	// Load page content
+	view.on('init', function(next) {
+		keystone.list('SpecialPage').model.findOne()
+			.where('page', 'SocialAndFooter')
+			.where('active', true)
+			.exec(function(err, page) {
+				if (err) {
+					console.log(err);
+					return next(err);
+				} else {
+					locals.data.socialAndFooter = page.socialAndFooter;
+					next(err);
+				}
+			});
+	});
+
+
 	// Load the current post
 	view.on('init', function(next) {
 

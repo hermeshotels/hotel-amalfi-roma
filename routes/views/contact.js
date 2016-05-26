@@ -11,6 +11,40 @@ exports = module.exports = function(req, res) {
 	locals.formData = req.body || {};
 	locals.validationErrors = {};
 	locals.enquirySubmitted = false;
+	locals.data = {}
+
+	// Load page content
+	view.on('init', function(next) {
+		keystone.list('SpecialPage').model.findOne()
+			.where('page', 'Contact')
+			.where('active', true)
+			.exec(function(err, page) {
+				if (err) {
+					console.log(err);
+					return next(err);
+				} else {
+					locals.data.page = page.contact;
+					next(err);
+				}
+			});
+	});
+
+	// Load page content
+	view.on('init', function(next) {
+		keystone.list('SpecialPage').model.findOne()
+			.where('page', 'SocialAndFooter')
+			.where('active', true)
+			.exec(function(err, page) {
+				if (err) {
+					console.log(err);
+					return next(err);
+				} else {
+					locals.data.socialAndFooter = page.socialAndFooter;
+					next(err);
+				}
+			});
+	});
+
 
 	// On POST requests, add the Enquiry item to the database
 	view.on('post', { action: 'contact' }, function(next) {

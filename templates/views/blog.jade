@@ -1,4 +1,4 @@
-extends ../layouts/layout-blog
+extends ../layouts/homepage
 
 mixin post(post)
 	.post(data-ks-editable=editable(user, { list: 'Post', id: post.id }))
@@ -6,9 +6,9 @@ mixin post(post)
 			.gallery-image.img-rounded
 				.gallery-image-content
 					div
-						a(href='/blog/post/' + post.slug)
+						a(href='/'+[getLocale(req)]+'/blog/post/' + post.slug)
 							img(src=post._.heroImage.fit(900,900))
-		h3.text-uppercase: a(href='/blog/post/' + post.slug)= post.title
+		h3.text-uppercase: a(href='/'+[getLocale(req)]+'/blog/post/' + post.slug)= post.title
 		p.lead.text-muted 
 			if post.author
 				| #{__("by")} &nbsp;
@@ -19,14 +19,34 @@ mixin post(post)
 			if post.categories && post.categories.length
 				| in 
 				each cat, i in post.categories
-					a(href='/blog/' + cat.key)= cat.name
+					a(href='/'+[getLocale(req)]+'/blog/' + cat.key)= cat.name
 					if i < post.categories.length - 1
 						| , 
 					else
 						|  
 		p!= post.content.brief
 		if post.content.extended
-			p.read-more: a(href='/blog/post/' + post.slug) #{__("Read more...")}
+			p.read-more: a(href='/'+[getLocale(req)]+'/blog/post/' + post.slug) #{__("Read more...")}
+
+block header
+	#header.header
+		.background
+			div(style="background-image:url('" + data.page.headerImage.url + "')" )
+				.background-filter
+					.header-content
+						.header-row-logo
+							.header-logo
+								a(href='/'+[getLocale(req)]+'/'): img.img-responsive(src='/images/logo-white.png')
+						.header-row-title
+							.header-title.text-center
+								h1.text-uppercase #{data.page.title[getLocale(req)]}
+								.container-fluid
+									.row
+										.col-xs-5.col-sm-5.col-md-5.col-lg-5
+										.col-xs-2.col-sm-2.col-md-2.col-lg-2
+										.col-xs-5.col-sm-5.col-md-5.col-lg-5
+								h2.text-uppercase #{data.page.subTitle[getLocale(req)]}
+		//-- end header
 
 block content
 	.container-fluid.blog: .row
@@ -77,8 +97,8 @@ block content
 				ul.category-group
 					li.text-uppercase
 						i.fa.fa-angle-double-right(aria-hidden="true")
-						a(href='/blog', class=!data.category ? 'active' : false) #{__("All Categories")}
+						a(href='/'+[getLocale(req)]+'/blog', class=!data.category ? 'active' : false) #{__("All Categories")}
 					each cat in data.categories
 						li.text-uppercase
 							i.fa.fa-angle-double-right(aria-hidden="true")
-							a(href='/blog/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false)= __(cat.name)
+							a(href='/'+[getLocale(req)]+'/blog/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false)= __(cat.name)

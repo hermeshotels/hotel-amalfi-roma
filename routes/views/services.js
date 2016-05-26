@@ -6,7 +6,6 @@ exports = module.exports = function(req, res) {
 	var locals = res.locals;
 
 	locals.sections = 'services'
-
 	locals.data = {}
 
 	// Load page content
@@ -19,7 +18,7 @@ exports = module.exports = function(req, res) {
 					console.log(err);
 					return next(err);
 				} else {
-					locals.data.page = page;
+					locals.data.page = page.services;
 					next(err);
 				}
 			});
@@ -35,7 +34,7 @@ exports = module.exports = function(req, res) {
 					console.log(err);
 					return next(err);
 				} else {
-					locals.data.socialAndFooter = page;
+					locals.data.socialAndFooter = page.socialAndFooter;
 					next(err);
 				}
 			});
@@ -47,6 +46,5 @@ exports = module.exports = function(req, res) {
 			return next();
 		})
 	})
-
 	view.render('services');
 }

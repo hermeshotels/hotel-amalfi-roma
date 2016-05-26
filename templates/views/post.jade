@@ -1,5 +1,26 @@
 extends ../layouts/layout-post
 
+block header
+	#header.header.header-short
+		.background
+			div
+				.background-filter
+					.header-content
+						.header-row-logo
+							.header-logo
+								a(href='/'+[getLocale(req)]+'/'): img.img-responsive(src='/images/logo-black.png')
+						.header-row-title
+							.header-title.text-center
+							//-
+								h1.text-uppercase #{data.page.title[getLocale(req)]}
+								.container-fluid
+									.row
+										.col-xs-5.col-sm-5.col-md-5.col-lg-5
+										.col-xs-2.col-sm-2.col-md-2.col-lg-2
+										.col-xs-5.col-sm-5.col-md-5.col-lg-5
+								h2.text-uppercase #{data.page.subTitle[getLocale(req)]}
+		//-- end header
+
 block content
 	.container-fluid.single-post: .row: .col-sm-12.col-md-12
 		article

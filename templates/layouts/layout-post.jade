@@ -11,16 +11,7 @@ html
 		.navbar-post
 			include partials/navbar
 
-		#header.header
-			.background.noimage
-				.background-filter
-					.header-content
-						.header-row-logo
-							.header-logo
-								a(href='/'): img.img-responsive(src='/images/logo-black.png')
-						.header-row-title
-							.header-title.text-center
-		//-- end header
+		block header
 
 		block content
 

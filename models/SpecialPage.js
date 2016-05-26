@@ -160,6 +160,42 @@ SpecialPage.add({
 		}
 	},
 
+	services:{
+		title: {
+			it:{type:String,dependsOn:{page:"Services"}},
+			en:{type:String,dependsOn:{page:"Services"}}
+		},
+		subTitle: {
+			it:{type:String,dependsOn:{page:"Services"}},
+			en:{type:String,dependsOn:{page:"Services"}}
+		},
+		headerImage:{type:Types.CloudinaryImage,dependsOn:{page:"Services"}},
+	},
+
+	blog:{
+		title: {
+			it:{type:String,dependsOn:{page:"Blog"}},
+			en:{type:String,dependsOn:{page:"Blog"}}
+		},
+		subTitle: {
+			it:{type:String,dependsOn:{page:"Blog"}},
+			en:{type:String,dependsOn:{page:"Blog"}}
+		},
+		headerImage:{type:Types.CloudinaryImage,dependsOn:{page:"Blog"}},
+	},
+
+	gallery:{
+		title: {
+			it:{type:String,dependsOn:{page:"Gallery"}},
+			en:{type:String,dependsOn:{page:"Gallery"}}
+		},
+		subTitle: {
+			it:{type:String,dependsOn:{page:"Gallery"}},
+			en:{type:String,dependsOn:{page:"Gallery"}}
+		},
+		headerImage:{type:Types.CloudinaryImage,dependsOn:{page:"Gallery"}},
+	},
+
 	contact:{
 		introduction:{
 			it:{type:Types.Html,wysiwyg:true,dependsOn:{page:"Contact"}},

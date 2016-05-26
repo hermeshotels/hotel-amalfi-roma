@@ -1,4 +1,24 @@
-extends ../layouts/layout-gallery
+extends ../layouts/homepage
+
+block header
+	#header.header
+		.background
+			div(style="background-image:url('" + data.page.headerImage.url + "')" )
+				.background-filter
+					.header-content
+						.header-row-logo
+							.header-logo
+								a(href='/'+[getLocale(req)]+'/'): img.img-responsive(src='/images/logo-white.png')
+						.header-row-title
+							.header-title.text-center
+								h1.text-uppercase #{data.page.title[getLocale(req)]}
+								.container-fluid
+									.row
+										.col-xs-5.col-sm-5.col-md-5.col-lg-5
+										.col-xs-2.col-sm-2.col-md-2.col-lg-2
+										.col-xs-5.col-sm-5.col-md-5.col-lg-5
+								h2.text-uppercase #{data.page.subTitle[getLocale(req)]}
+		//-- end header
 
 block css
 	link(href="/styles/lightbox.css" rel="stylesheet")
