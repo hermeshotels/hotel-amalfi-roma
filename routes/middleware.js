@@ -90,7 +90,6 @@ exports.initLocals = function(req, res, next) {
 		href: 'https://plus.google.com/107196552070443185282'
 	}];
 
-
 	locals.user = req.user;
 
 	next();

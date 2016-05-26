@@ -3,46 +3,45 @@ extends ../layouts/homepage
 block header
 	#header.header
 		.background
-			div(style="background-image:url('" + data.page._.headerImage.fit(2000,1000) + "')" )
+			div(style="background-image:url('" + data.page.headerImage.url + "')" )
 				.background-filter
 					.header-content
 						.header-row-logo
 							.header-logo
-								a(href='/'): img.img-responsive(src='/images/logo-white.png')
+								a(href='/'+[getLocale(req)]+'/'): img.img-responsive(src='/images/logo-white.png')
 						.header-row-title
 							.header-title.text-center
-								h1.text-uppercase #{data.page.title}
+								h1.text-uppercase #{data.page.title[getLocale(req)]}
 								.container-fluid
 									.row
 										.col-xs-5.col-sm-5.col-md-5.col-lg-5
 										.col-xs-2.col-sm-2.col-md-2.col-lg-2
 										.col-xs-5.col-sm-5.col-md-5.col-lg-5
-								h2.text-uppercase #{data.page.subTitle}
+								h2.text-uppercase #{data.page.subTitle[getLocale(req)]}
 		//-- end header
 
 block content
-
 	.row.rooms-amount.text-center.text-uppercase
 		.col-sm-15.col-md-15
 			p
-				span.amount #{data.page.rooms.roomBlock1Title}
-				span.type #{data.page.rooms.roomBlock1SubTitle}
+				span.amount #{data.page.roomBlock1Title[getLocale(req)]}
+				span.type #{data.page.roomBlock1SubTitle[getLocale(req)]}
 		.col-sm-15.col-md-15
 			p
-				span.amount #{data.page.rooms.roomBlock2Title}
-				span.type #{data.page.rooms.roomBlock2SubTitle}
+				span.amount #{data.page.roomBlock2Title[getLocale(req)]}
+				span.type #{data.page.roomBlock2SubTitle[getLocale(req)]}
 		.col-sm-15.col-md-15
 			p
-				span.amount #{data.page.rooms.roomBlock3Title}
-				span.type #{data.page.rooms.roomBlock3SubTitle}
+				span.amount #{data.page.roomBlock3Title[getLocale(req)]}
+				span.type #{data.page.roomBlock3SubTitle[getLocale(req)]}
 		.col-sm-15.col-md-15
 			p
-				span.amount #{data.page.rooms.roomBlock4Title}
-				span.type #{data.page.rooms.roomBlock4SubTitle}
+				span.amount #{data.page.roomBlock4Title[getLocale(req)]}
+				span.type #{data.page.roomBlock4SubTitle[getLocale(req)]}
 		.col-sm-15.col-md-15
 			p
-				span.amount #{data.page.rooms.roomBlock5Title}
-				span.type #{data.page.rooms.roomBlock5SubTitle}
+				span.amount #{data.page.roomBlock5Title[getLocale(req)]}
+				span.type #{data.page.roomBlock5SubTitle[getLocale(req)]}
 
 	if rooms.length
 		.container-fluid.rooms

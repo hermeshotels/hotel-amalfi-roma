@@ -17,7 +17,8 @@
 						.footer-logo
 							img(src='/images/logo-footer.png')
 							.control-group &nbsp;
-							!= data.socialAndFooter.socialAndFooter.contentBelowLogo
+							!= data.socialAndFooter.contentBelowLogo
+							a(href='/'+[getLocale(req)]+'/privacy') Privacy
 					.col-sm-12.col-md-3.col-sm-pull-0.col-md-pull-6
 						.footer-menu
 							h4.text-uppercase hotel amalfi
@@ -25,7 +26,7 @@
 							ul
 								each link in navLinks
 									if link.footer
-										li: a.text-uppercase(href=link.href)= __(link.label)
+										li: a.text-uppercase(href='/'+[getLocale(req)]+link.href)= __(link.label)
 				.control-group &nbsp;
 //-- end footer
 .credits

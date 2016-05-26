@@ -18,7 +18,7 @@ exports = module.exports = function(req, res) {
 					console.log(err);
 					return next(err);
 				} else {
-					locals.data.page = page;
+					locals.data.page = page.rooms;
 					next(err);
 				}
 			});
@@ -34,7 +34,7 @@ exports = module.exports = function(req, res) {
 					console.log(err);
 					return next(err);
 				} else {
-					locals.data.socialAndFooter = page;
+					locals.data.socialAndFooter = page.socialAndFooter;
 					next(err);
 				}
 			});

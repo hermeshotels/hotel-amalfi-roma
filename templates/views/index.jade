@@ -3,21 +3,21 @@ extends ../layouts/homepage
 block header
 	#header.header
 		.background
-			div(style="background-image:url('" + data.page._.headerImage.fit(2000,1000) + "')" )
+			div(style="background-image:url('" + data.page.headerImage.url + "')" )
 				.background-filter
 					.header-content
 						.header-row-logo
 							.header-logo
-								a(href='/'): img.img-responsive(src='/images/logo-white.png')
+								a(href='/'+[getLocale(req)]+'/'): img.img-responsive(src='/images/logo-white.png')
 						.header-row-title
 							.header-title.text-center
-								h1.text-uppercase #{data.page.title}
+								h1.text-uppercase #{data.page.title[getLocale(req)]}
 								.container-fluid
 									.row
 										.col-xs-5.col-sm-5.col-md-5.col-lg-5
 										.col-xs-2.col-sm-2.col-md-2.col-lg-2
 										.col-xs-5.col-sm-5.col-md-5.col-lg-5
-								h2.text-uppercase #{data.page.subTitle}
+								h2.text-uppercase #{data.page.subTitle[getLocale(req)]}
 		//-- end header
 
 block content
@@ -27,38 +27,38 @@ block content
 			.col-xs-12.col-sm-12.col-md-12.col-lg-6.col-xs-push-0.col-sm-push-0.col-md-push-0.col-lg-push-6
 				.row
 					.col-xs-12.col-sm-12.col-md-12.col-lg-12.text-center.rectangle-container
-						h3.text-uppercase  #{data.page.home.textBlockTitle}
-						h4.text-uppercase.second-color  #{data.page.home.textBlockSubTitle}
-						!= data.page.home.textBlockContent
+						h3.text-uppercase  #{data.page.textBlockTitle[getLocale(req)]}
+						h4.text-uppercase.second-color  #{data.page.textBlockSubTitle[getLocale(req)]}
+						!= data.page.textBlockContent[getLocale(req)]
 				.row
 					.col-xs-12.col-sm-12.col-md-6.col-lg-6
 						.square-box
-							.square-content(style="background-image:url('"+ data.page._.home.linkBlock2Image.fit(500,500) +"')")
-								div
-								a(href=data.page.home.linkBlock2Url)
-									span.h2.text-uppercase #{data.page.home.linkBlock2Text}
+							.square-content
+								div(style="background-image:url('"+ data.page.linkBlock2Image.url +"')")
+								a(href='/'+[getLocale(req)]+data.page.linkBlock2Url)
+									span.h2.text-uppercase #{data.page.linkBlock2Text[getLocale(req)]}
 					.col-xs-12.col-sm-12.col-md-6.col-lg-6
 						.hidden-md.hidden-lg.control-group &nbsp;
 						.square-box
-							.square-content(style="background-image:url('"+ data.page._.home.linkBlock3Image.fit(500,500) +"')")
-								div
-								a(href=data.page.home.linkBlock3Url)
-									span.h2.text-uppercase #{data.page.home.linkBlock3Text}
+							.square-content
+								div(style="background-image:url('"+ data.page.linkBlock3Image.url +"')")
+								a(href='/'+[getLocale(req)]+data.page.linkBlock3Url)
+									span.h2.text-uppercase #{data.page.linkBlock3Text[getLocale(req)]}
 					.control-group &nbsp;
 			.col-xs-12.col-sm-12.col-md-12.col-lg-6.col-xs-pull-0.col-sm-pull-0.col-md-pull-0.col-lg-pull-6
 				.square-box
-					.square-content(style="background-image:url('"+ data.page._.home.linkBlock1Image.fit(1000,1000) +"')")
-						div
-						a(href=data.page.home.linkBlock1Url)
-							span.h2.text-uppercase #{data.page.home.linkBlock1Text}
+					.square-content
+						div(style="background-image:url('"+ data.page.linkBlock1Image.url +"')")
+						a(href='/'+[getLocale(req)]+data.page.linkBlock1Url)
+							span.h2.text-uppercase #{data.page.linkBlock1Text[getLocale(req)]}
 		//-- end squared boxes
 
 		if data.events
 			.control-group &nbsp;
 			.row
 				.col-xs-12.col-sm-12.col-md-12.col-lg-12
-					h3.text-uppercase.text-center #{data.page.home.eventsBlockTitle}
-					h4.text-uppercase.second-color.text-center #{data.page.home.eventsBlockSubTitle}
+					h3.text-uppercase.text-center #{data.page.eventsBlockTitle[getLocale(req)]}
+					h4.text-uppercase.second-color.text-center #{data.page.eventsBlockSubTitle[getLocale(req)]}
 					.control-group &nbsp;
 					.row
 						.col-xs-2.col-sm-2.col-md-2.col-lg-2
@@ -67,7 +67,7 @@ block content
 								each event in data.events
 									.col-xs-6.col-sm-6.col-md-4.col-lg-4
 										.square-box.event-item
-											a.square-content(href='/blog/'+event.slug)
+											a.square-content(href='/'+[getLocale(req)]+'/blog/post/'+event.slug)
 												span.event-content-table
 													span.event-content-cell
 														span.event-icon(class=event.event.icon)
@@ -79,8 +79,8 @@ block content
 		.control-group &nbsp;
 		.container-newsletter
 			.control-group &nbsp;
-			h3.text-uppercase.text-center #{data.page.home.newsletterBlockTitle}
-			h4.text-uppercase.second-color.text-center #{data.page.home.newsletterBlockSubTitle}
+			h3.text-uppercase.text-center #{data.page.newsletterBlockTitle[getLocale(req)]}
+			h4.text-uppercase.second-color.text-center #{data.page.newsletterBlockSubTitle[getLocale(req)]}
 			.control-group &nbsp;
 			form.form-inline.text-center.col-xs-12.col-sm-12.col-md-12.col-lg-12
 				.form-group
@@ -104,7 +104,7 @@ block content
 									.tour-item
 										.tour-item-content
 											div(style='background-image: url('+tour._.heroImage.limit(680,680)+');')
-											a(href='/tours/'+tour.slug)
+											a(href='/'+[getLocale(req)]+'/blog/post/'+tour.slug)
 												h3.tour-subtitle.text-uppercase.text-center
 													span= tour.categories.name
 												h2.tour-title.text-uppercase.text-center
@@ -120,8 +120,8 @@ block content
 					.testimonials-content
 						.control-group &nbsp;
 						.control-group &nbsp;
-						h3.text-uppercase.text-center #{data.page.home.testimonialsBlockTitle}
-						h4.text-uppercase.second-color.text-center #{data.page.home.testimonialsBlockSubTitle}
+						h3.text-uppercase.text-center #{data.page.testimonialsBlockTitle[getLocale(req)]}
+						h4.text-uppercase.second-color.text-center #{data.page.testimonialsBlockSubTitle[getLocale(req)]}
 						.control-group &nbsp;
 						.text-center.separator &ldquo;
 						each testimonial in data.testimonials
@@ -149,46 +149,18 @@ block content
 						.col-xs-8.col-sm-8.col-md-8.col-lg-8
 							.row
 								.col-xs-12.col-sm-4.col-md-4.col-lg-4.text-center
-									img(src=data.page.home.promoColumn1Image.url)
-									h4 #{data.page.home.promoColumn1Title}
-									p #{data.page.home.promoColumn1Text}
+									img(src=data.page.promoColumn1Image.url)
+									h4 #{data.page.promoColumn1Title[getLocale(req)]}
+									p #{data.page.promoColumn1Text[getLocale(req)]}
 								.col-xs-12.col-sm-4.col-md-4.col-lg-4.text-center
-									img(src=data.page.home.promoColumn2Image.url)
-									h4 #{data.page.home.promoColumn2Title}
-									p #{data.page.home.promoColumn2Text}
+									img(src=data.page.promoColumn2Image.url)
+									h4 #{data.page.promoColumn2Title[getLocale(req)]}
+									p #{data.page.promoColumn2Text[getLocale(req)]}
 								.col-xs-12.col-sm-4.col-md-4.col-lg-4.text-center
-									img(src=data.page.home.promoColumn3Image.url)
-									h4 #{data.page.home.promoColumn3Title}
-									p #{data.page.home.promoColumn3Text}
+									img(src=data.page.promoColumn3Image.url)
+									h4 #{data.page.promoColumn3Title[getLocale(req)]}
+									p #{data.page.promoColumn3Text[getLocale(req)]}
 						.col-xs-2.col-sm-2.col-md-2.col-lg-2
 					.control-group &nbsp;
 					.control-group &nbsp;
 	//-- end pre footer
-
-	//-
-		div(class="home")
-			div(class="section")
-				div(class="master-slider ms-skin-default", id="masterslider")
-					div(class="ms-slide")
-						img(src="js/plugins/masterslider/blank.gif", data-src="http://www.hoteldellapiccolamarina.it/imgs/slider/1.jpg")
-					div(class="ms-slide")
-						img(src="js/plugins/masterslider/blank.gif", data-src="http://www.hoteldellapiccolamarina.it/imgs/slider/2.jpg")
-
-	//-
-		block js
-			script(type="text/javascript").
-				jQuery(document).ready(function(){
-					var slider = new MasterSlider();
-					slider.control('arrows');
-					slider.setup('masterslider' , {
-						width:1280,    // slider standard width
-						height: 540,   // slider standard height
-						space:5,
-						layout: 'fillwidth',
-						autoplay: true,
-						arrows: true,
-						loop: true
-						// more slider options goes here...
-						// check slider options section in documentation for more options.
-					});
-				});

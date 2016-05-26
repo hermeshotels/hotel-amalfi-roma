@@ -14,7 +14,7 @@ nav.navbar.navbar-default.navbar-fixed-top
 			ul.nav.navbar-nav
 				li.dropdown
 					a.dropdown-toggle.current-language.text-uppercase(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-						| IT
+						| #{getLocale(req)}
 						span.caret
 					ul.dropdown-menu.select-language
 						li
@@ -23,7 +23,7 @@ nav.navbar.navbar-default.navbar-fixed-top
 							a(href='/en' data-lang='en') EN
 							ul.nav.navbar-nav.navbar-left
 			li.nav.navbar-nav.navbar-logo
-				a(href='/'): img.img-responsive(src='/images/logo-white.png')
+				a(href='/'+[getLocale(req)]+'/'): img.img-responsive(src='/images/logo-white.png')
 			ul.nav.navbar-nav.navbar-right
 				li
 					a.text-uppercase.booknow-opener(href='#') #{__('BOOKNOW')}
@@ -49,13 +49,16 @@ nav.navbar.navbar-default.navbar-fixed-top
 					ul
 						each link in navLinks
 							if link.header
-								li(class=(section == link.key ? 'active' : null)): a.text-uppercase(href=link.href)= __(link.label)
+								li(class=(section == link.key ? 'active' : null)): a.text-uppercase(href='/'+[getLocale(req)]+link.href)= __(link.label)
 			.control-group &nbsp;
 			.menu-footer.row
 				.col-xs-8.col-sm-8.col-md-8.col-lg-8
 					ul
-						each link in socialLinks
-							li: a.text-uppercase(class=link.icon href=link.href)
+						li: a.text-uppercase(class="facebook" href=)
+						li: a.text-uppercase(class="instagram" href=)
+						li: a.text-uppercase(class="twitter" href=)
+						li: a.text-uppercase(class="pinterest" href=)
+						li: a.text-uppercase(class="googleplus" href=)
 				.col-xs-4.col-sm-4.col-md-4.col-lg-4.text-right.text-uppercase
 					p.booknow
 						a.booknow-opener(href='#') #{__('BOOKNOW')}

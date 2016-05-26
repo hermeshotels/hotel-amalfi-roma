@@ -104,9 +104,6 @@ NAVBAR
 /*!
 HEADER
 */
-/*!
-BOX SQUARED
-*/
 #header {
     position: relative;
     width: 100%;
@@ -130,16 +127,7 @@ BOX SQUARED
     position: absolute;
     height: 100%;
     width: 100%;
-    -moz-transition: all .5s;
-    -webkit-transition: all .5s;
-    transition: all .5s;
-    -moz-transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-    -moz-background-size: cover;
-    -webkit-background-size: cover;
     background-size: cover;
-    z-index: -1;
 }
 
 #header .background-filter {
