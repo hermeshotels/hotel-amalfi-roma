@@ -64,10 +64,10 @@ exports.initLocals = function(req, res, next) {
 		href: '/gallery'
 	}, {
 		label: '#HOTELAMALFIROME',
-		key: 'hashtag',
+		key: 'hotelamalfirome',
 		header: true,
 		footer: false,
-		href: '/hashtag'
+		href: '/hotelamalfirome'
 	}, {
 		label: 'Location & Contatti',
 		key: 'contact',

@@ -49,6 +49,7 @@ exports = module.exports = function(app) {
 	app.get('/hotelamalfirome', routes.views.hashtag);
 	app.all('/contact', routes.views.contact);
 	app.get('/privacy', routes.views.privacy);
+	app.get('/template.html', function(req,res){res.sendFile('/template.html');});
 
 	app.get('/api/availability', routes.views.availability.calendarDispo);
 	app.get('/api/availability', routes.views.availability.checkDispo);

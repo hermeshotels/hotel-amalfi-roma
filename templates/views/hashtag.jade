@@ -1,0 +1,57 @@
+extends ../layouts/layout-post
+
+block css
+	link(href="/styles/jquery.socialfeed.css" rel="stylesheet" type="text/css")
+	link(href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet")
+
+block head
+
+block header
+	#header.header.header-short
+		.background
+			div
+				.background-filter
+					.header-content
+						.header-row-logo
+							.header-logo
+								a(href='/'+[getLocale(req)]+'/'): img.img-responsive(src='/images/logo-black.png')
+						.header-row-title
+							.header-title.text-center
+							//-
+								h1.text-uppercase #{data.page.title[getLocale(req)]}
+								.container-fluid
+									.row
+										.col-xs-5.col-sm-5.col-md-5.col-lg-5
+										.col-xs-2.col-sm-2.col-md-2.col-lg-2
+										.col-xs-5.col-sm-5.col-md-5.col-lg-5
+								h2.text-uppercase #{data.page.subTitle[getLocale(req)]}
+		//-- end header
+
+block content
+	.social-feed-container
+	.clearfix
+
+block js
+	script(src="/js/bower_components/codebird-js/codebird.js")
+	script(src="/js/bower_components/doT/doT.min.js")
+	script(src="/js/bower_components/moment/min/moment.min.js")
+	if getLocale(req) == 'it'
+		script(src="/js/bower_components/moment/locale/it.js")
+	script(src="/js/jquery.socialfeed.js")
+
+	script.
+		/*
+			$(document).ready(function(){
+				$('.social-feed-container').socialfeed({
+					// INSTAGRAM
+					instagram:{
+						accounts: ['@teslamotors','#teslamotors'],  //Array: Specify a list of accounts from which to pull posts
+						limit: 2,                                    //Integer: max number of posts to load
+						client_id: 'YOUR_INSTAGRAM_CLIENT_ID'       //String: Instagram client id (optional if using access token)
+						access_token: 'YOUR_INSTAGRAM_ACCESS_TOKEN' //String: Instagram access token
+					},
+					// GENERAL SETTINGS
+					length:400                                      //Integer: For posts with text longer than this length, show an ellipsis.
+				});
+			});
+		*/

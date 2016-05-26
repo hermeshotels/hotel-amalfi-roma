@@ -3,7 +3,42 @@ extends ../layouts/homepage
 block header
 	#header.header
 		.background
-			div(style="background-image:url('" + data.page.headerImage.url + "')" )
+			div
+				div#map
+				script.
+					var map;
+					function initMap() {
+						
+						function initialize(){
+							var mapDiv = document.getElementById('map');
+							map = new google.maps.Map(mapDiv, {
+								center: {lat: #{data.page.mapLat}, lng: #{data.page.mapLng}},
+								zoom: #{data.page.mapZoom},
+								disableDefaultUI: true
+							});
+							var noPoi = [
+								{
+									featureType: "poi",
+									stylers: [
+										{ visibility: "off" }
+									]
+								}
+							];
+							map.setOptions({styles: noPoi});
+							var marker = new google.maps.Marker({
+								position: {lat: #{data.page.markerLat}, lng: #{data.page.markerLng}},
+								map: map
+							});
+						}
+						google.maps.event.addDomListener(window, 'load', initialize);
+						google.maps.event.addDomListener(window, "resize", function() {
+							var center = map.getCenter();
+							google.maps.event.trigger(map, "resize");
+							map.setCenter(center); 
+						});
+					}
+				script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgufrjPoBcjLEr4cd-v3EGlNxVQMOAtoc&callback=initMap" async defer)
+			div
 				.background-filter
 					.header-content
 						.header-row-logo
@@ -11,13 +46,7 @@ block header
 								a(href='/'+[getLocale(req)]+'/'): img.img-responsive(src='/images/logo-white.png')
 						.header-row-title
 							.header-title.text-center
-								h1.text-uppercase #{data.page.title[getLocale(req)]}
-								.container-fluid
-									.row
-										.col-xs-5.col-sm-5.col-md-5.col-lg-5
-										.col-xs-2.col-sm-2.col-md-2.col-lg-2
-										.col-xs-5.col-sm-5.col-md-5.col-lg-5
-								h2.text-uppercase #{data.page.subTitle[getLocale(req)]}
+								h1.text-uppercase #{__("SIAMOQUI")}
 		//-- end header
 
 block content
@@ -26,23 +55,8 @@ block content
 			h3 #{__("Thanks for getting in touch.")}
 		else
 			.row.text-center.contact-content: .col-sm-12.col-md-12
-				
-				h3.text-uppercase #{__("contacth3a")}
-				p #{__("contactp1")}
-				p #{__("contactp2")}
-				p #{__("contactp3")}
-				p #{__("contactp4")}
-				p #{__("contactp5")}
-				
-				h3.text-uppercase #{__("contacth3b")}
-				h4.text-uppercase.second-color #{__("contacth4a")}
-				p #{__("contactp6")}
-				p #{__("contactp7")}
-				h4.text-uppercase.second-color #{__("contacth4b")}
-				p #{__("contactp8")}
-				h4.text-uppercase.second-color #{__("contacth4c")}
-				p #{__("contactp9")}
-				
+				!= data.page.introduction[getLocale(req)]
+								
 			.control-group &nbsp;
 			.row.contact-info.text-center
 				.col-sm-12.col-md-6
@@ -50,16 +64,16 @@ block content
 					.control-group &nbsp;
 					p
 						i.fa.fa-map-marker.second-color.h2(aria-hidden="true")
-						span Via Merulana, 278 - 00185 Roma, Italia
+						span #{data.page.contactAddress}
 					p
 						i.fa.fa-phone.second-color.h2(aria-hidden="true")
-						span +39 06.474.43.13
+						span #{data.page.contactPhone}
 					p
 						i.fa.fa-fax.second-color.h2(aria-hidden="true")
-						span +39 06.482.05.75
+						span #{data.page.contactFax}
 					p
 						i.fa.fa-envelope.second-color.h2(aria-hidden="true")
-						span info@hotelamalfiroma.it
+						span: a(href="mailto:"+data.page.contactEmail) #{data.page.contactEmail}
 				.col-sm-12.col-md-6
 					h4.text-uppercase.second-color.text-center #{__("contacth4e")}
 					.control-group &nbsp;
