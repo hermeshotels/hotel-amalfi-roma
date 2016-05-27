@@ -188,6 +188,7 @@ HEADER
     color: #fff;
     display: table-cell;
     vertical-align: middle;
+	padding: 0px 5%;
 }
 .header-title .col-xs-2 {
     border-top: 1px solid #fff;
@@ -285,6 +286,10 @@ MENU
     margin: 0px;
     padding: 10px 0px;
 }
+.menu-content .menu-footer .booknow{
+    line-height: 45px;
+}
+
 .menu-content .menu-footer ul li{
     display: inline-block;
 }
@@ -294,10 +299,6 @@ MENU
     width: 31px;
     margin: 0px 10px;
 }
-.menu-content .menu-footer .booknow{
-    line-height: 45px;
-}
-
 .menu-content .menu-footer ul li a.facebook{
     background: url(../images/social-facebook.png) no-repeat center center;
 }
@@ -310,6 +311,9 @@ MENU
 .menu-content .menu-footer ul li a.instagram{
     background: url(../images/social-instagram.png) no-repeat center center;
 }
+.menu-content .menu-footer ul li a.googleplus{
+    background: url(../images/social-googleplus.png) no-repeat center center;
+}
 .menu-content .menu-footer ul li a:hover.facebook{
     background: url(../images/social-facebook-hover.png) no-repeat center center;
 }
@@ -321,6 +325,9 @@ MENU
 }
 .menu-content .menu-footer ul li a:hover.instagram{
     background: url(../images/social-instagram-hover.png) no-repeat center center;
+}
+.menu-content .menu-footer ul li a:hover.googleplus{
+    background: url(../images/social-googleplus-hover.png) no-repeat center center;
 }
 
 
@@ -434,6 +441,7 @@ EVENTS
     display: table;
     width: 100%;
     height: 100%;
+	padding: 3%;
 }
 .event-item .event-content-cell {
     display: table-cell;
@@ -810,7 +818,7 @@ BLOG
 }
 .blog .blog-content {
 	background-color: #fff;
-	padding: 10px 5%;
+	padding: 10px 3%;
 }
 .blog .category-group {
 	margin: 0px;
@@ -832,6 +840,128 @@ BLOG
 	color: #15c3b1;
 	text-decoration:none;
 }
+.block-sidebar hr{
+	margin: 20px;
+	border-color: #e2e2e2;
+}
+.block-sidebar .social-icon-list {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+.block-sidebar .social-icon-list li {
+	display: inline-block;
+}
+.block-sidebar .social-icon-list li a{
+    display: inline-block;
+    height: 31px;
+    width: 31px;
+    margin: 0px 10px;
+}
+.block-sidebar .social-icon-list li a.facebook{
+    background: url(../images/social-facebook-black.png) no-repeat center center;
+}
+.block-sidebar .social-icon-list li a.pinterest{
+    background: url(../images/social-pinterest-black.png) no-repeat center center;
+}
+.block-sidebar .social-icon-list li a.twitter{
+    background: url(../images/social-twitter-black.png) no-repeat center center;
+}
+.block-sidebar .social-icon-list li a.instagram{
+    background: url(../images/social-instagram-black.png) no-repeat center center;
+}
+.block-sidebar .social-icon-list li a.googleplus{
+    background: url(../images/social-googleplus-black.png) no-repeat center center;
+}
+.block-sidebar .social-icon-list li a:hover.facebook{
+    background: url(../images/social-facebook-hover.png) no-repeat center center;
+}
+.block-sidebar .social-icon-list li a:hover.pinterest{
+    background: url(../images/social-pinterest-hover.png) no-repeat center center;
+}
+.block-sidebar .social-icon-list li a:hover.twitter{
+    background: url(../images/social-twitter-hover.png) no-repeat center center;
+}
+.block-sidebar .social-icon-list li a:hover.instagram{
+    background: url(../images/social-instagram-hover.png) no-repeat center center;
+}
+.block-sidebar .social-icon-list li a:hover.googleplus{
+    background: url(../images/social-googleplus-hover.png) no-repeat center center;
+}
+.block-sidebar .tags-group, .post-sidebar .tags-group{
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+.block-sidebar .tags-group li, .post-sidebar .tags-group li {
+	display: inline-block;
+}
+.block-sidebar .tags-group li a, .post-sidebar .tags-group li a{
+	display: block;
+	border: 1px solid #e2e2e2;
+	text-align: center;
+	color: #000;
+	padding: 5px;
+	margin: 5px 0px;
+}
+.block-sidebar .tags-group li a:hover, .block-sidebar .tags-group li a.active, .post-sidebar .tags-group li a:hover {
+	text-decoration: none;
+	color: #15c3b1;
+}
+.block-sidebar .btn{
+	padding: 12px 5px;
+}
+
+.post-sidebar h3 { border-bottom: 1px solid #e2e2e2; line-height:0.1em; margin:10px 0 20px; }
+.post-sidebar h3 span { background:#fff; padding:0 10px 0px 0px; }
+
+.post-sidebar .social-share {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+.post-sidebar .social-share li{
+	display: inline-block;
+}
+.post-sidebar .social-share li a{
+    display: inline-block;
+    height: 31px;
+    width: 31px;
+    margin: 0px 10px;
+}
+.post-sidebar .social-share li a.facebook{
+    background: url(../images/social-facebook-black.png) no-repeat center center;
+}
+.post-sidebar .social-share li a.pinterest{
+    background: url(../images/social-pinterest-black.png) no-repeat center center;
+}
+.post-sidebar .social-share li a.twitter{
+    background: url(../images/social-twitter-black.png) no-repeat center center;
+}
+.post-sidebar .social-share li a.instagram{
+    background: url(../images/social-instagram-black.png) no-repeat center center;
+}
+.post-sidebar .social-share li a.googleplus{
+    background: url(../images/social-googleplus-black.png) no-repeat center center;
+}
+.post-sidebar .social-share li a:hover.facebook{
+    background: url(../images/social-facebook-hover.png) no-repeat center center;
+}
+.post-sidebar .social-share li a:hover.pinterest{
+    background: url(../images/social-pinterest-hover.png) no-repeat center center;
+}
+.post-sidebar .social-share li a:hover.twitter{
+    background: url(../images/social-twitter-hover.png) no-repeat center center;
+}
+.post-sidebar .social-share li a:hover.instagram{
+    background: url(../images/social-instagram-hover.png) no-repeat center center;
+}
+.post-sidebar .social-share li a:hover.googleplus{
+    background: url(../images/social-googleplus-hover.png) no-repeat center center;
+}
+
+
+
 .post{
 	border-bottom: 1px solid #e2e2e2;
 	padding: 20px;
@@ -845,6 +975,13 @@ BLOG
 .post .lead.text-muted span{
 	font-weight: normal;
 	color: #000;
+}
+.post .read-more a{
+	color: #000;
+}
+.post .read-more a:hover{
+	text-decoration: none;
+	color: #15c3b1;
 }
 .pagination > li a {
 	margin: 0px 10px;

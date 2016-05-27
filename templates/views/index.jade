@@ -70,9 +70,10 @@ block content
 											a.square-content(href='/'+[getLocale(req)]+'/blog/post/'+event.slug)
 												span.event-content-table
 													span.event-content-cell
-														span.event-icon(class=event.event.icon)
-														span.event-title.text-uppercase.text-center= event.title
-														span.event-date.text-uppercase.text-center= event._.publishedDate.format('DD MMMM YYYY')
+														span.event-icon(class=event.eventIcon)
+														span.event-title.text-uppercase.text-center= event.postTitle[getLocale(req)]
+														if event.eventDate
+															span.event-date.text-uppercase.text-center= event._.eventDate.format('DD MMMM YYYY')
 						.col-xs-2.col-sm-2.col-md-2.col-lg-2
 			//-- end events
 
@@ -82,13 +83,47 @@ block content
 			h3.text-uppercase.text-center #{data.page.newsletterBlockTitle[getLocale(req)]}
 			h4.text-uppercase.second-color.text-center #{data.page.newsletterBlockSubTitle[getLocale(req)]}
 			.control-group &nbsp;
-			form.form-inline.text-center.col-xs-12.col-sm-12.col-md-12.col-lg-12
-				.form-group
-					label.sr-only.text-uppercase(for='newsletteremail') #{__('NewsletterLabel')}
-					input#newsletteremail.form-control(type='email', placeholder=__('NewsletterInput'))
-					button.btn.btn-default.text-uppercase(type='submit') #{__('NewsletterIscriviti')}
-			.control-group &nbsp;
-			.control-group &nbsp;
+			
+			if getLocale(req).toLowerCase() === 'en'
+				//-- Begin MailChimp Signup Form
+				div#mc_embed_signup
+					form.form-inline.text-center.col-xs-12.col-sm-12.col-md-12.col-lg-12(action="//hotelamalfiroma.us13.list-manage.com/subscribe/post?u=7b98d3d8247b1093beb2b292f&amp;id=8473731a88" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate)
+						div#mc_embed_signup_scroll
+							.mc-field-group
+								label.sr-only.text-uppercase(for="mce-EMAIL") #{__('NewsletterLabel')}
+								input#mce-EMAIL.form-control.required.email(type='email' placeholder=__('NewsletterInput') value="" name="EMAIL")
+								input.btn.btn-default.text-uppercase(type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button")
+							div#mce-responses.clear
+								div#mce-error-response.response(style="display:none")
+								div#mce-success-response.response(style="display:none")
+							div(style="position: absolute; left: -5000px;" aria-hidden="true")
+								input(type="text" name="b_7b98d3d8247b1093beb2b292f_8473731a88" tabindex="-1" value="")
+							.clear
+				script(type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js')
+				script(type='text/javascript').
+					(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);
+				.control-group &nbsp;
+				.control-group &nbsp;
+			if getLocale(req).toLowerCase() === 'it'
+				//-- Begin MailChimp Signup Form
+				div#mc_embed_signup
+					form.form-inline.text-center.col-xs-12.col-sm-12.col-md-12.col-lg-12(action="//hotelamalfiroma.us13.list-manage.com/subscribe/post?u=7b98d3d8247b1093beb2b292f&amp;id=5b2d858ea4" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate)
+						div#mc_embed_signup_scroll
+							.mc-field-group
+								label.sr-only.text-uppercase(for="mce-EMAIL") #{__('NewsletterLabel')}
+								input#mce-EMAIL.form-control.required.email(type='email' placeholder=__('NewsletterInput') value="" name="EMAIL")
+								input.btn.btn-default.text-uppercase(type="submit" value=__('Subscribe') name="subscribe" id="mc-embedded-subscribe" class="button")
+							div#mce-responses.clear
+								div#mce-error-response.response(style="display:none")
+								div#mce-success-response.response(style="display:none")
+							div(style="position: absolute; left: -5000px;" aria-hidden="true")
+								input(type="text" name="b_7b98d3d8247b1093beb2b292f_5b2d858ea4" tabindex="-1" value="")
+							.clear
+				script(type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js')
+				script(type='text/javascript').
+					(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);
+				.control-group &nbsp;
+				.control-group &nbsp;
 		//-- end newsletter
 		
 	if data.tours
@@ -108,7 +143,7 @@ block content
 												h3.tour-subtitle.text-uppercase.text-center
 													span= tour.categories.name
 												h2.tour-title.text-uppercase.text-center
-													span= tour.location
+													span= tour.postTitle[getLocale(req)]
 				.control-group &nbsp;
 		//-- end tours
 
@@ -126,8 +161,8 @@ block content
 						.text-center.separator &ldquo;
 						each testimonial in data.testimonials
 							.testimonials-item
-								p.text-center.text-uppercase= testimonial.name
-								.text-center.text-uppercase!= testimonial.description
+								p.text-center.text-uppercase= testimonial.name[getLocale(req)]
+								.text-center.text-uppercase!= testimonial.description[getLocale(req)]
 								.control-group &nbsp;
 								p.text-center.text-uppercase= testimonial.author
 							.control-group &nbsp;

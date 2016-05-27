@@ -44,6 +44,7 @@ exports = module.exports = function(app) {
 	app.get('/services', routes.views.services);
 	app.get('/blog', routes.views.blog);
 	app.get('/blog/:category?', routes.views.blog);
+	app.get('/blog/tag/:tag?', routes.views.blog);
 	app.get('/blog/post/:post', routes.views.post);
 	app.get('/gallery', routes.views.gallery);
 	app.get('/hotelamalfirome', routes.views.hashtag);

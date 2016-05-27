@@ -54,11 +54,16 @@ nav.navbar.navbar-default.navbar-fixed-top
 			.menu-footer.row
 				.col-xs-8.col-sm-8.col-md-8.col-lg-8
 					ul
-						li: a.text-uppercase(class="facebook" href=)
-						li: a.text-uppercase(class="instagram" href=)
-						li: a.text-uppercase(class="twitter" href=)
-						li: a.text-uppercase(class="pinterest" href=)
-						li: a.text-uppercase(class="googleplus" href=)
+						if data.socialAndFooter.facebook
+							li: a.text-uppercase(class="facebook" target="_blank" href=data.socialAndFooter.facebook)
+						if data.socialAndFooter.instagram
+							li: a.text-uppercase(class="instagram" target="_blank" href=data.socialAndFooter.instagram)
+						if data.socialAndFooter.twitter
+							li: a.text-uppercase(class="twitter" target="_blank" href=data.socialAndFooter.twitter)
+						if data.socialAndFooter.pinterest
+							li: a.text-uppercase(class="pinterest" target="_blank" href=data.socialAndFooter.pinterest)
+						if data.socialAndFooter.googleplus
+							li: a.text-uppercase(class="googleplus" target="_blank" href=data.socialAndFooter.googleplus)
 				.col-xs-4.col-sm-4.col-md-4.col-lg-4.text-right.text-uppercase
 					p.booknow
 						a.booknow-opener(href='#') #{__('BOOKNOW')}

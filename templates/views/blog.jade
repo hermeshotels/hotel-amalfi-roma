@@ -12,7 +12,8 @@ mixin post(post)
 		p.lead.text-muted 
 			if post.author
 				| #{__("by")} &nbsp;
-				span= post.author.name.first
+				span
+					| #{post.author.name.first} &nbsp;
 			if post.publishedDate
 				| #{__("on")} &nbsp;
 				span= post._.publishedDate.format('MMMM Do, YYYY')
@@ -24,9 +25,13 @@ mixin post(post)
 						| , 
 					else
 						|  
-		p!= post.content.brief
+		p!= post.content.brief[getLocale(req)]
 		if post.content.extended
-			p.read-more: a(href='/'+[getLocale(req)]+'/blog/post/' + post.slug) #{__("Read more...")}
+			.control-group &nbsp;
+			p.read-more
+				a.text-uppercase(href='/'+[getLocale(req)]+'/blog/post/' + post.slug)
+					| #{__("Read more")} 
+					i.fa.fa-chevron-right(aria-hidden="true")
 
 block header
 	#header.header
@@ -51,7 +56,60 @@ block header
 block content
 	.container-fluid.blog: .row
 		.col-sm-3.col-md-3
-			include ../layouts/partials/newsletter
+			.block-sidebar
+				h3.text-uppercase #{__("Instagram Photos")}
+				hr/
+			.block-sidebar
+				h3.text-uppercase #{__("Subscribe our newsletter")}
+				if getLocale(req).toLowerCase() === 'en'
+					//-- Begin MailChimp Signup Form
+					div#mc_embed_signup
+						form.form-inline.text-center.col-xs-12.col-sm-12.col-md-12.col-lg-12(action="//hotelamalfiroma.us13.list-manage.com/subscribe/post?u=7b98d3d8247b1093beb2b292f&amp;id=8473731a88" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate)
+							div#mc_embed_signup_scroll
+								.mc-field-group
+									label.sr-only.text-uppercase(for="mce-EMAIL") #{__('NewsletterLabel')}
+									input#mce-EMAIL.form-control.required.email.col-sm-8.col-md-8(type='email' placeholder=__('NewsletterInput') value="" name="EMAIL")
+									input.btn.btn-default.text-uppercase.col-sm-4.col-md-4(type="submit" value=__("Subscribe") name="subscribe" id="mc-embedded-subscribe" class="button")
+								div#mce-responses.clear
+									div#mce-error-response.response(style="display:none")
+									div#mce-success-response.response(style="display:none")
+								div(style="position: absolute; left: -5000px;" aria-hidden="true")
+									input(type="text" name="b_7b98d3d8247b1093beb2b292f_8473731a88" tabindex="-1" value="")
+								.clear
+					script(type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js')
+					script(type='text/javascript').
+						(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);
+					.control-group &nbsp;
+					.control-group &nbsp;
+				if getLocale(req).toLowerCase() === 'it'
+					//-- Begin MailChimp Signup Form
+					div#mc_embed_signup
+						form.form-inline.text-center.col-xs-12.col-sm-12.col-md-12.col-lg-12(action="//hotelamalfiroma.us13.list-manage.com/subscribe/post?u=7b98d3d8247b1093beb2b292f&amp;id=5b2d858ea4" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate)
+							div#mc_embed_signup_scroll
+								.mc-field-group
+									label.sr-only.text-uppercase(for="mce-EMAIL") #{__('NewsletterLabel')}
+									input#mce-EMAIL.form-control.required.email.col-sm-8.col-md-8(type='email' placeholder=__('NewsletterInput') value="" name="EMAIL")
+									input.btn.btn-default.text-uppercase.col-sm-4.col-md-4(type="submit" value=__("Subscribe") name="subscribe" id="mc-embedded-subscribe" class="button")
+								div#mce-responses.clear
+									div#mce-error-response.response(style="display:none")
+									div#mce-success-response.response(style="display:none")
+								div(style="position: absolute; left: -5000px;" aria-hidden="true")
+									input(type="text" name="b_7b98d3d8247b1093beb2b292f_5b2d858ea4" tabindex="-1" value="")
+								.clear
+					script(type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js')
+					script(type='text/javascript').
+						(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);
+					.control-group &nbsp;
+					.control-group &nbsp;
+				hr/
+			.block-sidebar
+				h3.text-uppercase #{__("Tags")}
+				.block-sidebar
+					ul.tags-group.row
+						each tag in data.tags
+							li.text-uppercase.col-sm-12.col-md-6
+								a(href='/'+[getLocale(req)]+'/blog/tag/' + tag.key, class=data.tag && data.tag.id == tag.id ? 'active' : false)= tag.tagName[getLocale(req)]
+				hr/
 
 		.col-sm-6.col-md-6.blog-content
 			if filters.category && !data.category
@@ -93,12 +151,49 @@ block content
 
 		if data.categories.length
 			.col-sm-3.col-md-3
-				h3.text-uppercase #{__("Categories")}
-				ul.category-group
-					li.text-uppercase
-						i.fa.fa-angle-double-right(aria-hidden="true")
-						a(href='/'+[getLocale(req)]+'/blog', class=!data.category ? 'active' : false) #{__("All Categories")}
-					each cat in data.categories
+				.block-sidebar
+					h3.text-uppercase #{__("Categories")}
+					ul.category-group
 						li.text-uppercase
 							i.fa.fa-angle-double-right(aria-hidden="true")
-							a(href='/'+[getLocale(req)]+'/blog/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false)= __(cat.name)
+							a(href='/'+[getLocale(req)]+'/blog', class=!data.category ? 'active' : false) #{__("All Categories")}
+						each cat in data.categories
+							li.text-uppercase
+								i.fa.fa-angle-double-right(aria-hidden="true")
+								a(href='/'+[getLocale(req)]+'/blog/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false)= __(cat.name)
+					hr/
+				.block-sidebar
+					h3.text-uppercase #{__("Twitter Feeds")}
+					hr/
+				.block-sidebar
+					h3.text-uppercase #{__("Social Icons")}
+					.control-group &nbsp;
+					ul.social-icon-list
+						if data.socialAndFooter.facebook
+							li: a.text-uppercase(class="facebook" target="_blank" href=data.socialAndFooter.facebook)
+						if data.socialAndFooter.instagram
+							li: a.text-uppercase(class="instagram" target="_blank" href=data.socialAndFooter.instagram)
+						if data.socialAndFooter.twitter
+							li: a.text-uppercase(class="twitter" target="_blank" href=data.socialAndFooter.twitter)
+						if data.socialAndFooter.pinterest
+							li: a.text-uppercase(class="pinterest" target="_blank" href=data.socialAndFooter.pinterest)
+						if data.socialAndFooter.googleplus
+							li: a.text-uppercase(class="googleplus" target="_blank" href=data.socialAndFooter.googleplus)
+					hr/
+				.block-sidebar
+					h3.text-uppercase #{__("Get in touch")}
+					.control-group &nbsp;
+					form(method='post' action='/'+[getLocale(req)]+'/contact')
+						input(type='hidden', name='action', value='contact')
+						.form-group(class=validationErrors.email ? 'has-error' : null)
+							label #{__("Email")}
+							input(type='email', name='email', value=formData.email).form-control
+						.form-group(class=validationErrors.name ? 'has-error' : null)
+							label #{__("Name")}
+							input(type='text', name='name.full', value=formData['name.full']).form-control
+						.form-group(class=validationErrors.message ? 'has-error' : null)
+							label #{__("Message")}
+							textarea(name='message', placeholder=__('Leave us a message...') rows=4).form-control= formData.message
+						.form-actions
+							button(type='submit').btn.btn-primary.col-sm-12 #{__("Send")}
+					hr/

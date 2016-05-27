@@ -28,7 +28,7 @@ block content
 				h2 Invalid Post.
 			else
 				header
-					h1.text-uppercase.text-center= data.post.title
+					h1.text-uppercase.text-center= data.post.postTitle[getLocale(req)]
 
 				.control-group &nbsp;
 				.control-group &nbsp;
@@ -42,20 +42,47 @@ block content
 				.control-group &nbsp;
 				.control-group &nbsp;
 				.row
-					.col-sm-7.col-md-7
-						!= data.post.content.full
+					.col-sm-8.col-md-8
+						!= data.post.content.full[getLocale(req)]
 					.col-sm-3.col-md-3.col-sm-offset-1.col-md-offset-1
 						if data.post.author
-							h3.text-uppercase #{__("Published by")}
-								| #{data.post.author.name.first} 
-								if data.post.publishedDate
-									| #{__("on")} #{data.post._.publishedDate.format('MMMM Do, YYYY')} 
+							.post-sidebar
+								h3.text-uppercase: span #{__("Published by")}
+								p.lead
+									| #{data.post.author.name.first} 
+									if data.post.publishedDate
+										span.text-muted #{__("on")}
+										| &nbsp; #{data.post._.publishedDate.format('MMMM Do, YYYY')} 
+								.control-group &nbsp;
 						
 						if data.post.categories
-							h3.text-uppercase #{__("Blog category")}
-							a(href='/blog/' + data.post.categories.key)= data.post.categories.name
-						
-						h3.text-uppercase #{__("Share")}
+							.post-sidebar
+								h3.text-uppercase: span #{__("Blog category")}
+								a(href='/'+[getLocale(req)]+'/blog/' + data.post.categories.key)= __(data.post.categories.name)
+								.control-group &nbsp;
+								.control-group &nbsp;
+								
+						if data.post.tags
+							.post-sidebar
+								h3.text-uppercase: span #{__("Blog category")}
+								ul.tags-group
+									each tag in data.post.tags
+										li.text-uppercase.col-sm-12.col-md-6
+											a(href='/'+[getLocale(req)]+'/blog/tag/' + tag.key)= tag.tagName[getLocale(req)]
+								.control-group.clearfix &nbsp;
+								.control-group &nbsp;
+								.control-group &nbsp;
+
+						.post-sidebar
+							h3.text-uppercase: span #{__("Share")}
+							ul.social-share
+								li: a.facebook(href="#")
+								li: a.twitter(href="#")
+								li: a.pinterest(href="#")
+								li: a.instagram(href="#")
+								li: a.googleplus(href="#")
+							.control-group &nbsp;
+							.control-group &nbsp;
 						
 	.navigation-posts
 		.pull-left
@@ -64,13 +91,13 @@ block content
 					.caption.text-left.text-uppercase #{__("Previous post")}
 					h3.text-left.text-uppercase
 						i.fa.fa-chevron-left(aria-hidden="true")
-						a(href='/blog/post/' + previous.slug)= previous.title
+						a(href='/'+[getLocale(req)]+'/blog/post/' + previous.slug)= previous.postTitle[getLocale(req)]
 		.pull-right
 			if locals.data.next && locals.data.next.length
 				each next in locals.data.next
 					.caption.text-right.text-uppercase #{__("Next post")}
 					h3.text-right.text-uppercase
-						a(href='/blog/post/' + next.slug)= next.title
+						a(href='/'+[getLocale(req)]+'/blog/post/' + next.slug)= next.postTitle[getLocale(req)]
 						i.fa.fa-chevron-right(aria-hidden="true")
 		.clearfix
 

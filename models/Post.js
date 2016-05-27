@@ -12,23 +12,38 @@ var Post = new keystone.List('Post', {
 });
 
 Post.add({
-	title: { type: String, required: true },
-	location:  { type: String },
-	showInHome: { type: Types.Boolean, default: false },
-	event: {
-		icon: { type: Types.Select, options: 'music, museum', default: 'music', index: true },
-		date: { type: Types.Date, index: true }
+	title: { type: String, required: true, note: 'This field is not shown' },
+
+	postTitle:{
+		it: { type: String, note: 'Post title' },
+		en: { type: String, note: 'Post title' }
 	},
+	showInHome: { type: Types.Boolean, default: false, note: 'This field is used only from Tours and Events'},
 	author: { type: Types.Relationship, ref: 'User', index: true },
 	state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
-	categories: { type: Types.Relationship, ref: 'PostCategory', many: false },
 	publishedDate: { type: Types.Date, index: true, dependsOn: { state: 'published' } },
+	categories: { type: Types.Relationship, ref: 'PostCategory', many: false },
+	tags: { type: Types.Relationship, ref: 'PostTag', many: true },
 	heroImage: { type: Types.CloudinaryImage },
 	image: { type: Types.CloudinaryImages },
 	content: {
-		brief: { type: Types.Html, wysiwyg: true, height: 150 },
-		extended: { type: Types.Html, wysiwyg: true, height: 400 }
-	}
+		brief: {
+			it: { type: Types.Html, wysiwyg: true, height: 150 },
+			en: { type: Types.Html, wysiwyg: true, height: 150 }
+		},
+		extended: {
+			it: { type: Types.Html, wysiwyg: true, height: 400 },
+			en: { type: Types.Html, wysiwyg: true, height: 400 }
+		}
+	},
+	eventLocation: {
+		it: { type: String, note: 'This field is used only from Events' },
+		en: { type: String, note: 'This field is used only from Events' }
+	},
+	eventIcon: { type: Types.Select, options: 'music, museum', default: 'music', note: 'This field is used only from Events' },
+	eventDate: { type: Types.Date, note: 'This field is used only from Events' },
+	offerStartDate: { type: Types.Date, note: 'This field is used only from Offers' },
+	offerEndDate: { type: Types.Date, note: 'This field is used only from Offers' }
 });
 
 Post.schema.virtual('content.full').get(function() {
