@@ -30,6 +30,7 @@ exports = module.exports = function(req, res) {
 					return next(err);
 				} else {
 					locals.data.page = page.blog;
+					locals.data.meta = page.meta;
 					next(err);
 				}
 			});

@@ -13,11 +13,21 @@ var Post = new keystone.List('Post', {
 
 Post.add({
 	title: { type: String, required: true, note: 'This field is not shown' },
-
 	postTitle:{
 		it: { type: String, note: 'Post title' },
 		en: { type: String, note: 'Post title' }
 	},
+	meta:{
+		title:{
+			it:{type:String},
+			en:{type:String}
+		},
+		description:{
+			it:{type:String},
+			en:{type:String}
+		}
+	},
+
 	showInHome: { type: Types.Boolean, default: false, note: 'This field is used only from Tours and Events'},
 	author: { type: Types.Relationship, ref: 'User', index: true },
 	state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
@@ -49,6 +59,8 @@ Post.add({
 Post.schema.virtual('content.full').get(function() {
 	return this.content.extended || this.content.brief;
 });
-
+Post.schema.virtual('fullPostUrl').get(function() {
+	return keystone.get('baseUrl') + 'blog/post/' + this.slug;
+});
 Post.defaultColumns = 'title, state|20%, categories|10%, publishedDate|20%, showInHome|10%';
 Post.register();

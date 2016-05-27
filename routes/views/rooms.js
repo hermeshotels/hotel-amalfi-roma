@@ -19,6 +19,7 @@ exports = module.exports = function(req, res) {
 					return next(err);
 				} else {
 					locals.data.page = page.rooms;
+					locals.data.meta = page.meta;
 					next(err);
 				}
 			});

@@ -1,0 +1,32 @@
+include ../mixins/flash-messages
+
+doctype html
+html
+
+	include partials/head
+
+	block seo
+		if data.meta
+			if data.meta.title[getLocale(req)]
+				title= data.meta.title[getLocale(req)]
+				meta(property="og:title" content=data.meta.title[getLocale(req)])
+				meta(name="twitter:title" content=data.meta.title[getLocale(req)])
+			if data.meta.description[getLocale(req)]
+				meta(name="description" content=data.meta.description[getLocale(req)])
+				meta(property="og:description" content=data.meta.description[getLocale(req)])
+				meta(name="twitter:description" content=data.meta.description[getLocale(req)])
+
+
+	//- HTML BODY
+	body
+
+		.navbar-post
+			include partials/navbar
+
+		block header
+
+		block content
+
+		include partials/footer
+
+		include partials/scripts

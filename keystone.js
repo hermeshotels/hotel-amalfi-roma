@@ -94,6 +94,7 @@ keystone.set('email rules', [{
 // Load your project's email test routes
 
 keystone.set('email tests', require('./routes/emails'));
+keystone.set('baseUrl', (keystone.get('env') == 'production') ? 'http://www.your-server.com/' : 'http://localhost:3000/');
 
 // Configure the navigation bar in Keystone's Admin UI
 

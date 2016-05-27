@@ -6,6 +6,18 @@ SpecialPage.add({
 	active:{type:Types.Boolean},
 	specialPageTitle:{type:String,required:true,intial:true,note:"This title is not shown"},
 	page:{type:Types.Select,options:Pages,note:"Choose which page this custom data is for.  Make sure there is only one SpecialPage per SpecialPage type Active."},
+	meta:{
+		title:{
+			it:{type:String},
+			en:{type:String}
+		},
+		description:{
+			it:{type:String},
+			en:{type:String}
+		}
+	},
+
+
 	socialAndFooter:{
 		contentBelowLogo:{type:Types.Html,wysiwyg:true,dependsOn:{page:"SocialAndFooter"}},
 		facebook:{type:String,dependsOn:{page:"SocialAndFooter"}},

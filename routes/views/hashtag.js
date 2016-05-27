@@ -9,6 +9,23 @@ exports = module.exports = function(req, res) {
 	// Load page content
 	view.on('init', function(next) {
 		keystone.list('SpecialPage').model.findOne()
+			.where('page', '#HotelAmalfiRome')
+			.where('active', true)
+			.exec(function(err, page) {
+				if (err) {
+					console.log(err);
+					return next(err);
+				} else {
+					locals.data.meta = page.meta;
+					next(err);
+				}
+			});
+	});
+
+
+	// Load page content
+	view.on('init', function(next) {
+		keystone.list('SpecialPage').model.findOne()
 			.where('page', 'SocialAndFooter')
 			.where('active', true)
 			.exec(function(err, page) {

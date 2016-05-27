@@ -3,13 +3,12 @@ head
 	meta(charset="utf-8")
 	meta(name="viewport", content="width=device-width, initial-scale=1.0")
 	meta(http-equiv="X-UA-Compatible" content="IE=edge")
+		
+	block seo
 
-	title= title || 'Hotel Amalfi'
 	link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
-
 	link(href="/js/plugins/masterslider/style/masterslider.css" rel="stylesheet")
 	link(href="/js/plugins/masterslider/skins/default/style.css" rel="stylesheet")
-
 	link(href='https://fonts.googleapis.com/css?family=Lato:100,700,400,300,900' rel='stylesheet' type='text/css')
 	link(href='/styles/jquery-ui.css', rel='stylesheet')
 	//- Bootstrap core CSS
@@ -20,7 +19,6 @@ head
 		
 	//- Custom CSS
 	link(href='/styles/style.css', rel='stylesheet')
-
 
 	//- This file provides the default styling for the KeystoneJS Content Editor
 	if user && user.canAccessKeystone
@@ -34,7 +32,6 @@ head
 	//-[endif]
 
 	script(src="https://use.fontawesome.com/078e4cde97.js")
-
 
 	//- Add any other template-specific HEAD tags by extending the head block
 	block head
