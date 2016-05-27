@@ -76,11 +76,11 @@ block content
 						.post-sidebar
 							h3.text-uppercase: span #{__("Share")}
 							ul.social-share
-								li: a.facebook(href="#")
-								li: a.twitter(href="#")
-								li: a.pinterest(href="#")
+								li: a.facebook(href="https://www.facebook.com/sharer/sharer.php?u="+data.post.shareUrl target="_blank")
+								li: a.twitter(href="https://twitter.com/home?status="+data.post.shareUrl target="_blank")
+								li: a.pinterest(href="https://pinterest.com/pin/create/button/?url="+data.post.shareUrl+"&media=&description=" target="_blank")
 								li: a.instagram(href="#")
-								li: a.googleplus(href="#")
+								li: a.googleplus(href="https://plus.google.com/share?url="+data.post.shareUrl target="_blank")
 							.control-group &nbsp;
 							.control-group &nbsp;
 						

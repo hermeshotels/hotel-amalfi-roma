@@ -62,5 +62,10 @@ Post.schema.virtual('content.full').get(function() {
 Post.schema.virtual('fullPostUrl').get(function() {
 	return keystone.get('baseUrl') + 'blog/post/' + this.slug;
 });
+Post.schema.virtual('shareUrl').get(function() {
+	return encodeURIComponent(keystone.get('baseUrl') + 'blog/post/' + this.slug);
+});
+
+
 Post.defaultColumns = 'title, state|20%, categories|10%, publishedDate|20%, showInHome|10%';
 Post.register();
