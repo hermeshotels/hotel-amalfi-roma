@@ -8,7 +8,7 @@ block header
 					.header-content
 						.header-row-logo
 							.header-logo
-								a(href='/'+[getLocale(req)]+'/'): img.img-responsive(src='/images/logo-white.png')
+								a(href='/'+[getLocale(req)]+'/'): img.img-responsive(src='/images/logo-white.png' alt="Hotel Amalfi Roma")
 						.header-row-title
 							.header-title.text-center
 								h1.text-uppercase #{data.page.title[getLocale(req)]}
@@ -34,14 +34,14 @@ block content
 								.gallery-image-content
 									div
 										a(href=gallery._.heroImage.limit(1900,1900) data-lightbox="roadtrip")
-											img(src=gallery._.heroImage.limit(680,680))
+											img(src=gallery._.heroImage.limit(680,680) alt=gallery.name+' '+index)
 					each image in gallery.images
 						.col-sm-3.col-md-3
 							.gallery-image
 								.gallery-image-content
 									div
 										a(href=image.limit(1900,1900) data-lightbox="roadtrip")
-											img(src=image.limit(680,680))
+											img(src=image.limit(680,680) alt=gallery.name+' '+index)
 
 
 block js

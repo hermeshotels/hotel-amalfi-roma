@@ -42,7 +42,7 @@ exports = module.exports = function(req, res) {
 	});
 
 	view.on('init', function(next) {
-		Services.model.find().exec(function(err, services) {
+		Services.model.find().sort('order').exec(function(err, services) {
 			locals.services = services;
 			return next();
 		})

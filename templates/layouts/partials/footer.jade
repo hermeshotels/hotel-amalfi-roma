@@ -7,18 +7,31 @@
 					.col-sm-12.col-md-3.col-sm-push-0.col-md-push-6
 						h4.text-uppercase
 							| Latest Photo &nbsp;&nbsp;&nbsp;
-							img(src='/images/social-instagram.png', align='middle')
+							img(src='/images/social-instagram.png' align='middle' alt="instagram")
 						.instagram
 					.col-sm-12.col-md-3.col-sm-push-0.col-md-push-6
 						h4.text-uppercase
 							| Latest Post &nbsp;&nbsp;&nbsp;
-							img(src='/images/social-facebook.png', align='middle')
+							img(src='/images/social-facebook.png' align='middle' alt="facebook")
 					.col-sm-12.col-md-3.col-sm-pull-0.col-md-pull-6
 						.footer-logo
-							img(src='/images/logo-footer.png')
+							img(src='/images/logo-footer.png' alt="Hotel Amalfi")
 							.control-group &nbsp;
 							!= data.socialAndFooter.contentBelowLogo
 							a(href='/'+[getLocale(req)]+'/privacy') Privacy
+						.menu-content
+							.menu-footer.row
+								ul
+									if data.socialAndFooter.facebook
+										li: a.text-uppercase(class="facebook" target="_blank" href=data.socialAndFooter.facebook)
+									if data.socialAndFooter.instagram
+										li: a.text-uppercase(class="instagram" target="_blank" href=data.socialAndFooter.instagram)
+									if data.socialAndFooter.twitter
+										li: a.text-uppercase(class="twitter" target="_blank" href=data.socialAndFooter.twitter)
+									if data.socialAndFooter.pinterest
+										li: a.text-uppercase(class="pinterest" target="_blank" href=data.socialAndFooter.pinterest)
+									if data.socialAndFooter.googleplus
+										li: a.text-uppercase(class="googleplus" target="_blank" href=data.socialAndFooter.googleplus)
 					.col-sm-12.col-md-3.col-sm-pull-0.col-md-pull-6
 						.footer-menu
 							h4.text-uppercase hotel amalfi

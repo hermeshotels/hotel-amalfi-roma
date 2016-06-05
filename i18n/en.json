@@ -42,8 +42,8 @@
 	"contactp8": "contactp8",
 	"contacth4c": "contacth4c",
 	"contactp9": "contactp9",
-	"contacth4d": "contacth4d",
-	"contacth4e": "contacth4e",
+	"contacth4d": "Hotel Amalfi Rome",
+	"contacth4e": "Contact Us",
 	"Email": "Email",
 	"Name": "Name",
 	"Message": "Message",
@@ -59,5 +59,8 @@
 	"Subscribe our newsletter": "Subscribe our newsletter",
 	"Tags": "Tags",
 	"Published by": "Published by",
-	"Next post": "Next post"
+	"Next post": "Next post",
+	"MENU": "MENU",
+	"Subscribe": "Subscribe",
+	"Read more": "Read more"
 }

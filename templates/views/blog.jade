@@ -7,8 +7,8 @@ mixin post(post)
 				.gallery-image-content
 					div
 						a(href='/'+[getLocale(req)]+'/blog/post/' + post.slug)
-							img(src=post._.heroImage.fit(900,900))
-		h3.text-uppercase: a(href='/'+[getLocale(req)]+'/blog/post/' + post.slug)= post.title
+							img(src=post._.heroImage.fit(900,900) alt=post.postTitle[getLocale(req)])
+		h3.text-uppercase: a(href='/'+[getLocale(req)]+'/blog/post/' + post.slug)= post.postTitle[getLocale(req)]
 		p.lead.text-muted 
 			if post.author
 				| #{__("by")} &nbsp;
@@ -41,7 +41,7 @@ block header
 					.header-content
 						.header-row-logo
 							.header-logo
-								a(href='/'+[getLocale(req)]+'/'): img.img-responsive(src='/images/logo-white.png')
+								a(href='/'+[getLocale(req)]+'/'): img.img-responsive(src='/images/logo-white.png' alt="Hotel Amalfi Roma")
 						.header-row-title
 							.header-title.text-center
 								h1.text-uppercase #{data.page.title[getLocale(req)]}

@@ -8,7 +8,7 @@ block header
 					.header-content
 						.header-row-logo
 							.header-logo
-								a(href='/'+[getLocale(req)]+'/'): img.img-responsive(src='/images/logo-white.png')
+								a(href='/'+[getLocale(req)]+'/'): img.img-responsive(src='/images/logo-white.png' alt="Hotel Amalfi Roma")
 						.header-row-title
 							.header-title.text-center
 								h1.text-uppercase #{data.page.title[getLocale(req)]}
@@ -21,27 +21,28 @@ block header
 		//-- end header
 
 block content
-	.row.rooms-amount.text-center.text-uppercase
-		.col-sm-15.col-md-15
-			p
-				span.amount #{data.page.roomBlock1Title[getLocale(req)]}
-				span.type #{data.page.roomBlock1SubTitle[getLocale(req)]}
-		.col-sm-15.col-md-15
-			p
-				span.amount #{data.page.roomBlock2Title[getLocale(req)]}
-				span.type #{data.page.roomBlock2SubTitle[getLocale(req)]}
-		.col-sm-15.col-md-15
-			p
-				span.amount #{data.page.roomBlock3Title[getLocale(req)]}
-				span.type #{data.page.roomBlock3SubTitle[getLocale(req)]}
-		.col-sm-15.col-md-15
-			p
-				span.amount #{data.page.roomBlock4Title[getLocale(req)]}
-				span.type #{data.page.roomBlock4SubTitle[getLocale(req)]}
-		.col-sm-15.col-md-15
-			p
-				span.amount #{data.page.roomBlock5Title[getLocale(req)]}
-				span.type #{data.page.roomBlock5SubTitle[getLocale(req)]}
+	.container-fluid
+		.row.rooms-amount.text-center.text-uppercase
+			.col-sm-15.col-md-15
+				p
+					span.amount #{data.page.roomBlock1Title[getLocale(req)]}
+					span.type #{data.page.roomBlock1SubTitle[getLocale(req)]}
+			.col-sm-15.col-md-15
+				p
+					span.amount #{data.page.roomBlock2Title[getLocale(req)]}
+					span.type #{data.page.roomBlock2SubTitle[getLocale(req)]}
+			.col-sm-15.col-md-15
+				p
+					span.amount #{data.page.roomBlock3Title[getLocale(req)]}
+					span.type #{data.page.roomBlock3SubTitle[getLocale(req)]}
+			.col-sm-15.col-md-15
+				p
+					span.amount #{data.page.roomBlock4Title[getLocale(req)]}
+					span.type #{data.page.roomBlock4SubTitle[getLocale(req)]}
+			.col-sm-15.col-md-15
+				p
+					span.amount #{data.page.roomBlock5Title[getLocale(req)]}
+					span.type #{data.page.roomBlock5SubTitle[getLocale(req)]}
 
 	if rooms.length
 		.container-fluid.rooms
@@ -54,13 +55,13 @@ block content
 							.room-content
 								.room-table
 									.room-cell
-										h2=room.name
-										=room.description
+										h2=room.roomTitle[getLocale(req)]
+										=room.roomDescription[getLocale(req)]
 										if room.roomOptions.length
 											ul
-												each option in room.roomOptions
+												each option, index in room.roomOptions
 													li
-														img(src='/images/room-icons/90px/'+option.icon+'.png' data-toggle="tooltip" data-placement="bottom" title=option.name)
+														img(src='/images/room-icons/90px/'+option.icon+'.png' data-toggle="tooltip" data-placement="bottom" title=option.optionTooltip[getLocale(req)])
 					- var classPull = (index % 2 === 0 ? 'col-md-pull-6 col-lg-pull-6' : '')
 					div.col-xs-12.col-sm-12.col-md-6.col-lg-6.nopadding(class=classPull)
 						.room-item
@@ -80,7 +81,7 @@ block content
 block js
 	script(type="text/javascript").
 		$(function () {
-			$('[data-toggle="tooltip"]').tooltip();
+			$('[data-toggle="tooltip"]').tooltip({trigger:'hover focus'});
 
 			var slider1 = new MasterSlider();
 			slider1.control('arrows');

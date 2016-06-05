@@ -8,7 +8,7 @@ nav.navbar.navbar-default.navbar-fixed-top
 				span.icon-bar
 			ul.nav.navbar-nav.navbar-left
 				li
-					a(href='javascript:void(0)').menu-opener MENU
+					a(href='javascript:void(0)').menu-opener.text-uppercase #{__('MENU')}
 		//-- Collect the nav links, forms, and other content for toggling
 		#bs-example-navbar-collapse-1.collapse.navbar-collapse
 			ul.nav.navbar-nav
@@ -23,7 +23,7 @@ nav.navbar.navbar-default.navbar-fixed-top
 							a(href='/en' data-lang='en') EN
 							ul.nav.navbar-nav.navbar-left
 			li.nav.navbar-nav.navbar-logo
-				a(href='/'+[getLocale(req)]+'/'): img.img-responsive(src='/images/logo-white.png')
+				a(href='/'+[getLocale(req)]+'/'): img.img-responsive(src='/images/logo-white.png' alt="Hotel Amalfi Roma")
 			ul.nav.navbar-nav.navbar-right
 				li
 					a.text-uppercase.booknow-opener(href='#') #{__('BOOKNOW')}
@@ -31,18 +31,18 @@ nav.navbar.navbar-default.navbar-fixed-top
 
 .menu
 	.row
-		.menu-content.col-xs-4.col-sm-4.col-md-4.col-lg-4
+		.menu-content.col-sm-12.col-md-4
 			.menu-header.row
-				.col-xs-2.col-sm-2.col-md-2.col-lg-2
+				.col-sm-2.col-md-2
 					a.menu-closer(href='#')
-						img(src='/images/close.png', align='middle')
-				.col-xs-8.col-sm-8.col-md-8.col-lg-8
+						img(src='/images/close.png' align='middle' alt="close")
+				.col-sm-10.col-md-10
 					h3.text-center
 						span.text-uppercase
 							| #{__('Roma')}
 							span
-								small &nbsp; - 20 Aprile - 14:50 PM
-				.col-xs-2.col-sm-2.col-md-2.col-lg-2
+								small &nbsp;&nbsp;-&nbsp;
+									spam#clock
 			.control-group &nbsp;
 			.row
 				.col-xs-12.col-sm-12.col-md-12.col-lg-12.text-center

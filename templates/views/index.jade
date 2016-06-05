@@ -8,7 +8,7 @@ block header
 					.header-content
 						.header-row-logo
 							.header-logo
-								a(href='/'+[getLocale(req)]+'/'): img.img-responsive(src='/images/logo-white.png')
+								a(href='/'+[getLocale(req)]+'/'): img.img-responsive(src='/images/logo-white.png' alt="Hotel Amalfi Roma")
 						.header-row-title
 							.header-title.text-center
 								h1.text-uppercase #{data.page.title[getLocale(req)]}
@@ -184,15 +184,15 @@ block content
 						.col-xs-8.col-sm-8.col-md-8.col-lg-8
 							.row
 								.col-xs-12.col-sm-4.col-md-4.col-lg-4.text-center
-									img(src=data.page.promoColumn1Image.url)
+									img(src=data.page.promoColumn1Image.url alt=data.page.promoColumn1Title[getLocale(req)])
 									h4 #{data.page.promoColumn1Title[getLocale(req)]}
 									p #{data.page.promoColumn1Text[getLocale(req)]}
 								.col-xs-12.col-sm-4.col-md-4.col-lg-4.text-center
-									img(src=data.page.promoColumn2Image.url)
+									img(src=data.page.promoColumn2Image.url alt=data.page.promoColumn2Title[getLocale(req)])
 									h4 #{data.page.promoColumn2Title[getLocale(req)]}
 									p #{data.page.promoColumn2Text[getLocale(req)]}
 								.col-xs-12.col-sm-4.col-md-4.col-lg-4.text-center
-									img(src=data.page.promoColumn3Image.url)
+									img(src=data.page.promoColumn3Image.url alt=data.page.promoColumn3Title[getLocale(req)])
 									h4 #{data.page.promoColumn3Title[getLocale(req)]}
 									p #{data.page.promoColumn3Text[getLocale(req)]}
 						.col-xs-2.col-sm-2.col-md-2.col-lg-2

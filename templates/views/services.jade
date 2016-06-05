@@ -8,7 +8,7 @@ block header
 					.header-content
 						.header-row-logo
 							.header-logo
-								a(href='/'+[getLocale(req)]+'/'): img.img-responsive(src='/images/logo-white.png')
+								a(href='/'+[getLocale(req)]+'/'): img.img-responsive(src='/images/logo-white.png' alt="Hotel Amalfi Roma")
 						.header-row-title
 							.header-title.text-center
 								h1.text-uppercase #{data.page.title[getLocale(req)]}
@@ -33,8 +33,8 @@ block content
 							.room-content
 								.room-table
 									.room-cell
-										h2=service.name
-										=service.description
+										h2=service.serviceTitle[getLocale(req)]
+										=service.serviceDescription[getLocale(req)]
 					- var classPull = (index % 2 === 0 ? 'col-md-pull-6 col-lg-pull-6' : '')
 					div.col-xs-12.col-sm-12.col-md-6.col-lg-6.nopadding(class=classPull)
 						.room-item

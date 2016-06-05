@@ -7,29 +7,18 @@ Rooms model
 var Room = new keystone.List('Room');
 
 Room.add({
-	name: {
-		type: Types.Text,
-		required: true,
-		index: true
+	name: {type: Types.Text,required: true,index: true, note: 'This field is not shown'},
+	order: {type: Types.Number,format: 0},
+	heroPhoto: {type: Types.CloudinaryImage},
+	otherPhotos: {type: Types.CloudinaryImages},
+	roomOptions: {type: Types.Relationship,ref: 'RoomOption',many: true},
+	roomTitle:{
+		it: { type: String, note: 'Room title IT' },
+		en: { type: String, note: 'Room title EN' }
 	},
-	description: {
-		type: Types.Textarea,
-		required: false
-	},
-	order: {
-		type: Types.Number,
-		format: 0
-	},
-	heroPhoto: {
-		type: Types.CloudinaryImage
-	},
-	otherPhotos: {
-		type: Types.CloudinaryImages
-	},
-	roomOptions: {
-		type: Types.Relationship,
-		ref: 'RoomOption',
-		many: true
+	roomDescription:{
+		it: {type: Types.Textarea,required: false, note: 'Room description IT'},
+		en: {type: Types.Textarea,required: false, note: 'Room description EN'}
 	}
 });
 

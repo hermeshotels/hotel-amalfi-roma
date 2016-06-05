@@ -13,30 +13,19 @@ var Service = new keystone.List('Service', {
 });
 
 Service.add({
-	name: {
-		type: Types.Text,
-		required: true,
-		index: true
+	name: {type: Types.Text,required: true,index: true, note: 'This field is not shown'},
+	slug: {type: Types.Text,readonly: true},
+	sub: {type: Types.Text,required: false},
+	order: {type: Types.Number,format: 0},
+	serviceTitle:{
+		it: { type: String, note: 'Service title IT' },
+		en: { type: String, note: 'Service title EN' }
 	},
-	slug: {
-		type: Types.Text,
-		readonly: true
+	serviceDescription:{
+		it: {type: Types.Textarea,required: false, note: 'Service description IT'},
+		en: {type: Types.Textarea,required: false, note: 'Service description EN'}
 	},
-	sub: {
-		type: Types.Text,
-		required: false
-	},
-	order: {
-		type: Types.Number,
-		format: 0
-	},
-	description: {
-		type: Types.Textarea,
-		required: false
-	},
-	photos: {
-		type: Types.CloudinaryImages
-	}
+	photos: {type: Types.CloudinaryImages}
 });
 
 Service.register();
