@@ -52,7 +52,7 @@ nav.navbar.navbar-default.navbar-fixed-top
 								li(class=(section == link.key ? 'active' : null)): a.text-uppercase(href='/'+[getLocale(req)]+link.href)= __(link.label)
 			.control-group &nbsp;
 			.menu-footer.row
-				.col-xs-8.col-sm-8.col-md-8.col-lg-8
+				.col-sm-8.col-md-8
 					ul
 						if data.socialAndFooter.facebook
 							li: a.text-uppercase(class="facebook" target="_blank" href=data.socialAndFooter.facebook)
@@ -62,9 +62,9 @@ nav.navbar.navbar-default.navbar-fixed-top
 							li: a.text-uppercase(class="twitter" target="_blank" href=data.socialAndFooter.twitter)
 						if data.socialAndFooter.pinterest
 							li: a.text-uppercase(class="pinterest" target="_blank" href=data.socialAndFooter.pinterest)
-						if data.socialAndFooter.googleplus
-							li: a.text-uppercase(class="googleplus" target="_blank" href=data.socialAndFooter.googleplus)
-				.col-xs-4.col-sm-4.col-md-4.col-lg-4.text-right.text-uppercase
+						if data.socialAndFooter.googlePlus
+							li: a.text-uppercase(class="googleplus" target="_blank" href=data.socialAndFooter.googlePlus)
+				.col-sm-4.col-md-4.text-right.text-uppercase
 					p.booknow
 						a.booknow-opener(href='#') #{__('BOOKNOW')}
 //-- end menu

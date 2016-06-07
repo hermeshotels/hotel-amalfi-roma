@@ -296,7 +296,7 @@ MENU
     display: inline-block;
     height: 31px;
     width: 31px;
-    margin: 0px 10px;
+    margin: 0px 5px;
 }
 .menu-content .menu-footer ul li a.facebook{
     background: url(../images/social-facebook.png) no-repeat center center;
@@ -311,7 +311,7 @@ MENU
     background: url(../images/social-instagram.png) no-repeat center center;
 }
 .menu-content .menu-footer ul li a.googleplus{
-    background: url(../images/social-googleplus.png) no-repeat center center;
+    background: url(../images/social-gplus.png) no-repeat center center;
 }
 .menu-content .menu-footer ul li a:hover.facebook{
     background: url(../images/social-facebook-hover.png) no-repeat center center;
@@ -326,7 +326,7 @@ MENU
     background: url(../images/social-instagram-hover.png) no-repeat center center;
 }
 .menu-content .menu-footer ul li a:hover.googleplus{
-    background: url(../images/social-googleplus-hover.png) no-repeat center center;
+    background: url(../images/social-gplus-hover.png) no-repeat center center;
 }
 
 
@@ -877,7 +877,7 @@ BLOG
     background: url(../images/social-instagram-black.png) no-repeat center center;
 }
 .block-sidebar .social-icon-list li a.googleplus{
-    background: url(../images/social-googleplus-black.png) no-repeat center center;
+    background: url(../images/social-gplus-black.png) no-repeat center center;
 }
 .block-sidebar .social-icon-list li a:hover.facebook{
     background: url(../images/social-facebook-hover.png) no-repeat center center;
@@ -892,7 +892,7 @@ BLOG
     background: url(../images/social-instagram-hover.png) no-repeat center center;
 }
 .block-sidebar .social-icon-list li a:hover.googleplus{
-    background: url(../images/social-googleplus-hover.png) no-repeat center center;
+    background: url(../images/social-gplus-hover.png) no-repeat center center;
 }
 .block-sidebar .tags-group, .post-sidebar .tags-group{
 	margin: 0px;
@@ -948,7 +948,7 @@ BLOG
     background: url(../images/social-instagram-black.png) no-repeat center center;
 }
 .post-sidebar .social-share li a.googleplus{
-    background: url(../images/social-googleplus-black.png) no-repeat center center;
+    background: url(../images/social-gplus-black.png) no-repeat center center;
 }
 .post-sidebar .social-share li a:hover.facebook{
     background: url(../images/social-facebook-hover.png) no-repeat center center;
@@ -963,7 +963,7 @@ BLOG
     background: url(../images/social-instagram-hover.png) no-repeat center center;
 }
 .post-sidebar .social-share li a:hover.googleplus{
-    background: url(../images/social-googleplus-hover.png) no-repeat center center;
+    background: url(../images/social-gplus-hover.png) no-repeat center center;
 }
 
 
