@@ -1,37 +1,3 @@
-function logoPosition() {
-	/*
-	var logoProportion = 12.43;
-	$("#logo").width($("#header .background").width() / logoProportion)
-	$("#logo").position({
-	    my: "top",
-	    at: "center top",
-	    of: "#header"
-	});
-	*/
-}
-
-function headerTitlePosition() {
-	/*
-	$(".header-title").position({
-	    my: "center center",
-	    at: "center center",
-	    of: "#header"
-	});
-	*/
-}
-
-function resizeHeader() {
-	/*
-	var heightProportion = 1.98;
-	$("#header .background").height($("#header .background").width() / heightProportion);
-	heightProportion = 2.6;
-	$("#header .background.rooms").height($("#header .background.rooms").width() / heightProportion);
-	heightProportion = 2.1;
-	$("#header .background.contact").height($("#header .background.contact").width() / heightProportion);
-	$(".background.noimage").height("auto");
-	*/
-}
-
 function resizeRectangle() {
 	if(parseFloat($(".rectangle-container").css("width")) < parseFloat($("body").css("width")))
 	{
@@ -61,9 +27,6 @@ function dateTimeMenu() {
 
 $(window).resize(function() {
 	resizeRectangle();
-	resizeHeader();
-	logoPosition();
-	headerTitlePosition();
 });
 
 $(document).ready(function(){
@@ -84,9 +47,6 @@ $(document).ready(function(){
 
 $(function() {
 	resizeRectangle();
-	resizeHeader();
-	logoPosition();
-	headerTitlePosition();
 	instagramWidget();
 	dateTimeMenu();
 	$(".select-language a").click(function(e) {

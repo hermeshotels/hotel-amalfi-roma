@@ -27,6 +27,79 @@ html
 
 		block content
 
-		include partials/footer
+		.footer
+			.container-fluid
+				.row
+					.col-xs-12.col-sm-12.col-md-12.col-lg-12
+						.control-group &nbsp;
+						.row
+							.col-sm-12.col-md-3.col-sm-push-0.col-md-push-6
+								h4.text-uppercase
+									| Latest Photo &nbsp;&nbsp;&nbsp;
+									img(src='/images/social-instagram.png' align='middle' alt="instagram")
+								.instagram
+									div#pp-instagram.row
+							.col-sm-12.col-md-3.col-sm-push-0.col-md-push-6
+								h4.text-uppercase
+									| Latest Post &nbsp;&nbsp;&nbsp;
+									img(src='/images/social-facebook.png' align='middle' alt="facebook")
+							.col-sm-12.col-md-3.col-sm-pull-0.col-md-pull-6
+								.footer-logo
+									img(src='/images/logo-footer.png' alt="Hotel Amalfi")
+									.control-group &nbsp;
+									!= data.socialAndFooter.contentBelowLogo
+									a(href='/'+[getLocale(req)]+'/privacy') Privacy
+								.menu-content
+									.menu-footer.row
+										ul
+											if data.socialAndFooter.facebook
+												li: a.text-uppercase(class="facebook" target="_blank" href=data.socialAndFooter.facebook)
+											if data.socialAndFooter.instagram
+												li: a.text-uppercase(class="instagram" target="_blank" href=data.socialAndFooter.instagram)
+											if data.socialAndFooter.twitter
+												li: a.text-uppercase(class="twitter" target="_blank" href=data.socialAndFooter.twitter)
+											if data.socialAndFooter.pinterest
+												li: a.text-uppercase(class="pinterest" target="_blank" href=data.socialAndFooter.pinterest)
+											if data.socialAndFooter.googlePlus
+												li: a.text-uppercase(class="googleplus" target="_blank" href=data.socialAndFooter.googlePlus)
+							.col-sm-12.col-md-3.col-sm-pull-0.col-md-pull-6
+								.footer-menu
+									h4.text-uppercase hotel amalfi
+									.control-group &nbsp;
+									ul
+										each link in navLinks
+											if link.footer
+												li: a.text-uppercase(href='/'+[getLocale(req)]+link.href)= __(link.label)
+						.control-group &nbsp;
+		//-- end footer
+		.credits
+			.container-fluid
+				.row
+					.col-xs-12.col-sm-12.col-md-12.col-lg-12.text-center
+						a(href='#') Powered by WEBJ
+		//-- end credits
 
 		include partials/scripts
+
+		block js
+
+		script(src='/js/lightbox.js')
+
+		script(type="text/javascript").
+			$(function () {
+				lightbox.option({
+					'resizeDuration': 200,
+					'wrapAround': true
+				});
+			});
+		script(type="text/javascript").
+			var userFeed = new Instafeed({
+				get: 'user',
+				userId: '187846400',
+				accessToken: '187846400.712fad6.5bf70956cbe641a28304c5f9f4040da6',
+				target: 'pp-instagram',
+				limit: 9,
+				resolution: 'low_resolution',
+				template: '<div class="col-sm-1 col-md-4"><a href="{{link}}"><img class="img-responsive" src="{{image}}" /></a></div>'
+			});
+			userFeed.run();

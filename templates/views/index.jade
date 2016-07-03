@@ -11,13 +11,13 @@ block header
 								a(href='/'+[getLocale(req)]+'/'): img.img-responsive(src='/images/logo-white.png' alt="Hotel Amalfi Roma")
 						.header-row-title
 							.header-title.text-center
-								h1.text-uppercase #{data.page.title[getLocale(req)]}
+								h1.text-uppercase #{data.page.title}
 								.container-fluid
 									.row
 										.col-xs-5.col-sm-5.col-md-5.col-lg-5
 										.col-xs-2.col-sm-2.col-md-2.col-lg-2
 										.col-xs-5.col-sm-5.col-md-5.col-lg-5
-								h2.text-uppercase #{data.page.subTitle[getLocale(req)]}
+								h2.text-uppercase #{data.page.subTitle}
 		//-- end header
 
 block content
@@ -27,38 +27,38 @@ block content
 			.col-xs-12.col-sm-12.col-md-12.col-lg-6.col-xs-push-0.col-sm-push-0.col-md-push-0.col-lg-push-6
 				.row
 					.col-xs-12.col-sm-12.col-md-12.col-lg-12.text-center.rectangle-container
-						h3.text-uppercase  #{data.page.textBlockTitle[getLocale(req)]}
-						h4.text-uppercase.second-color  #{data.page.textBlockSubTitle[getLocale(req)]}
-						!= data.page.textBlockContent[getLocale(req)]
+						h3.text-uppercase  #{data.page.textBlockTitle}
+						h4.text-uppercase.second-color  #{data.page.textBlockSubTitle}
+						!= data.page.textBlockContent
 				.row
 					.col-xs-12.col-sm-12.col-md-6.col-lg-6
 						.square-box
 							.square-content
 								div(style="background-image:url('"+ data.page.linkBlock2Image.url +"')")
 								a(href='/'+[getLocale(req)]+data.page.linkBlock2Url)
-									span.h2.text-uppercase #{data.page.linkBlock2Text[getLocale(req)]}
+									span.h2.text-uppercase #{data.page.linkBlock2Text}
 					.col-xs-12.col-sm-12.col-md-6.col-lg-6
 						.hidden-md.hidden-lg.control-group &nbsp;
 						.square-box
 							.square-content
 								div(style="background-image:url('"+ data.page.linkBlock3Image.url +"')")
 								a(href='/'+[getLocale(req)]+data.page.linkBlock3Url)
-									span.h2.text-uppercase #{data.page.linkBlock3Text[getLocale(req)]}
+									span.h2.text-uppercase #{data.page.linkBlock3Text}
 					.control-group &nbsp;
 			.col-xs-12.col-sm-12.col-md-12.col-lg-6.col-xs-pull-0.col-sm-pull-0.col-md-pull-0.col-lg-pull-6
 				.square-box
 					.square-content
 						div(style="background-image:url('"+ data.page.linkBlock1Image.url +"')")
 						a(href='/'+[getLocale(req)]+data.page.linkBlock1Url)
-							span.h2.text-uppercase #{data.page.linkBlock1Text[getLocale(req)]}
+							span.h2.text-uppercase #{data.page.linkBlock1Text}
 		//-- end squared boxes
 
 		if data.events
 			.control-group &nbsp;
 			.row
 				.col-xs-12.col-sm-12.col-md-12.col-lg-12
-					h3.text-uppercase.text-center #{data.page.eventsBlockTitle[getLocale(req)]}
-					h4.text-uppercase.second-color.text-center #{data.page.eventsBlockSubTitle[getLocale(req)]}
+					h3.text-uppercase.text-center #{data.page.eventsBlockTitle}
+					h4.text-uppercase.second-color.text-center #{data.page.eventsBlockSubTitle}
 					.control-group &nbsp;
 					.row
 						.col-xs-2.col-sm-2.col-md-2.col-lg-2
@@ -71,7 +71,7 @@ block content
 												span.event-content-table
 													span.event-content-cell
 														span.event-icon(class=event.eventIcon)
-														span.event-title.text-uppercase.text-center= event.postTitle[getLocale(req)]
+														span.event-title.text-uppercase.text-center= event.title
 														if event.eventDate
 															span.event-date.text-uppercase.text-center= event._.eventDate.format('DD MMMM YYYY')
 						.col-xs-2.col-sm-2.col-md-2.col-lg-2
@@ -80,8 +80,8 @@ block content
 		.control-group &nbsp;
 		.container-newsletter
 			.control-group &nbsp;
-			h3.text-uppercase.text-center #{data.page.newsletterBlockTitle[getLocale(req)]}
-			h4.text-uppercase.second-color.text-center #{data.page.newsletterBlockSubTitle[getLocale(req)]}
+			h3.text-uppercase.text-center #{data.page.newsletterBlockTitle}
+			h4.text-uppercase.second-color.text-center #{data.page.newsletterBlockSubTitle}
 			.control-group &nbsp;
 			
 			if getLocale(req).toLowerCase() === 'en'
@@ -143,7 +143,7 @@ block content
 												h3.tour-subtitle.text-uppercase.text-center
 													span= tour.categories.name
 												h2.tour-title.text-uppercase.text-center
-													span= tour.postTitle[getLocale(req)]
+													span= tour.title
 				.control-group &nbsp;
 		//-- end tours
 
@@ -155,14 +155,14 @@ block content
 					.testimonials-content
 						.control-group &nbsp;
 						.control-group &nbsp;
-						h3.text-uppercase.text-center #{data.page.testimonialsBlockTitle[getLocale(req)]}
-						h4.text-uppercase.second-color.text-center #{data.page.testimonialsBlockSubTitle[getLocale(req)]}
+						h3.text-uppercase.text-center #{data.page.testimonialsBlockTitle}
+						h4.text-uppercase.second-color.text-center #{data.page.testimonialsBlockSubTitle}
 						.control-group &nbsp;
 						.text-center.separator &ldquo;
 						each testimonial in data.testimonials
 							.testimonials-item
-								p.text-center.text-uppercase= testimonial.name[getLocale(req)]
-								.text-center.text-uppercase!= testimonial.description[getLocale(req)]
+								p.text-center.text-uppercase= testimonial.name
+								.text-center.text-uppercase!= testimonial.description
 								.control-group &nbsp;
 								p.text-center.text-uppercase= testimonial.author
 							.control-group &nbsp;
@@ -184,17 +184,17 @@ block content
 						.col-xs-8.col-sm-8.col-md-8.col-lg-8
 							.row
 								.col-xs-12.col-sm-4.col-md-4.col-lg-4.text-center
-									img(src=data.page.promoColumn1Image.url alt=data.page.promoColumn1Title[getLocale(req)])
-									h4 #{data.page.promoColumn1Title[getLocale(req)]}
-									p #{data.page.promoColumn1Text[getLocale(req)]}
+									img(src=data.page.promoColumn1Image.url alt=data.page.promoColumn1Title)
+									h4 #{data.page.promoColumn1Title}
+									p #{data.page.promoColumn1Text}
 								.col-xs-12.col-sm-4.col-md-4.col-lg-4.text-center
-									img(src=data.page.promoColumn2Image.url alt=data.page.promoColumn2Title[getLocale(req)])
-									h4 #{data.page.promoColumn2Title[getLocale(req)]}
-									p #{data.page.promoColumn2Text[getLocale(req)]}
+									img(src=data.page.promoColumn2Image.url alt=data.page.promoColumn2Title)
+									h4 #{data.page.promoColumn2Title}
+									p #{data.page.promoColumn2Text}
 								.col-xs-12.col-sm-4.col-md-4.col-lg-4.text-center
-									img(src=data.page.promoColumn3Image.url alt=data.page.promoColumn3Title[getLocale(req)])
-									h4 #{data.page.promoColumn3Title[getLocale(req)]}
-									p #{data.page.promoColumn3Text[getLocale(req)]}
+									img(src=data.page.promoColumn3Image.url alt=data.page.promoColumn3Title)
+									h4 #{data.page.promoColumn3Title}
+									p #{data.page.promoColumn3Text}
 						.col-xs-2.col-sm-2.col-md-2.col-lg-2
 					.control-group &nbsp;
 					.control-group &nbsp;

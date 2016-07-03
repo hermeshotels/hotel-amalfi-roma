@@ -97,14 +97,19 @@ NAVBAR
     background-color: rgb(38, 38, 38);
     background-color: rgba(38, 38, 38, 0.65);
 }
-.navbar-logo img{
+.nav > li.navbar-logo img{
 	height: 40px;
 	margin-top: 5px;
 }
-.navbar-logo {
+.nav > li.navbar-logo a{
+	padding: 0px;
+	margin: 0px;
+}
+
+.nav > li.navbar-logo {
 	display: none;
 }
-.navbar-scrolled .navbar-logo{
+.navbar-scrolled .nav > li.navbar-logo{
 	display: block;
 }
 /*!
@@ -703,7 +708,7 @@ ROOMS
 	display: block;
 }
 .rooms-amount .col-md-15 p span.amount {
-	font-size: 27px;
+	font-size: 16px;
 	font-weight: 700;
 }
 .rooms-amount .col-md-15 p span.type {
@@ -1038,4 +1043,7 @@ SOCIAL
     width: 49%;
     margin-right: 1%;
     box-shadow: none;
+}
+#pp-instagram > div {
+    margin-bottom: 15px;
 }

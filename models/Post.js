@@ -12,24 +12,14 @@ var Post = new keystone.List('Post', {
 });
 
 Post.add({
-	title: { type: String, required: true, note: 'This field is not shown' },
-	postTitle:{
-		it: { type: String, note: 'Post title' },
-		en: { type: String, note: 'Post title' }
-	},
+	title: { type: String, required: true },
 	meta:{
-		title:{
-			it:{type:String},
-			en:{type:String}
-		},
-		description:{
-			it:{type:String},
-			en:{type:String}
-		}
+		title:{type:String},
+		description:{type:String}
 	},
-
 	showInHome: { type: Types.Boolean, default: false, note: 'This field is used only from Tours and Events'},
 	author: { type: Types.Relationship, ref: 'User', index: true },
+	language: { type: Types.Relationship, ref: 'Language', many: false },
 	state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
 	publishedDate: { type: Types.Date, index: true, dependsOn: { state: 'published' } },
 	categories: { type: Types.Relationship, ref: 'PostCategory', many: false },
@@ -37,19 +27,10 @@ Post.add({
 	heroImage: { type: Types.CloudinaryImage },
 	image: { type: Types.CloudinaryImages },
 	content: {
-		brief: {
-			it: { type: Types.Html, wysiwyg: true, height: 150 },
-			en: { type: Types.Html, wysiwyg: true, height: 150 }
-		},
-		extended: {
-			it: { type: Types.Html, wysiwyg: true, height: 400 },
-			en: { type: Types.Html, wysiwyg: true, height: 400 }
-		}
+		brief: { type: Types.Html, wysiwyg: true, height: 150 },
+		extended: { type: Types.Html, wysiwyg: true, height: 400 }
 	},
-	eventLocation: {
-		it: { type: String, note: 'This field is used only from Events' },
-		en: { type: String, note: 'This field is used only from Events' }
-	},
+	eventLocation: { type: String, note: 'This field is used only from Events' },
 	eventIcon: { type: Types.Select, options: 'music, museum', default: 'music', note: 'This field is used only from Events' },
 	eventDate: { type: Types.Date, note: 'This field is used only from Events' },
 	offerStartDate: { type: Types.Date, note: 'This field is used only from Offers' },
@@ -67,5 +48,5 @@ Post.schema.virtual('shareUrl').get(function() {
 });
 
 
-Post.defaultColumns = 'title, state|20%, categories|10%, publishedDate|20%, showInHome|10%';
+Post.defaultColumns = 'title, state|10%, language|20%, categories|10%, publishedDate|20%, showInHome|10%';
 Post.register();

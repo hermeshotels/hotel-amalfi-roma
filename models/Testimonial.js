@@ -10,17 +10,13 @@ var Testimonial = new keystone.List('Testimonial', {
 });
 
 Testimonial.add({
-	title: {type: Types.Text,required: true,initial: true,index: true, note: 'This field is not shown'},
-	name:{
-		it: {type: Types.Text},
-		en: {type: Types.Text}
-	},
-	description: {
-		it: {type: Types.Html,wysiwyg: true,height: 200},
-		en: {type: Types.Html,wysiwyg: true,height: 200}
-	},
+	title: {type: Types.Text,required: true,initial: true,index: true},
+	language: { type: Types.Relationship, ref: 'Language', many: false },
+	description: {type: Types.Html,wysiwyg: true,height: 200},
 	author: {type: Types.Text},
 	icon: {type: Types.Select,options: 'tripadvisor, booking',default: 'tripadvisor'}
 });
+
+Testimonial.defaultColumns = 'title, language';
 
 Testimonial.register();

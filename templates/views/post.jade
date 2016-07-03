@@ -28,22 +28,17 @@ block content
 				h2 Invalid Post.
 			else
 				header
-					h1.text-uppercase.text-center= data.post.postTitle[getLocale(req)]
+					h1.text-uppercase.text-center= data.post.title
 
 				.control-group &nbsp;
 				.control-group &nbsp;
-				.post-images
-					div(class="master-slider ms-skin-default" id="masterslider")
-						div(class="ms-slide")
-							img.img-responsive(src=data.post._.heroImage.fit(1900,1000) alt=data.post.postTitle[getLocale(req)])
-						each item, index in data.post.image
-							div(class="ms-slide")
-								img.img-responsive(src=item.fit(1900,1000) alt=data.post.postTitle[getLocale(req)] + ' ' + index)
+				.post-images.text-center
+					img.img-responsive.text-center(src=data.post._.heroImage.fit(1900,1000) alt=data.post.title)
 				.control-group &nbsp;
 				.control-group &nbsp;
 				.row
 					.col-sm-8.col-md-8
-						!= data.post.content.full[getLocale(req)]
+						!= data.post.content.full
 					.col-sm-3.col-md-3.col-sm-offset-1.col-md-offset-1
 						if data.post.author
 							.post-sidebar
@@ -68,7 +63,7 @@ block content
 								ul.tags-group
 									each tag in data.post.tags
 										li.text-uppercase.col-sm-12.col-md-6
-											a(href='/'+[getLocale(req)]+'/blog/tag/' + tag.key)= tag.tagName[getLocale(req)]
+											a(href='/'+[getLocale(req)]+'/blog/tag/' + tag.key)= tag.name
 								.control-group.clearfix &nbsp;
 								.control-group &nbsp;
 								.control-group &nbsp;
@@ -91,13 +86,13 @@ block content
 					.caption.text-left.text-uppercase #{__("Previous post")}
 					h3.text-left.text-uppercase
 						i.fa.fa-chevron-left(aria-hidden="true")
-						a(href='/'+[getLocale(req)]+'/blog/post/' + previous.slug)= previous.postTitle[getLocale(req)]
+						a(href='/'+[getLocale(req)]+'/blog/post/' + previous.slug)= previous.title
 		.pull-right
 			if locals.data.next && locals.data.next.length
 				each next in locals.data.next
 					.caption.text-right.text-uppercase #{__("Next post")}
 					h3.text-right.text-uppercase
-						a(href='/'+[getLocale(req)]+'/blog/post/' + next.slug)= next.postTitle[getLocale(req)]
+						a(href='/'+[getLocale(req)]+'/blog/post/' + next.slug)= next.title
 						i.fa.fa-chevron-right(aria-hidden="true")
 		.clearfix
 

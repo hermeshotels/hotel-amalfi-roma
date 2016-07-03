@@ -1,4 +1,11 @@
 var keystone = require('keystone');
+var _ = require('underscore');
+var i18n = require('i18n');
+
+var Post = keystone.list('Post');
+var PostCategory = keystone.list('PostCategory');
+var Testimonial = keystone.list('Testimonial');
+
 
 exports = module.exports = function(req, res) {
 
@@ -12,27 +19,39 @@ exports = module.exports = function(req, res) {
 	locals.data = {
 		tours: [],
 		events: [],
-		testimonials: []
+		testimonials: [],
+		languages: []
 	};
 
-	// Load page content
+	var currentLanguage;
+
+	// Load languages
 	view.on('init', function(next) {
-		keystone.list('SpecialPage').model.findOne()
-			.where('page', 'Home')
-			.where('active', true)
-			.exec(function(err, page) {
-				if (err) {
-					console.log(err);
-					return next(err);
-				} else {
-					locals.data.page = page.home;
-					locals.data.meta = page.meta;
-					next(err);
-				}
+		keystone.list('Language').model.find().sort('Ordine').exec(function(err, results) {
+			_.each(results, function(item) {
+				locals.data.languages.push(item.CodiceLingua);
 			});
+			currentLanguage = _.find(results, function(o) {
+				return o.CodiceLingua === i18n.getLocale(req);
+			})
+			keystone.list('SpecialPage').model.findOne()
+				.where('page', 'Home')
+				.where('active', true)
+				.where('language', currentLanguage._id)
+				.exec(function(err, page) {
+					if (err) {
+						console.log(err);
+						return next(err);
+					} else {
+						locals.data.page = page.home;
+						locals.data.meta = page.meta;
+						next(err);
+					}
+				});
+		});
 	});
 
-	// Load page content
+	// Load Social and Footer content
 	view.on('init', function(next) {
 		keystone.list('SpecialPage').model.findOne()
 			.where('page', 'SocialAndFooter')
@@ -48,15 +67,11 @@ exports = module.exports = function(req, res) {
 			});
 	});
 
-
-	var Post = keystone.list('Post');
-	var PostCategory = keystone.list('PostCategory');
-	var Testimonial = keystone.list('Testimonial');
-
 	view.on('init', function(next) {
 		// load tours
 		PostCategory.model.findOne({
-			name: 'Tour'
+			specialType: 'Tour',
+			language: currentLanguage._id
 		}).exec(function(err, postCategory) {
 			if (postCategory !== null) {
 				Post.model.find().where('categories').in([postCategory.id]).where('showInHome', true).populate('categories').sort('-publishedAt').limit(3).exec(function(err, results) {
@@ -72,13 +87,18 @@ exports = module.exports = function(req, res) {
 	view.on('init', function(next) {
 		// load events
 		PostCategory.model.findOne({
-			name: 'Evento'
+			specialType: 'Eventi',
+			language: currentLanguage._id
 		}).exec(function(err, postCategory) {
 			if (postCategory !== null) {
-				Post.model.find().where('categories').in([postCategory.id]).where('showInHome', true).populate('categories').sort('-publishedAt').limit(3).exec(function(err, results) {
-					locals.data.events = results;
-					next(err);
-				});
+				Post.model.find()
+					.where('categories').in([postCategory.id])
+					.where('showInHome', true)
+					.where('language', currentLanguage._id)
+					.populate('categories').sort('-publishedAt').limit(3).exec(function(err, results) {
+						locals.data.events = results;
+						next(err);
+					});
 			} else {
 				next(err);
 			}
@@ -88,10 +108,12 @@ exports = module.exports = function(req, res) {
 
 	view.on('init', function(next) {
 		// load testimonials
-		Testimonial.model.find().sort('-publishedAt').limit(1).exec(function(err, results) {
-			locals.data.testimonials = results;
-			next(err);
-		});
+		Testimonial.model.find()
+			.where('language', currentLanguage._id)
+			.sort('-publishedAt').limit(1).exec(function(err, results) {
+				locals.data.testimonials = results;
+				next(err);
+			});
 	});
 
 

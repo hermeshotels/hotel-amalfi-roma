@@ -1,4 +1,6 @@
 var keystone = require('keystone');
+var Types = keystone.Field.Types;
+var specialTypes=["Eventi","Offerte","Tour"];
 
 /**
  * PostCategory Model
@@ -10,9 +12,10 @@ var PostCategory = new keystone.List('PostCategory', {
 });
 
 PostCategory.add({
-	name: { type: String, required: true }
+	name: { type: String, required: true, initial: true },
+	specialType:{type:Types.Select,options:specialTypes},
+	language: { type: Types.Relationship, ref: 'Language', many: false }
 });
-
-PostCategory.relationship({ ref: 'Post', path: 'categories' });
-
+PostCategory.defaultColumns = 'name, language';
+PostCategory.relationship({ ref: 'Post', path: 'tags' });
 PostCategory.register();

@@ -11,13 +11,13 @@ block header
 								a(href='/'+[getLocale(req)]+'/'): img.img-responsive(src='/images/logo-white.png' alt="Hotel Amalfi Roma")
 						.header-row-title
 							.header-title.text-center
-								h1.text-uppercase #{data.page.title[getLocale(req)]}
+								h1.text-uppercase #{data.page.title}
 								.container-fluid
 									.row
 										.col-xs-5.col-sm-5.col-md-5.col-lg-5
 										.col-xs-2.col-sm-2.col-md-2.col-lg-2
 										.col-xs-5.col-sm-5.col-md-5.col-lg-5
-								h2.text-uppercase #{data.page.subTitle[getLocale(req)]}
+								h2.text-uppercase #{data.page.subTitle}
 		//-- end header
 
 block content
@@ -25,24 +25,24 @@ block content
 		.row.rooms-amount.text-center.text-uppercase
 			.col-sm-15.col-md-15
 				p
-					span.amount #{data.page.roomBlock1Title[getLocale(req)]}
-					span.type #{data.page.roomBlock1SubTitle[getLocale(req)]}
+					span.amount #{data.page.roomBlock1Title}
+					span.type #{data.page.roomBlock1SubTitle}
 			.col-sm-15.col-md-15
 				p
-					span.amount #{data.page.roomBlock2Title[getLocale(req)]}
-					span.type #{data.page.roomBlock2SubTitle[getLocale(req)]}
+					span.amount #{data.page.roomBlock2Title}
+					span.type #{data.page.roomBlock2SubTitle}
 			.col-sm-15.col-md-15
 				p
-					span.amount #{data.page.roomBlock3Title[getLocale(req)]}
-					span.type #{data.page.roomBlock3SubTitle[getLocale(req)]}
+					span.amount #{data.page.roomBlock3Title}
+					span.type #{data.page.roomBlock3SubTitle}
 			.col-sm-15.col-md-15
 				p
-					span.amount #{data.page.roomBlock4Title[getLocale(req)]}
-					span.type #{data.page.roomBlock4SubTitle[getLocale(req)]}
+					span.amount #{data.page.roomBlock4Title}
+					span.type #{data.page.roomBlock4SubTitle}
 			.col-sm-15.col-md-15
 				p
-					span.amount #{data.page.roomBlock5Title[getLocale(req)]}
-					span.type #{data.page.roomBlock5SubTitle[getLocale(req)]}
+					span.amount #{data.page.roomBlock5Title}
+					span.type #{data.page.roomBlock5SubTitle}
 
 	if rooms.length
 		.container-fluid.rooms
@@ -55,13 +55,13 @@ block content
 							.room-content
 								.room-table
 									.room-cell
-										h2=room.roomTitle[getLocale(req)]
-										=room.roomDescription[getLocale(req)]
-										if room.roomOptions.length
+										h2=room.name
+										=room.Description
+										if room.Options.length
 											ul
-												each option, index in room.roomOptions
+												each option, index in room.Options
 													li
-														img(src='/images/room-icons/90px/'+option.icon+'.png' data-toggle="tooltip" data-placement="bottom" title=option.optionTooltip[getLocale(req)])
+														img(src='/images/room-icons/90px/'+option.icon+'.png' data-toggle="tooltip" data-placement="bottom" title=option.optionTooltip)
 					- var classPull = (index % 2 === 0 ? 'col-md-pull-6 col-lg-pull-6' : '')
 					div.col-xs-12.col-sm-12.col-md-6.col-lg-6.nopadding(class=classPull)
 						.room-item
@@ -69,12 +69,7 @@ block content
 							.room-content
 								.room-table
 									.room-images
-										div(class="master-slider ms-skin-default" id="masterslider"+room.order)
-											div(class="ms-slide")
-												img.img-responsive(src=room._.heroPhoto.fit(1000,650))
-											each image in room.otherPhotos
-												div(class="ms-slide")
-													img.img-responsive(src=image.fit(1000,650))
+										img.img-responsive(src=room._.heroPhoto.fit(1000,650))
 
 
 
@@ -82,17 +77,4 @@ block js
 	script(type="text/javascript").
 		$(function () {
 			$('[data-toggle="tooltip"]').tooltip({trigger:'hover focus'});
-
-			var slider1 = new MasterSlider();
-			slider1.control('arrows');
-			slider1.setup('masterslider1' , {width: 1000,height: 650,space:5,layout: 'fillwidth',autoplay: true,arrows: true,loop: true});
-			var slider2 = new MasterSlider();
-			slider2.control('arrows');
-			slider2.setup('masterslider2' , {width: 1000,height: 650,space:5,layout: 'fillwidth',autoplay: true,arrows: true,loop: true});
-			var slider3 = new MasterSlider();
-			slider3.control('arrows');
-			slider3.setup('masterslider3' , {width: 1000,height: 650,space:5,layout: 'fillwidth',autoplay: true,arrows: true,loop: true});
-			var slider4 = new MasterSlider();
-			slider4.control('arrows');
-			slider4.setup('masterslider4' , {width: 1000,height: 650,space:5,layout: 'fillwidth',autoplay: true,arrows: true,loop: true});
 		});

@@ -41,7 +41,9 @@ exports = module.exports = function(app) {
 	// Views
 	app.get('/', routes.views.index);
 	app.get('/rooms', routes.views.rooms);
+	app.get('/camere', routes.views.rooms);
 	app.get('/services', routes.views.services);
+	app.get('/servizi', routes.views.services);
 	app.get('/blog', routes.views.blog);
 	app.get('/blog/:category?', routes.views.blog);
 	app.get('/blog/tag/:tag?', routes.views.blog);
@@ -49,6 +51,7 @@ exports = module.exports = function(app) {
 	app.get('/gallery', routes.views.gallery);
 	app.get('/hotelamalfirome', routes.views.hashtag);
 	app.all('/contact', routes.views.contact);
+	app.all('/contatti', routes.views.contact);
 	app.get('/privacy', routes.views.privacy);
 	app.get('/template.html', function(req,res){res.sendFile('/template.html');});
 

@@ -12,18 +12,18 @@ nav.navbar.navbar-default.navbar-fixed-top
 		//-- Collect the nav links, forms, and other content for toggling
 		#bs-example-navbar-collapse-1.collapse.navbar-collapse
 			ul.nav.navbar-nav
-				li.dropdown
-					a.dropdown-toggle.current-language.text-uppercase(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
-						| #{getLocale(req)}
-						span.caret
-					ul.dropdown-menu.select-language
-						li
-							a(href='/it' data-lang='it') IT
-						li
-							a(href='/en' data-lang='en') EN
-							ul.nav.navbar-nav.navbar-left
-			li.nav.navbar-nav.navbar-logo
-				a(href='/'+[getLocale(req)]+'/'): img.img-responsive(src='/images/logo-white.png' alt="Hotel Amalfi Roma")
+				if data.languages
+					li.dropdown
+						a.dropdown-toggle.current-language.text-uppercase(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+							| #{getLocale(req)}
+							span.caret
+						ul.dropdown-menu.select-language
+							each language in data.languages
+								li.text-uppercase
+									a(href='/'+language data-lang=language)= language
+			ul.nav.navbar-nav.navbar-left
+				li.nav.navbar-nav.navbar-logo
+					a(href='/'+[getLocale(req)]+'/'): img.img-responsive(src='/images/logo-white.png' alt="Hotel Amalfi Roma")
 			ul.nav.navbar-nav.navbar-right
 				li
 					a.text-uppercase.booknow-opener(href='#') #{__('BOOKNOW')}

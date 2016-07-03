@@ -1,4 +1,7 @@
 var keystone = require('keystone');
+var _ = require('underscore');
+var i18n = require('i18n');
+
 var Enquiry = keystone.list('Enquiry');
 
 exports = module.exports = function(req, res) {
@@ -11,23 +14,34 @@ exports = module.exports = function(req, res) {
 	locals.formData = req.body || {};
 	locals.validationErrors = {};
 	locals.enquirySubmitted = false;
-	locals.data = {}
+	locals.data = {
+		languages: []
+	};
 
 	// Load page content
-	view.on('init', function(next) {
-		keystone.list('SpecialPage').model.findOne()
-			.where('page', 'Contact')
-			.where('active', true)
-			.exec(function(err, page) {
-				if (err) {
-					console.log(err);
-					return next(err);
-				} else {
-					locals.data.page = page.contact;
-					locals.data.meta = page.meta;
-					next(err);
-				}
+    view.on('init', function(next) {
+		keystone.list('Language').model.find().sort('Ordine').exec(function(err, results) {
+			_.each(results, function(item) {
+				locals.data.languages.push(item.CodiceLingua);
 			});
+			var currentLanguage = _.find(results, function(o) {
+				return o.CodiceLingua === i18n.getLocale(req);
+			})
+			keystone.list('SpecialPage').model.findOne()
+				.where('page', 'Contact')
+				.where('active', true)
+				.where('language', currentLanguage._id)
+				.exec(function(err, page) {
+					if (err) {
+						console.log(err);
+						return next(err);
+					} else {
+						locals.data.page = page.contact;
+						locals.data.meta = page.meta;
+						next(err);
+					}
+				});
+		});
 	});
 
 	// Load page content

@@ -49,9 +49,7 @@ keystone.set('google api key', 'AIzaSyBgufrjPoBcjLEr4cd-v3EGlNxVQMOAtoc');
 //Init i18n
 i18n.configure({
 	locales: ['it', 'en'],
-	directory: __dirname + '/i18n',
-	register: global,
-	defaultLocale: 'de',
+	directory: __dirname + '/i18n'
 });
 
 // Load your project's Routes
@@ -101,7 +99,7 @@ keystone.set('baseUrl', (keystone.get('env') == 'production') ? 'http://www.your
 keystone.set('nav', {
 	'posts': ['posts', 'post-categories', 'post-tags'],
 	'hotel': ['rooms', 'services', 'testimonials', 'room-options'],
-	'siteContent' : ['special-pages'],
+	'siteContent' : ['special-pages','languages'],
 	'galleries': 'galleries',
 	'enquiries': 'enquiries',
 	'users': 'users'

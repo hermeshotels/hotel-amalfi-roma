@@ -140,6 +140,7 @@ exports.requireUser = function(req, res, next) {
 exports.langSelection = function(req, res, next){
 	var match = req.url.match(/^\/([A-Z]{2})([\/\?].*)?$/i);
 	if (match){
+			console.log(match[1]);
 			i18n.setLocale(req, match[1]);
 			req.url = match[2] || '/';
 	}

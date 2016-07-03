@@ -1,4 +1,6 @@
 var keystone = require('keystone');
+var _ = require('underscore');
+var i18n = require('i18n');
 var async = require('async');
 
 exports = module.exports = function(req, res) {
@@ -16,50 +18,63 @@ exports = module.exports = function(req, res) {
 	locals.validationErrors = {};
 	locals.data = {
 		posts: [],
-		categories: []
+		categories: [],
+		languages: []
 	};
+	var currentLanguage;
 
 	// Load page content
 	view.on('init', function(next) {
-		keystone.list('SpecialPage').model.findOne()
-			.where('page', 'Blog')
-			.where('active', true)
-			.exec(function(err, page) {
-				if (err) {
-					console.log(err);
-					return next(err);
-				} else {
-					locals.data.page = page.blog;
-					locals.data.meta = page.meta;
-					next(err);
-				}
+		keystone.list('Language').model.find().sort('Ordine').exec(function(err, results) {
+			_.each(results, function(item) {
+				locals.data.languages.push(item.CodiceLingua);
 			});
+			currentLanguage = _.find(results, function(o) {
+				return o.CodiceLingua === i18n.getLocale(req);
+			})
+			keystone.list('SpecialPage').model.findOne()
+				.where('page', 'Blog')
+				.where('active', true)
+				.where('language', currentLanguage._id)
+				.exec(function(err, page) {
+					if (err) {
+						console.log(err);
+						return next(err);
+					} else {
+						locals.data.page = page.blog;
+						locals.data.meta = page.meta;
+						next(err);
+					}
+				});
+		});
 	});
 
 	// Load all categories
 	view.on('init', function(next) {
 
-		keystone.list('PostCategory').model.find().sort('name').exec(function(err, results) {
+		keystone.list('PostCategory').model.find()
+			.where('language', currentLanguage._id)
+			.sort('name').exec(function(err, results) {
 
-			if (err || !results.length) {
-				return next(err);
-			}
+				if (err || !results.length) {
+					return next(err);
+				}
 
-			locals.data.categories = results;
+				locals.data.categories = results;
 
-			// Load the counts for each category
-			async.each(locals.data.categories, function(category, next) {
+				// Load the counts for each category
+				async.each(locals.data.categories, function(category, next) {
 
-				keystone.list('Post').model.count().where('categories').in([category.id]).exec(function(err, count) {
-					category.postCount = count;
+					keystone.list('Post').model.count().where('categories').in([category.id]).exec(function(err, count) {
+						category.postCount = count;
+						next(err);
+					});
+
+				}, function(err) {
 					next(err);
 				});
 
-			}, function(err) {
-				next(err);
 			});
-
-		});
 
 	});
 
@@ -67,7 +82,9 @@ exports = module.exports = function(req, res) {
 	view.on('init', function(next) {
 
 		if (req.params.category) {
-			keystone.list('PostCategory').model.findOne({ key: locals.filters.category }).exec(function(err, result) {
+			keystone.list('PostCategory').model.findOne({
+				key: locals.filters.category
+			}).exec(function(err, result) {
 				locals.data.category = result;
 				next(err);
 			});
@@ -79,28 +96,32 @@ exports = module.exports = function(req, res) {
 
 	// Load all tags
 	view.on('init', function(next) {
-		keystone.list('PostTag').model.find().sort('name').exec(function(err, results) {
-			if (err || !results.length) {
-				return next(err);
-			}
-			locals.data.tags = results;
-			// Load the counts for each category
-			async.each(locals.data.tags, function(tag, next) {
-				keystone.list('Post').model.count().where('tags').in([tag.id]).exec(function(err, count) {
-					tag.postCount = count;
+		keystone.list('PostTag').model.find()
+			.where('language', currentLanguage._id)
+			.sort('name').exec(function(err, results) {
+				if (err || !results.length) {
+					return next(err);
+				}
+				locals.data.tags = results;
+				// Load the counts for each category
+				async.each(locals.data.tags, function(tag, next) {
+					keystone.list('Post').model.count().where('tags').in([tag.id]).exec(function(err, count) {
+						tag.postCount = count;
+						next(err);
+					});
+				}, function(err) {
 					next(err);
 				});
-			}, function(err) {
-				next(err);
 			});
-		});
 	});
 
 	// Load the current tag filter
 	view.on('init', function(next) {
 		if (req.params.tag) {
 			console.log(locals.filters.tag);
-			keystone.list('PostTag').model.findOne({ key: locals.filters.tag }).exec(function(err, result) {
+			keystone.list('PostTag').model.findOne({
+				key: locals.filters.tag
+			}).exec(function(err, result) {
 				locals.data.tag = result;
 				next(err);
 			});
@@ -125,6 +146,8 @@ exports = module.exports = function(req, res) {
 			})
 			.sort('-publishedDate')
 			.populate('author categories');
+
+		q.where('language', currentLanguage._id);
 
 		if (locals.data.category) {
 			q.where('categories').in([locals.data.category]);

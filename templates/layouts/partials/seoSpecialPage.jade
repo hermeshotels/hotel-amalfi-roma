@@ -1,19 +1,19 @@
 if data.meta
-	if data.meta.title[getLocale(req)]
-		title= data.meta.title[getLocale(req)]
-		meta(property="og:title" content=data.meta.title[getLocale(req)])
-		meta(name="twitter:title" content=data.meta.title[getLocale(req)])
+	if data.meta.title
+		title= data.meta.title
+		meta(property="og:title" content=data.meta.title)
+		meta(name="twitter:title" content=data.meta.title)
 	else
 		if data.page.title
-			title= data.page.title[getLocale(req)]
-			meta(property="og:title" content=data.page.title[getLocale(req)])
-			meta(name="twitter:title" content=data.page.title[getLocale(req)])
+			title= data.page.title
+			meta(property="og:title" content=data.page.title)
+			meta(name="twitter:title" content=data.page.title)
 		else
 			title Hotel Amalfi Roma
 			meta(property="og:title" content="Hotel Amalfi Roma")
 			meta(name="twitter:title" content="Hotel Amalfi Roma")
 			
-	if data.meta.description[getLocale(req)]
-		meta(name="description" content=data.meta.description[getLocale(req)])
-		meta(property="og:description" content=data.meta.description[getLocale(req)])
-		meta(name="twitter:description" content=data.meta.description[getLocale(req)])
+	if data.meta.description
+		meta(name="description" content=data.meta.description)
+		meta(property="og:description" content=data.meta.description)
+		meta(name="twitter:description" content=data.meta.description)

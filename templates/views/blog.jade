@@ -7,8 +7,8 @@ mixin post(post)
 				.gallery-image-content
 					div
 						a(href='/'+[getLocale(req)]+'/blog/post/' + post.slug)
-							img(src=post._.heroImage.fit(900,900) alt=post.postTitle[getLocale(req)])
-		h3.text-uppercase: a(href='/'+[getLocale(req)]+'/blog/post/' + post.slug)= post.postTitle[getLocale(req)]
+							img(src=post._.heroImage.fit(900,900) alt=post.title)
+		h3.text-uppercase: a(href='/'+[getLocale(req)]+'/blog/post/' + post.slug)= post.title
 		p.lead.text-muted 
 			if post.author
 				| #{__("by")} &nbsp;
@@ -44,21 +44,22 @@ block header
 								a(href='/'+[getLocale(req)]+'/'): img.img-responsive(src='/images/logo-white.png' alt="Hotel Amalfi Roma")
 						.header-row-title
 							.header-title.text-center
-								h1.text-uppercase #{data.page.title[getLocale(req)]}
+								h1.text-uppercase #{data.page.title}
 								.container-fluid
 									.row
 										.col-xs-5.col-sm-5.col-md-5.col-lg-5
 										.col-xs-2.col-sm-2.col-md-2.col-lg-2
 										.col-xs-5.col-sm-5.col-md-5.col-lg-5
-								h2.text-uppercase #{data.page.subTitle[getLocale(req)]}
+								h2.text-uppercase #{data.page.subTitle}
 		//-- end header
 
 block content
 	.container-fluid.blog: .row
 		.col-sm-3.col-md-3
-			.block-sidebar
-				h3.text-uppercase #{__("Instagram Photos")}
-				hr/
+			//--
+				.block-sidebar
+					h3.text-uppercase #{__("Instagram Photos")}
+					hr/
 			.block-sidebar
 				h3.text-uppercase #{__("Subscribe our newsletter")}
 				if getLocale(req).toLowerCase() === 'en'
@@ -108,7 +109,7 @@ block content
 					ul.tags-group.row
 						each tag in data.tags
 							li.text-uppercase.col-sm-12.col-md-6
-								a(href='/'+[getLocale(req)]+'/blog/tag/' + tag.key, class=data.tag && data.tag.id == tag.id ? 'active' : false)= tag.tagName[getLocale(req)]
+								a(href='/'+[getLocale(req)]+'/blog/tag/' + tag.key, class=data.tag && data.tag.id == tag.id ? 'active' : false)= tag.name
 				hr/
 
 		.col-sm-6.col-md-6.blog-content
