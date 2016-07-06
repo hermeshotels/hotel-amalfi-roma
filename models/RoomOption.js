@@ -7,14 +7,11 @@ RoomOption model
 var RoomOption = new keystone.List('RoomOption');
 
 RoomOption.add({
-	name: {type: Types.Text,required: true,index: true, note: 'This field is not shown'},
+	name: {type: Types.Text,required: true,index: true, note: 'This field is used as Tooltip'},
 	icon: {type: Types.Text},
-	optionTooltip:{
-		it: { type: String, note: 'Option tooltip IT' },
-		en: { type: String, note: 'Option tooltip EN' }
-	}
+	language: { type: Types.Relationship, ref: 'Language', many: false }
 });
 
-RoomOption.defaultColumns = 'name, optionTooltip.it, optionTooltip.en';
+RoomOption.defaultColumns = 'name, icon, language';
 
 RoomOption.register();

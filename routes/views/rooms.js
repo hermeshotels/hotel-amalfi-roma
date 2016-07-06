@@ -37,7 +37,7 @@ exports = module.exports = function(req, res) {
 				});
 			Room.model.find()
 				.where('language', currentLanguage._id)
-				.populate('roomOptions')
+				.populate('Options')
 				.sort('order').exec(function(err, rooms) {
 					locals.rooms = rooms;
 				})

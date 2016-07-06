@@ -61,7 +61,7 @@ block content
 											ul
 												each option, index in room.Options
 													li
-														img(src='/images/room-icons/90px/'+option.icon+'.png' data-toggle="tooltip" data-placement="bottom" title=option.optionTooltip)
+														img(src='/images/room-icons/90px/'+option.icon+'.png' data-toggle="tooltip" data-placement="bottom" title=option.name)
 					- var classPull = (index % 2 === 0 ? 'col-md-pull-6 col-lg-pull-6' : '')
 					div.col-xs-12.col-sm-12.col-md-6.col-lg-6.nopadding(class=classPull)
 						.room-item
