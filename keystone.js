@@ -13,6 +13,7 @@ var keystone = require('keystone'),
 keystone.init({
 	'name': 'Hotel Amalfi',
 	'brand': 'Hotel Amalfi',
+	'mongo': process.env.MONGODB_URI || "mongodb://localhost/hotelamalfi",
 
 	'sass': 'public',
 	'static': 'public',
