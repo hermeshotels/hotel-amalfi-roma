@@ -11,7 +11,8 @@ Service.add({
 	language: { type: Types.Relationship, ref: 'Language', many: false },
 	order: {type: Types.Number,format: 0},
 	serviceDescription:{type: Types.Textarea,required: false},
-	heroPhoto: {type: Types.CloudinaryImage}
+	heroPhoto: {type: Types.CloudinaryImage},
+	otherPhotos: {type: Types.CloudinaryImages}
 });
 
 Service.defaultColumns = 'name, order|20%, language';

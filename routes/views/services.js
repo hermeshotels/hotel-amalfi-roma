@@ -9,12 +9,12 @@ exports = module.exports = function(req, res) {
 	var locals = res.locals;
 
 	locals.sections = 'services'
-    locals.data = {
+	locals.data = {
 		languages: []
 	}
 
 	// Load page content
-    view.on('init', function(next) {
+	view.on('init', function(next) {
 		keystone.list('Language').model.find().sort('Ordine').exec(function(err, results) {
 			_.each(results, function(item) {
 				locals.data.languages.push(item.CodiceLingua);
@@ -33,14 +33,14 @@ exports = module.exports = function(req, res) {
 					} else {
 						locals.data.page = page.services;
 						locals.data.meta = page.meta;
-						next(err);
 					}
+					Service.model.find()
+						.where('language', currentLanguage._id)
+						.sort('order').exec(function(err, services) {
+							locals.services = services;
+							next(err);
+						})
 				});
-			Service.model.find()
-				.where('language', currentLanguage._id)
-				.sort('order').exec(function(err, services) {
-					locals.services = services;
-				})
 		});
 	});
 

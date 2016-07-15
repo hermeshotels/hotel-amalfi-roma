@@ -42,4 +42,25 @@ block content
 							.room-content
 								.room-table
 									.room-images
-										img.img-responsive(src=service._.heroPhoto.fit(1000,650))
+										div(class="master-slider ms-skin-default" id="masterslider"+service.order)
+											div(class="ms-slide")
+												img.img-responsive(src=service._.heroPhoto.fit(1000,650))
+											each image in service.otherPhotos
+												div(class="ms-slide")
+													img.img-responsive(src=image.fit(1000,650))
+
+block js
+	script(type="text/javascript").
+		$(function () {
+			console.log("here");
+		
+			var slider1 = new MasterSlider();
+			slider1.setup('masterslider1' , {width: 1000,height: 650,space:5,layout: 'fillwidth',autoplay: true,arrows: true,loop: true});
+			slider1.control('arrows');
+			var slider2 = new MasterSlider();
+			slider2.setup('masterslider2' , {width: 1000,height: 650,space:5,layout: 'fillwidth',autoplay: true,arrows: true,loop: true});
+			slider2.control('arrows');
+			var slider3 = new MasterSlider();
+			slider3.setup('masterslider3' , {width: 1000,height: 650,space:5,layout: 'fillwidth',autoplay: true,arrows: true,loop: true});
+			slider3.control('arrows');
+		});
