@@ -33,7 +33,7 @@ block content
 				.control-group &nbsp;
 				.control-group &nbsp;
 				.post-images.text-center
-					img.img-responsive.text-center(src=data.post._.heroImage.fit(1900,1000) alt=data.post.title)
+					.post-images(style="background-image: url('"+data.post._.heroImage.fit(1900,1000)+"');")
 				.control-group &nbsp;
 				.control-group &nbsp;
 				.row

@@ -1007,6 +1007,8 @@ BLOG
 /*!
 POST
 */
+.post-images{ height: 350px; background-size: cover; background-position: center; background-repeat: no-repeat; }
+
 .single-post {
 	padding: 0px 5%;
 }
