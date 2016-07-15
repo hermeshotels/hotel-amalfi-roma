@@ -69,12 +69,29 @@ block content
 							.room-content
 								.room-table
 									.room-images
-										img.img-responsive(src=room._.heroPhoto.fit(1000,650))
-
-
+										div(class="master-slider ms-skin-default" id="masterslider"+room.order)
+											div(class="ms-slide")
+												img.img-responsive(src=room._.heroPhoto.fit(1000,650))
+											each image in room.otherPhotos
+												div(class="ms-slide")
+													img.img-responsive(src=image.fit(1000,650))
 
 block js
 	script(type="text/javascript").
 		$(function () {
-			$('[data-toggle="tooltip"]').tooltip({trigger:'hover focus'});
+			console.log("here");
+			var slider1 = new MasterSlider();
+			slider1.setup('masterslider1' , {width: 1000, height: 650, space:5, layout:'fillwidth', arrows: true, loop: true});
+			slider1.control('arrows');
+			var slider2 = new MasterSlider();
+			slider2.setup('masterslider2' , {width: 1000,height: 650,space:5,layout: 'fillwidth',autoplay: true,arrows: true,loop: true});
+			slider2.control('arrows');
+			var slider3 = new MasterSlider();
+			slider3.setup('masterslider3' , {width: 1000,height: 650,space:5,layout: 'fillwidth',autoplay: true,arrows: true,loop: true});
+			slider3.control('arrows');
+			var slider4 = new MasterSlider();
+			slider4.setup('masterslider4' , {width: 1000,height: 650,space:5,layout: 'fillwidth',autoplay: true,arrows: true,loop: true});
+			slider4.control('arrows');
+			
+			$('[data-toggle="tooltip"]').tooltip();
 		});

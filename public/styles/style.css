@@ -740,7 +740,6 @@ ROOMS
 }
 .rooms .room-item .room-content .room-table .room-images{
 	display: table-cell;
-	vertical-align: middle;
 }
 .rooms .room-item .room-content .room-table .room-cell{
 	display: table-cell;

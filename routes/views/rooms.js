@@ -34,14 +34,14 @@ exports = module.exports = function(req, res) {
 						locals.data.page = page.rooms;
 						locals.data.meta = page.meta;
 					}
+					Room.model.find()
+						.where('language', currentLanguage._id)
+						.populate('Options')
+						.sort('order').exec(function(err, rooms) {
+							locals.rooms = rooms;
+							next(err);
+						})
 				});
-			Room.model.find()
-				.where('language', currentLanguage._id)
-				.populate('Options')
-				.sort('order').exec(function(err, rooms) {
-					locals.rooms = rooms;
-				})
-			next(err);
 		});
 	});
 
