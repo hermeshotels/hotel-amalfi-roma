@@ -1,6 +1,6 @@
 var keystone=require("keystone");
 var Types=keystone.Field.Types;
-var Pages=["SocialAndFooter","Home","Rooms","Services","Blog","Gallery","#HotelAmalfiRome","Contact"];
+var Pages=["SocialAndFooter","Home","Rooms","Services","Blog","Gallery","#HotelAmalfiRome","Contact","Privacy"];
 var SpecialPage=new keystone.List("SpecialPage",{map:{name:"specialPageTitle"},plural:"SpecialPages"});
 SpecialPage.add({
 	active:{type:Types.Boolean},
@@ -184,6 +184,11 @@ SpecialPage.add({
 		contactPhone:{type:String,dependsOn:{page:"Contact"}},
 		contactFax:{type:String,dependsOn:{page:"Contact"}},
 		contactEmail:{type:String,dependsOn:{page:"Contact"}}
+	},
+
+	privacy:{
+		title: {type:String,dependsOn:{page:"Privacy"}},
+		testo:{type:Types.Html,wysiwyg:true,dependsOn:{page:"Privacy"}}
 	}
 });
 
