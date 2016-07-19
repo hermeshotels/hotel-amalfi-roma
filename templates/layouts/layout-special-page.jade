@@ -10,6 +10,15 @@ html
 
 	//- HTML BODY
 	body
+		div#fb-root
+		script.
+			(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7";
+			fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
 
 		include partials/navbar
 
@@ -33,6 +42,8 @@ html
 								h4.text-uppercase
 									| Latest Post &nbsp;&nbsp;&nbsp;
 									img(src='/images/social-facebook.png' align='middle' alt="facebook")
+								.facebook
+									div.fb-page(data-href="https://www.facebook.com/HotelAmalfiRome/" data-tabs="timeline" data-height="270" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false")
 							.col-sm-12.col-md-3.col-sm-pull-0.col-md-pull-6
 								.footer-logo
 									img(src='/images/logo-footer.png' alt="Hotel Amalfi")
@@ -86,8 +97,8 @@ html
 		script(type="text/javascript").
 			var userFeed = new Instafeed({
 				get: 'user',
-				userId: 'XXX',
-				accessToken: 'XXX',
+				userId: '3040700627',
+				accessToken: '3040700627.56e7aaa.77a98c29cae040c19ceb2b0cd9859503',
 				target: 'pp-instagram',
 				limit: 9,
 				resolution: 'low_resolution',
