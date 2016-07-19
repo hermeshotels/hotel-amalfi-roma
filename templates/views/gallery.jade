@@ -26,8 +26,8 @@ block css
 block content
 	.container-fluid.gallery
 		if galleries.length
-			each gallery, index in galleries
-				.row.gallery-images
+			.row.gallery-images
+				each gallery, index in galleries
 					if gallery.heroImage.exists
 						.col-sm-3.col-md-3
 							.gallery-image
