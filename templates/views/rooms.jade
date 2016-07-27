@@ -56,7 +56,12 @@ block content
 								.room-table
 									.room-cell
 										h2=room.name
-										=room.Description
+										hr.small-separator
+										p.text-justify=room.Description
+										.control-group &nbsp;
+										h4.text-uppercase #{__("Tra i servizi")}
+										p.text-uppercase #{__("che caraterizzano la nostra ospitalità")}
+										
 										if room.Options.length
 											ul
 												each option, index in room.Options

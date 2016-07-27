@@ -1,3 +1,9 @@
+hr.small-separator {
+    border-top: 2px solid #666;
+    margin: 10px auto;
+    width: 200px;
+}
+
 .nopadding {
    padding: 0 !important;
    margin: 0 !important;
@@ -334,7 +340,13 @@ MENU
     background: url(../images/social-gplus-hover.png) no-repeat center center;
 }
 
-
+/*!
+HOME
+*/
+div.home-text {
+    max-width: 70%;
+    margin: 0px auto;
+}
 
 
 /*!
@@ -746,6 +758,10 @@ ROOMS
 	vertical-align: middle;
 	padding: 20px;
 }
+.rooms .room-item .room-content .room-table .room-cell {
+    text-align: center;
+}
+
 .rooms .room-item .room-content .room-table .room-cell ul{
 	margin: 10px 0px 0px 30px;
 	padding: 0px;

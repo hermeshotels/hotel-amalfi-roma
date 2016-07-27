@@ -34,7 +34,8 @@ block content
 								.room-table
 									.room-cell
 										h2=service.name
-										=service.serviceDescription
+										hr.small-separator
+										p.text-justify=service.serviceDescription
 					- var classPull = (index % 2 === 0 ? 'col-md-pull-6 col-lg-pull-6' : '')
 					div.col-xs-12.col-sm-12.col-md-6.col-lg-6.nopadding(class=classPull)
 						.room-item
