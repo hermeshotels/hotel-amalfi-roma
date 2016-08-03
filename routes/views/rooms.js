@@ -3,6 +3,7 @@ var _ = require('underscore');
 var i18n = require('i18n');
 
 var Room = keystone.list('Room');
+var Post = keystone.list('Post');
 
 exports = module.exports = function(req, res) {
 	var view = new keystone.View(req, res);
@@ -13,13 +14,15 @@ exports = module.exports = function(req, res) {
 		languages: []
 	}
 
+	var currentLanguage;
+
 	// Load page content
 	view.on('init', function(next) {
 		keystone.list('Language').model.find().sort('Ordine').exec(function(err, results) {
 			_.each(results, function(item) {
 				locals.data.languages.push(item.CodiceLingua);
 			});
-			var currentLanguage = _.find(results, function(o) {
+			currentLanguage = _.find(results, function(o) {
 				return o.CodiceLingua === i18n.getLocale(req);
 			})
 			keystone.list('SpecialPage').model.findOne()
@@ -43,6 +46,16 @@ exports = module.exports = function(req, res) {
 						})
 				});
 		});
+	});
+
+	view.on('init', function(next) {
+		// load last post
+		Post.model.findOne()
+			.where('language', currentLanguage._id)
+			.sort('-publishedAt').limit(1).exec(function(err, results) {
+				locals.data.lastNews = results;
+				next(err);
+			});
 	});
 
 	// Load page content

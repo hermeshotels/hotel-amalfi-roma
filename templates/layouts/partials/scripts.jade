@@ -7,10 +7,11 @@ script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-instagram/0.3.1/instag
 script(src='/js/plugins/masterslider/masterslider.min.js')
 script(src='/js/bower_components/instafeed.js/instafeed.js')
 script(src='/js/bower_components/moment/moment.js')
+script(src='/js/bower_components/simpleWeather/jquery.simpleWeather.js')
 if getLocale(req) !== 'en'
 	script(src='/js/bower_components/moment/locale/'+getLocale(req)+'.js')
 script(src='/js/script.js')
-	
+
 
 //- The KeystoneJS Content Editor provides support for ks-editable data attributes,
 //- which generate links to edit content for users who can access Keystone
@@ -24,4 +25,24 @@ script(type="text/javascript").
 		window.setInterval(function(){
 			$("#clock").html(moment().format("DD MMMM YYYY HH:mm"));
 		}, 1000);
+	});
+
+	$(document).ready(function() {
+		$.simpleWeather({
+			location: 'Roma, IT',
+			woeid: '',
+			unit: 'c',
+			success: function(weather) {
+				html = '<div class="col-sm-12 col-md-4"><p class="text-uppercase">#{__("Oggi")}</p><h2><i class="icon-'+weather.code+'"></i></h2>';
+				html += '<p>' + weather.low+'&deg;&nbsp;/&nbsp;' + weather.high + '</p></div>';
+				html += '<div class="col-sm-12 col-md-4"><p class="text-uppercase">#{__("Domani")}</p><h2><i class="icon-'+weather.forecast[1].code+'"></i></h2>';
+				html += '<p>' + weather.forecast[1].low+'&deg;&nbsp;/&nbsp;' + weather.forecast[1].high + '</p></div>';
+				html += '<div class="col-sm-12 col-md-4"><p class="text-uppercase">#{__("Dopodomani")}</p><h2><i class="icon-'+weather.forecast[2].code+'"></i></h2>';
+				html += '<p>' + weather.forecast[2].low+'&deg;&nbsp;/&nbsp;' + weather.forecast[2].high + '</p></div>';
+				$("#weather").html(html);
+			},
+			error: function(error) {
+				$("#weather").html('<p>'+error+'</p>');
+			}
+		});
 	});

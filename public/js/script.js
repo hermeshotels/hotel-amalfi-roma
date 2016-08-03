@@ -13,11 +13,11 @@ function instagramWidget() {
 }
 
 function showMenu() {
-	$(".menu").show();
+	$(".menu").show("slide", { direction: "left" }, 1000);
 }
 
 function hideMenu() {
-	$(".menu").hide();
+	$(".menu").hide("slide", { direction: "left" }, 1000);
 }
 
 function dateTimeMenu() {
