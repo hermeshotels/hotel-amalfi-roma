@@ -24,7 +24,14 @@ var i18n = require('i18n');
 exports.initLocals = function(req, res, next) {
 
 	var locals = res.locals;
-
+	var match = req.url.match(/^\/([A-Z]{2})([\/\?].*)?$/i);
+	var offersPath = 'blog/offers';
+	if (match){
+		if(match[1] == 'it')
+		{
+			offersPath = 'blog/offerte'
+		}
+	}
 	locals.navLinks = [{
 		label: 'Homepage',
 		key: 'home',
@@ -53,10 +60,10 @@ exports.initLocals = function(req, res, next) {
 		href: '/blog'
 	}, {
 		label: 'Offerte',
-		key: 'blog/offerte',
+		key: offersPath,
 		header: true,
 		footer: false,
-		href: '/blog/offerte'
+		href: '/' + offersPath
 	}, {
 		label: 'Gallery',
 		key: 'gallery',
