@@ -29,6 +29,7 @@ block header
 
 block content
 	.social-feed-container
+		#social-page-content
 	.clearfix
 
 block js
@@ -38,6 +39,19 @@ block js
 	if getLocale(req) == 'it'
 		script(src="/js/bower_components/moment/locale/it.js")
 	script(src="/js/jquery.socialfeed.js")
+
+	script(type="text/javascript").
+		var userFeedSocialPage = new Instafeed({
+			get: 'user',
+			userId: '3040700627',
+			accessToken: '3040700627.56e7aaa.77a98c29cae040c19ceb2b0cd9859503',
+			target: 'social-page-content',
+			limit: 30,
+			resolution: 'standard_resolution',
+			template: '<div class="col-sm-12 col-md-4 social-page-item"><div class="social-page-item-content"><div><a href="{{link}}"><img src="{{image}}" /></a></div></div></div>'
+		});
+		userFeedSocialPage.run();
+
 
 	script.
 		/*

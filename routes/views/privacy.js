@@ -1,6 +1,7 @@
 var keystone = require('keystone');
 var _ = require('underscore');
 var i18n = require('i18n');
+var Post = keystone.list('Post');
 
 exports = module.exports = function(req, res) {
 
@@ -42,6 +43,16 @@ exports = module.exports = function(req, res) {
 					}
 				});
 		});
+	});
+
+	view.on('init', function(next) {
+		// load last post
+		Post.model.findOne()
+			.where('language', currentLanguage._id)
+			.sort('-publishedAt').limit(1).exec(function(err, results) {
+				locals.data.lastNews = results;
+				next(err);
+			});
 	});
 
 	// Load Social and Footer content

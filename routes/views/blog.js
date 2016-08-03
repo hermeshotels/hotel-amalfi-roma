@@ -2,6 +2,7 @@ var keystone = require('keystone');
 var _ = require('underscore');
 var i18n = require('i18n');
 var async = require('async');
+var Post = keystone.list('Post');
 
 exports = module.exports = function(req, res) {
 
@@ -49,6 +50,17 @@ exports = module.exports = function(req, res) {
 		});
 	});
 
+	view.on('init', function(next) {
+		// load last post
+		Post.model.findOne()
+			.where('language', currentLanguage._id)
+			.sort('-publishedAt').limit(1).exec(function(err, results) {
+				locals.data.lastNews = results;
+				next(err);
+			});
+	});
+
+
 	// Load all categories
 	view.on('init', function(next) {
 
@@ -65,7 +77,7 @@ exports = module.exports = function(req, res) {
 				// Load the counts for each category
 				async.each(locals.data.categories, function(category, next) {
 
-					keystone.list('Post').model.count().where('categories').in([category.id]).exec(function(err, count) {
+					Post.model.count().where('categories').in([category.id]).exec(function(err, count) {
 						category.postCount = count;
 						next(err);
 					});

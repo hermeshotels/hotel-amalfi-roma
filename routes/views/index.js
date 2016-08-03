@@ -68,13 +68,27 @@ exports = module.exports = function(req, res) {
 	});
 
 	view.on('init', function(next) {
+		// load last post
+		Post.model.findOne()
+			.where('language', currentLanguage._id)
+			.sort('-publishedAt').limit(1).exec(function(err, results) {
+				locals.data.lastNews = results;
+				next(err);
+			});
+	});
+
+	view.on('init', function(next) {
 		// load tours
 		PostCategory.model.findOne({
 			specialType: 'Tour',
 			language: currentLanguage._id
 		}).exec(function(err, postCategory) {
 			if (postCategory !== null) {
-				Post.model.find().where('categories').in([postCategory.id]).where('showInHome', true).populate('categories').sort('-publishedAt').limit(3).exec(function(err, results) {
+				Post.model.find()
+					.where('categories').in([postCategory.id])
+					.where('showInHome', true)
+					.where('language', currentLanguage._id)
+					.populate('categories').sort('-publishedAt').limit(3).exec(function(err, results) {
 					locals.data.tours = results;
 					next(err);
 				});
