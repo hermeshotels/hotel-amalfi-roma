@@ -272,14 +272,19 @@ MENU
     z-index: 2000;
 }
 .menu-content {
-    background-color: #000;
+    background-color: rgb(38, 38, 38);
+    background-color: rgba(38, 38, 38, 0.97);
     color: #fff;
     padding: 20px 25px 20px 40px;
 }
 .menu-header h3 {
     margin : 0px;
-    line-height: 40px;
+    line-height: 20px;
 }
+.menu-header h3 small{
+    color: #A0A0A0;
+}
+
 .menu-content a {
     color: #fff;
 }
@@ -294,14 +299,20 @@ MENU
 }
 .menu-content ul li {
     margin: 0px;
-    padding: 10px 0px;
+    padding: 8px 0px;
+    border-top: 1px solid #a0a0a0;
 }
+.menu-content ul li:first-child {
+    border-top: 0px solid transparent;
+}
+
 .menu-content .menu-footer .booknow{
     line-height: 45px;
 }
 
 .menu-content .menu-footer ul li{
     display: inline-block;
+    border-top: 0px solid transparent;
 }
 .menu-content .menu-footer ul li a{
     display: inline-block;
@@ -339,6 +350,14 @@ MENU
 .menu-content .menu-footer ul li a:hover.googleplus{
     background: url(../images/social-gplus-hover.png) no-repeat center center;
 }
+.menu .news-offers{
+    background-color: #161616;
+    padding-bottom: 15px;
+}
+.menu .news-offers h2 {
+    margin: 15px 0px 10px;
+}
+
 .menu .news-offers h3 {
     margin: 0px;
 }
@@ -362,7 +381,7 @@ MENU
 #weather i {
   color: #fff;
   font-family: weather;
-  font-size: 150px;
+  font-size: 130px;
   font-weight: normal;
   font-style: normal;
   line-height: 100px;
@@ -419,9 +438,9 @@ MENU
 .icon-47:before { content: "S"; }
 
 #weather h2 {
-  margin: 0 0 8px;
+  margin: 0 0 0px;
   color: #fff;
-  font-size: 100px;
+  font-size: 80px;
   font-weight: 300;
   text-align: center;
   text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
@@ -819,31 +838,37 @@ ROOMS
     position: relative;
     width: 100%;
 }
-.rooms .room-item .room-block:before {
-    content: "";
-    display: block;
-    padding-top: 65%;
+.rooms .room-item .room-content .room-table .room-cell {
+    padding: 20px;
 }
-.rooms .room-item .room-content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-	overflow: hidden;
-}
-.rooms .room-item .room-content .room-table{
-	display: table;
-	width: 100%;
-	height: 100%;
-}
-.rooms .room-item .room-content .room-table .room-images{
-	display: table-cell;
-}
-.rooms .room-item .room-content .room-table .room-cell{
-	display: table-cell;
-	vertical-align: middle;
-	padding: 20px;
+
+@media (min-width: 768px) {
+    .rooms .room-item .room-block:before {
+        content: "";
+        display: block;
+        padding-top: 65%;
+    }
+    .rooms .room-item .room-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    	overflow: hidden;
+    }
+    .rooms .room-item .room-content .room-table{
+    	display: table;
+    	width: 100%;
+    	height: 100%;
+    }
+    .rooms .room-item .room-content .room-table .room-images{
+    	display: table-cell;
+    }
+    .rooms .room-item .room-content .room-table .room-cell{
+    	display: table-cell;
+    	vertical-align: middle;
+    	padding: 20px;
+    }
 }
 .rooms .room-item .room-content .room-table .room-cell {
     text-align: center;
@@ -941,7 +966,7 @@ BLOG
 .blog .category-group li{
 	margin: 0px;
 	padding: 10px 0px;
-	font-size: 18px;
+	font-size: 15px;
 }
 .blog .category-group li i{
 	margin-right: 20px;
@@ -956,6 +981,9 @@ BLOG
 .block-sidebar hr{
 	margin: 20px;
 	border-color: #e2e2e2;
+}
+.block-sidebar h3{
+    font-size: 18px;
 }
 .block-sidebar .social-icon-list {
 	margin: 0px;
@@ -1025,8 +1053,17 @@ BLOG
 	padding: 12px 5px;
 }
 
-.post-sidebar h3 { border-bottom: 1px solid #e2e2e2; line-height:0.1em; margin:10px 0 20px; }
+.post-sidebar h3 {
+    border-bottom: 1px solid #e2e2e2;
+    line-height:0.1em;
+    margin:10px 0 20px;
+    font-size: 18px;
+}
 .post-sidebar h3 span { background:#fff; padding:0 10px 0px 0px; }
+
+.post-sidebar .lead {
+    font-size: 15px;
+}
 
 .post-sidebar .social-share {
 	margin: 0px;
@@ -1083,7 +1120,7 @@ BLOG
 .post .lead.text-muted{
 	font-weight: 100;
 	color: #363636;
-	font-size: 22px;
+	font-size: 15px;
 }
 .post .lead.text-muted span{
 	font-weight: normal;
@@ -1140,6 +1177,10 @@ POST
 }
 
 /* HASHTAG */
+/*
+.grid-item {
+    height: 300px;
+}*/
 .social-page-item {
     position: relative;
     overflow: hidden;
@@ -1167,7 +1208,6 @@ POST
 .social-page-item-content img {
     width: 100%;
 }
-
 
 /*!
 SOCIAL

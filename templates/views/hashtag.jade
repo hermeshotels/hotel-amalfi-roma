@@ -49,6 +49,16 @@ block js
 			limit: 30,
 			resolution: 'standard_resolution',
 			template: '<div class="col-sm-12 col-md-4 social-page-item"><div class="social-page-item-content"><div><a href="{{link}}"><img src="{{image}}" /></a></div></div></div>'
+			/*
+			,after: function(image) {
+				$('#social-page-content').masonry({
+					// options
+					itemSelector: '.grid-item',
+					columnWidth: '.col-md-3',
+					percentPosition: true
+				});
+			}*/
+
 		});
 		userFeedSocialPage.run();
 
