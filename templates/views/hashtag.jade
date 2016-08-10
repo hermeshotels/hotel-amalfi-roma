@@ -17,14 +17,14 @@ block header
 								a(href='/'+[getLocale(req)]+'/'): img.img-responsive(src='/images/logo-black.png' alt="Hotel Amalfi Roma")
 						.header-row-title
 							.header-title.text-center
-							//-
-								h1.text-uppercase #{data.page.title[getLocale(req)]}
-								.container-fluid
-									.row
-										.col-xs-5.col-sm-5.col-md-5.col-lg-5
-										.col-xs-2.col-sm-2.col-md-2.col-lg-2
-										.col-xs-5.col-sm-5.col-md-5.col-lg-5
-								h2.text-uppercase #{data.page.subTitle[getLocale(req)]}
+								h1.text-uppercase #{data.page.title}
+								//-
+									.container-fluid
+										.row
+											.col-xs-5.col-sm-5.col-md-5.col-lg-5
+											.col-xs-2.col-sm-2.col-md-2.col-lg-2
+											.col-xs-5.col-sm-5.col-md-5.col-lg-5
+									h2.text-uppercase #{data.page.subTitle[getLocale(req)]}
 		//-- end header
 
 block content
@@ -48,7 +48,7 @@ block js
 			target: 'social-page-content',
 			limit: 30,
 			resolution: 'standard_resolution',
-			template: '<div class="col-sm-12 col-md-4 social-page-item"><div class="social-page-item-content"><div><a href="{{link}}"><img src="{{image}}" /></a></div></div></div>'
+			template: '<div class="col-sm-12 col-md-4" style="margin-bottom:30px;"><div class="social-page-item"><div class="social-page-item-content"><div><a href="{{link}}"><img src="{{image}}" /></a></div></div></div></div>'
 			/*
 			,after: function(image) {
 				$('#social-page-content').masonry({
