@@ -63,11 +63,11 @@ block content
 					h4.text-uppercase.second-color.text-center #{data.page.eventsBlockSubTitle}
 					.control-group &nbsp;
 					.row
-						.col-xs-2.col-sm-2.col-md-2.col-lg-2
-						.col-xs-8.col-sm-8.col-md-8.col-lg-8
+						.col-sm-2.col-md-2
+						.col-sm-8.col-md-8
 							.row
 								each event in data.events
-									.col-xs-6.col-sm-6.col-md-4.col-lg-4
+									.col-sm-12.col-md-4
 										.square-box.event-item
 											a.square-content(href='/'+[getLocale(req)]+'/blog/post/'+event.slug)
 												span.event-content-table

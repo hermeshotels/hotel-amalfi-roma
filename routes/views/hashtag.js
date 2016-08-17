@@ -38,6 +38,7 @@ exports = module.exports = function(req, res) {
 					return next(err);
 				} else {
 					locals.data.meta = page.meta;
+					locals.data.page = page.socialwall;
 					next(err);
 				}
 			});

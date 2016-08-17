@@ -54,34 +54,32 @@ nav.navbar.navbar-default.navbar-fixed-top
 					.control-group &nbsp;
 					div
 						img(src='/images/logo-footer.png' alt="Hotel Amalfi" class="img-responsive")
-				.col-sm-12.col-md-9.text-left
+				.col-sm-12.col-md-9.text-left.hidden-xs
 					div#weather.row
-					.control-group &nbsp;
 					div.news-offers.row
 						.col-sm-12.col-md-12
 							h2.text-uppercase
 								| #{__('News & Offerte')}
-							.control-group &nbsp;
 							.col-sm-12.col-md-5
 								h3.text-uppercase
 									a(href='/'+[getLocale(req)]+'/blog/post/'+data.lastNews.slug)= data.lastNews.title
 							.col-sm-12.col-md-7
 								img(src=data.lastNews._.heroImage.limit(800,300)).img-responsive
-			.control-group &nbsp;
-			.menu-footer.row
-				.col-sm-8.col-md-8
-					ul
-						if data.socialAndFooter.facebook
-							li: a.text-uppercase(class="facebook" target="_blank" href=data.socialAndFooter.facebook)
-						if data.socialAndFooter.instagram
-							li: a.text-uppercase(class="instagram" target="_blank" href=data.socialAndFooter.instagram)
-						if data.socialAndFooter.twitter
-							li: a.text-uppercase(class="twitter" target="_blank" href=data.socialAndFooter.twitter)
-						if data.socialAndFooter.pinterest
-							li: a.text-uppercase(class="pinterest" target="_blank" href=data.socialAndFooter.pinterest)
-						if data.socialAndFooter.googlePlus
-							li: a.text-uppercase(class="googleplus" target="_blank" href=data.socialAndFooter.googlePlus)
-				.col-sm-4.col-md-4.text-right.text-uppercase
-					p.booknow
-						a.booknow-opener(href='#') #{__('BOOKNOW')}
+					.control-group &nbsp;
+					.menu-footer.row
+						.col-sm-8.col-md-8
+							ul
+								if data.socialAndFooter.facebook
+									li: a.text-uppercase(class="facebook" target="_blank" href=data.socialAndFooter.facebook)
+								if data.socialAndFooter.instagram
+									li: a.text-uppercase(class="instagram" target="_blank" href=data.socialAndFooter.instagram)
+								if data.socialAndFooter.twitter
+									li: a.text-uppercase(class="twitter" target="_blank" href=data.socialAndFooter.twitter)
+								if data.socialAndFooter.pinterest
+									li: a.text-uppercase(class="pinterest" target="_blank" href=data.socialAndFooter.pinterest)
+								if data.socialAndFooter.googlePlus
+									li: a.text-uppercase(class="googleplus" target="_blank" href=data.socialAndFooter.googlePlus)
+						.col-sm-4.col-md-4.text-right.text-uppercase
+							p.booknow
+								a.booknow-opener(href='#') #{__('BOOKNOW')}
 //-- end menu

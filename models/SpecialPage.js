@@ -171,6 +171,15 @@ SpecialPage.add({
 		headerImage:{type:Types.CloudinaryImage,dependsOn:{page:"Gallery"}},
 	},
 
+	socialwall:{
+		title: {
+			type:String,dependsOn:{page:"#HotelAmalfiRome"}
+		},
+		subTitle: {
+			type:String,dependsOn:{page:"#HotelAmalfiRome"}
+		}
+	},
+
 	contact:{
 		introduction:{
 			type:Types.Html,wysiwyg:true,dependsOn:{page:"Contact"}
