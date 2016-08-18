@@ -10,7 +10,7 @@ nav.navbar.navbar-default.navbar-fixed-top
 				li
 					a(href='javascript:void(0)').menu-opener.text-uppercase #{__('MENU')}
 		//-- Collect the nav links, forms, and other content for toggling
-		#bs-example-navbar-collapse-1.collapse.navbar-collapse
+		#bs-example-navbar-collapse-1
 			ul.nav.navbar-nav
 				if data.languages
 					li.dropdown
@@ -23,7 +23,7 @@ nav.navbar.navbar-default.navbar-fixed-top
 									a(href='/'+language data-lang=language)= language
 			ul.nav.navbar-nav.navbar-left
 				li.nav.navbar-nav.navbar-logo
-					a(href='/'+[getLocale(req)]+'/'): img.img-responsive(src='/images/logo-white.png' alt="Hotel Amalfi Roma")
+					a(href='/'+[getLocale(req)]+'/'): img.img-responsive(src='/images/logo-scroll-white.png' alt="Hotel Amalfi Roma")
 			ul.nav.navbar-nav.navbar-right
 				li
 					a.text-uppercase.booknow-opener(href='#') #{__('BOOKNOW')}
@@ -33,17 +33,33 @@ nav.navbar.navbar-default.navbar-fixed-top
 	.row
 		.menu-content.col-sm-12.col-md-7
 			.menu-header.row
-				.col-sm-2.col-md-2
+				.col-sm-3.col-md-3
 					a.menu-closer(href='#')
 						img(src='/images/close.png' align='middle' alt="close")
-				.col-sm-10.col-md-10
+				.col-sm-3.col-md-3
+					h3.text-right
+						span.text-uppercase
+							| #{__('Londra')}
+							span
+								small
+									br
+									spam#clock1
+				.col-sm-3.col-md-3
+					h3.text-right
+						span.text-uppercase
+							| #{__('New York')}
+							span
+								small
+									br
+									spam#clock2
+				.col-sm-3.col-md-3
 					h3.text-right
 						span.text-uppercase
 							| #{__('Roma')}
 							span
 								small
 									br
-									spam#clock
+									spam#clock3
 			.control-group &nbsp;
 			.row
 				.col-sm-12.col-md-3.text-left

@@ -118,6 +118,35 @@ NAVBAR
 .navbar-scrolled .nav > li.navbar-logo{
 	display: block;
 }
+
+/*disabling navbar collapse*/
+.navbar-collapse.collapse {
+  display: block!important;
+}
+.navbar-nav>li, .navbar-nav {
+  float: left !important;
+  margin: 0px !important;
+}
+.navbar-nav.navbar-right:last-child {
+  margin-right: -15px !important;
+}
+.navbar-right {
+  float: right !important;
+}
+.navbar-header {
+    float: left !important;
+}
+.navbar-nav > li > a {
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+}
+.navbar-nav > li.navbar-logo > a {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+.navbar-nav .open .dropdown-menu {
+    position: absolute !important;
+}
 /*!
 HEADER
 */
@@ -278,7 +307,7 @@ MENU
 }
 .menu-content {
     background-color: rgb(38, 38, 38);
-    background-color: rgba(38, 38, 38, 0.97);
+    background-color: rgba(38, 38, 38, 0.90);
     color: #fff;
     padding: 20px 25px 20px 40px;
 }
