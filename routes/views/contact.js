@@ -51,7 +51,8 @@ exports = module.exports = function(req, res) {
 		// load last post
 		Post.model.findOne()
 			.where('language', currentLanguage._id)
-			.sort('-publishedAt').limit(1).exec(function(err, results) {
+			.sort('-publishedDate')
+			.limit(1).exec(function(err, results) {
 				locals.data.lastNews = results;
 				next(err);
 			});

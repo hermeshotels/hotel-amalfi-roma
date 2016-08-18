@@ -31,6 +31,7 @@ exports = module.exports = function(req, res) {
 	view.on('init', function(next) {
 		keystone.list('SpecialPage').model.findOne()
 			.where('page', '#HotelAmalfiRome')
+			.where('language', currentLanguage._id)
 			.where('active', true)
 			.exec(function(err, page) {
 				if (err) {
@@ -48,7 +49,9 @@ exports = module.exports = function(req, res) {
 		// load last post
 		Post.model.findOne()
 			.where('language', currentLanguage._id)
-			.sort('-publishedAt').limit(1).exec(function(err, results) {
+			.sort('-publishedDate')
+			.limit(1)
+			.exec(function(err, results) {
 				locals.data.lastNews = results;
 				next(err);
 			});

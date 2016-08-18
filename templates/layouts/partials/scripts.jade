@@ -25,7 +25,17 @@ if user && user.canAccessKeystone
 script(type="text/javascript").
 	$(function () {
 		window.setInterval(function(){
-			$("#clock").html(moment().format("DD MMMM YYYY HH:mm"));
+			var date = new Date();
+			date.setHours(date.getHours() - 1);
+			$("#clock1").html(moment(date).format("DD MMMM YYYY HH:mm"));
+		}, 1000);
+		window.setInterval(function(){
+			var date = new Date();
+			date.setHours(date.getHours() - 6);
+			$("#clock2").html(moment(date).format("DD MMMM YYYY HH:mm"));
+		}, 1000);
+		window.setInterval(function(){
+			$("#clock3").html(moment().format("DD MMMM YYYY HH:mm"));
 		}, 1000);
 	});
 
