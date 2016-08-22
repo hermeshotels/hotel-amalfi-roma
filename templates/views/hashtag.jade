@@ -1,7 +1,7 @@
 extends ../layouts/layout-hashtag
 
 block css
-	link(href="/styles/jquery.socialfeed.css" rel="stylesheet" type="text/css")
+	link(href="/js/bower_components/social-feed/css/jquery.socialfeed.css" rel="stylesheet" type="text/css")
 	link(href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet")
 
 block head
@@ -28,9 +28,13 @@ block header
 		//-- end header
 
 block content
-	.social-feed-container
-		#social-page-content
-	.clearfix
+	.row
+		.social-feed-container
+
+	//--
+		.social-feed-container
+			#social-page-content
+		.clearfix
 
 block js
 	script(src="/js/bower_components/codebird-js/codebird.js")
@@ -38,44 +42,51 @@ block js
 	script(src="/js/bower_components/moment/min/moment.min.js")
 	if getLocale(req) == 'it'
 		script(src="/js/bower_components/moment/locale/it.js")
-	script(src="/js/jquery.socialfeed.js")
+	script(src="/js/bower_components/social-feed/js/jquery.socialfeed.js")
 
-	script(type="text/javascript").
-		var userFeedSocialPage = new Instafeed({
-			get: 'user',
-			userId: '3040700627',
-			accessToken: '3040700627.56e7aaa.77a98c29cae040c19ceb2b0cd9859503',
-			target: 'social-page-content',
-			limit: 30,
-			resolution: 'standard_resolution',
-			template: '<div class="col-sm-12 col-md-4" style="margin-bottom:30px;"><div class="social-page-item"><div class="social-page-item-content"><div><a href="{{link}}"><img src="{{image}}" /></a></div></div></div></div>'
-			/*
-			,after: function(image) {
-				$('#social-page-content').masonry({
-					// options
-					itemSelector: '.grid-item',
-					columnWidth: '.col-md-3',
-					percentPosition: true
-				});
-			}*/
+	//--
+		script(type="text/javascript").
+			var userFeedSocialPage = new Instafeed({
+				get: 'user',
+				userId: '3040700627',
+				accessToken: '3040700627.56e7aaa.77a98c29cae040c19ceb2b0cd9859503',
+				target: 'social-page-content',
+				limit: 30,
+				resolution: 'standard_resolution',
+				template: '<div class="col-sm-12 col-md-4" style="margin-bottom:30px;"><div class="social-page-item"><div class="social-page-item-content"><div><a href="{{link}}"><img src="{{image}}" /></a></div></div></div></div>'
+				/*
+				,after: function(image) {
+					$('#social-page-content').masonry({
+						// options
+						itemSelector: '.grid-item',
+						columnWidth: '.col-md-3',
+						percentPosition: true
+					});
+				}*/
 
-		});
-		userFeedSocialPage.run();
+			});
+			userFeedSocialPage.run();
 
 
 	script.
-		/*
-			$(document).ready(function(){
-				$('.social-feed-container').socialfeed({
-					// INSTAGRAM
-					instagram:{
-						accounts: ['@teslamotors','#teslamotors'],  //Array: Specify a list of accounts from which to pull posts
-						limit: 2,                                    //Integer: max number of posts to load
-						client_id: 'YOUR_INSTAGRAM_CLIENT_ID'       //String: Instagram client id (optional if using access token)
-						access_token: 'YOUR_INSTAGRAM_ACCESS_TOKEN' //String: Instagram access token
-					},
-					// GENERAL SETTINGS
-					length:400                                      //Integer: For posts with text longer than this length, show an ellipsis.
-				});
+		$(document).ready(function(){
+			$('.social-feed-container').socialfeed({
+				// INSTAGRAM
+				instagram:{
+					accounts: ['&3040700627','#hotelamalfirome'],  //Array: Specify a list of accounts from which to pull posts
+					limit: 10,                                    //Integer: max number of posts to load
+					access_token: '3040700627.56e7aaa.77a98c29cae040c19ceb2b0cd9859503' //String: Instagram access token
+				},
+				// TWITTER
+				twitter:{
+					accounts: ['#HotelAmalfiRome'],             //Array: Specify a list of accounts from which to pull tweets
+					limit: 10,                                   //Integer: max number of tweets to load
+					consumer_key: 'UsTt0YRyCW5gzZfMHJdXUaEPq', // make sure to have your app read-only
+					consumer_secret: 'TcIBmghaMAXHIPANWPJs2SOKyxzQigf0q51ovZ6YA7YzF8a0dF', // make sure to have your app read-only
+				},
+				// GENERAL SETTINGS
+				length:150,                                      //Integer: For posts with text longer than this length, show an ellipsis.
+				template: '/js/bower_components/social-feed/template.html',
+				show_media: true
 			});
-		*/
+		});
