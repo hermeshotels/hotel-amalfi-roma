@@ -69,6 +69,53 @@ block js
 
 
 	script.
+		$(document).ready(function() {
+			var updateFeed = function() {
+				$('.social-feed-container').socialfeed({
+					// Twitter
+					twitter: {
+						accounts: ['@hotelamalfirome','#hotelamalfirome'],
+						limit: 15,
+						consumer_key: 'UsTt0YRyCW5gzZfMHJdXUaEPq', // make sure to have your app read-only
+						consumer_secret: 'TcIBmghaMAXHIPANWPJs2SOKyxzQigf0q51ovZ6YA7YzF8a0dF', // make sure to have your app read-only
+					},
+					instagram: {
+						accounts: ['&3040700627','#hotelamalfirome'],  //Array: Specify a list of accounts from which to pull posts
+						limit: 15,                                    //Integer: max number of posts to load
+						access_token: '3040700627.56e7aaa.77a98c29cae040c19ceb2b0cd9859503' //String: Instagram access token
+					},
+
+					// GENERAL SETTINGS
+					length: 200,
+					show_media: true,
+					template: '/js/bower_components/social-feed/template.html',
+					// Moderation function - if returns false, template will have class hidden
+					moderation: function(content) {
+						return (content.text) ? content.text.indexOf('fuck') == -1 : true;
+					},
+					//update_period: 5000,
+					// When all the posts are collected and displayed - this function is evoked
+					callback: function() {
+						var $mainElem = $('.social-feed-container'),/* adjust selector to suit page*/
+						$parent = $mainElem.parent(),
+						/* remove children after 4th from existing row */
+						$items = $mainElem.children(':gt(3)').detach();
+
+						if ($items.length) {
+							/* create new row for every 3 items removed above */
+							for (var i = 0; i < $items.length; i = i + 3) {
+								var $row = $('<div class="row">').append($items.slice(i, i + 3));
+							}
+						}
+						console.log('all posts are collected');
+					}
+				});
+			};
+			updateFeed();
+		});
+
+
+		/*
 		$(document).ready(function(){
 			$('.social-feed-container').socialfeed({
 				// INSTAGRAM
@@ -79,7 +126,7 @@ block js
 				},
 				// TWITTER
 				twitter:{
-					accounts: ['#HotelAmalfiRome'],             //Array: Specify a list of accounts from which to pull tweets
+					accounts: ['@HotelAmalfiRome'],             //Array: Specify a list of accounts from which to pull tweets
 					limit: 10,                                   //Integer: max number of tweets to load
 					consumer_key: 'UsTt0YRyCW5gzZfMHJdXUaEPq', // make sure to have your app read-only
 					consumer_secret: 'TcIBmghaMAXHIPANWPJs2SOKyxzQigf0q51ovZ6YA7YzF8a0dF', // make sure to have your app read-only
@@ -90,3 +137,4 @@ block js
 				show_media: true
 			});
 		});
+		*/
