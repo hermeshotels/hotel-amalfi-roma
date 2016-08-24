@@ -1252,35 +1252,13 @@ SOCIAL
 .social-feed-element:first-child {
     margin-top: 25px;
 }
-.social-feed-element{
-    min-height: 600px;
+.social-feed-element {
+    box-shadow: none;
+    margin: 0px;
 }
-.social-feed-element[data-columns]::before {
-	content: '3 .column.size-1of3';
+.social-feed-element .attachment {
+    margin-top: 10px;
 }
-
-/* These are the classes that are going to be applied: */
-.column { float: left; }
-.size-1of3 { width: 33.333%; }
-@media screen and (max-width: 480px){
-	.social-feed-element[data-columns]::before {
-		content: '1 .column.size-1of1';
-	}
+.social-feed-element:hover {
+    box-shadow: none;
 }
-
-@media screen and (min-width: 481px) and (max-width: 768px) {
-	.social-feed-element[data-columns]::before {
-		content: '2 .column.size-1of2';
-	}
-}
-@media screen and (min-width: 769px) {
-	.social-feed-element[data-columns]::before {
-		content: '3 .column.size-1of3';
-	}
-}
-
-/* Again, you’re free to use and define the classes: */
-.column { float: left; }
-.size-1of1 { width: 100%; }
-.size-1of2 { width: 50%; }
-.size-1of3 { width: 33.333%; }

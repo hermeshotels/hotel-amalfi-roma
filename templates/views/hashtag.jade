@@ -30,7 +30,7 @@ block header
 block content
 	.row
 		.social-feed-container
-
+			div(class="grid-sizer col-xs-12 col-md-4")
 	//--
 		.social-feed-container
 			#social-page-content
@@ -43,6 +43,7 @@ block js
 	if getLocale(req) == 'it'
 		script(src="/js/bower_components/moment/locale/it.js")
 	script(src="/js/bower_components/social-feed/js/jquery.socialfeed.js")
+	script(src="/js/bower_components/masonry/masonry.js")
 
 	//--
 		script(type="text/javascript").
@@ -74,17 +75,22 @@ block js
 				$('.social-feed-container').socialfeed({
 					// Twitter
 					twitter: {
-						accounts: ['@hotelamalfirome','#hotelamalfirome'],
-						limit: 15,
+						accounts: ['@hotelamalfirome'],
+						limit: 10,
 						consumer_key: 'UsTt0YRyCW5gzZfMHJdXUaEPq', // make sure to have your app read-only
 						consumer_secret: 'TcIBmghaMAXHIPANWPJs2SOKyxzQigf0q51ovZ6YA7YzF8a0dF', // make sure to have your app read-only
 					},
 					instagram: {
-						accounts: ['&3040700627','#hotelamalfirome'],  //Array: Specify a list of accounts from which to pull posts
-						limit: 15,                                    //Integer: max number of posts to load
+						accounts: ['&3040700627'],  //Array: Specify a list of accounts from which to pull posts
+						limit: 10,                                    //Integer: max number of posts to load
 						access_token: '3040700627.56e7aaa.77a98c29cae040c19ceb2b0cd9859503' //String: Instagram access token
 					},
-
+					facebook:{
+						accounts: ['!HotelAmalfiRome'],  //Array: Specify a list of accounts from which to pull wall posts
+						limit: 10,                                   //Integer: max number of posts to load
+						access_token: '241519906244189|422056d03310821c589d997f78e90ede'  //String: "APP_ID|APP_SECRET"
+					},
+					
 					// GENERAL SETTINGS
 					length: 200,
 					show_media: true,
@@ -96,17 +102,13 @@ block js
 					//update_period: 5000,
 					// When all the posts are collected and displayed - this function is evoked
 					callback: function() {
-						var $mainElem = $('.social-feed-container'),/* adjust selector to suit page*/
-						$parent = $mainElem.parent(),
-						/* remove children after 4th from existing row */
-						$items = $mainElem.children(':gt(3)').detach();
-
-						if ($items.length) {
-							/* create new row for every 3 items removed above */
-							for (var i = 0; i < $items.length; i = i + 3) {
-								var $row = $('<div class="row">').append($items.slice(i, i + 3));
-							}
-						}
+						$( ".social-feed-element img.attachment" ).load(function() {
+							$('.social-feed-container').masonry({
+								itemSelector: '.social-feed-element', // use a separate class for itemSelector, other than .col-
+								columnWidth: '.grid-sizer',
+								percentPosition: true
+							});
+						});
 						console.log('all posts are collected');
 					}
 				});
