@@ -36,16 +36,6 @@ html
 
 	//- HTML BODY
 	body
-		div#fb-root
-		script.
-			(function(d, s, id) {
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id)) return;
-			js = d.createElement(s); js.id = id;
-			js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7";
-			fjs.parentNode.insertBefore(js, fjs);
-			}(document, 'script', 'facebook-jssdk'));
-
 		.navbar-post
 			include partials/navbar
 
@@ -70,7 +60,7 @@ html
 									| Latest Post &nbsp;&nbsp;&nbsp;
 									img(src='/images/social-facebook.png' align='middle' alt="facebook")
 								.facebook
-									div.fb-page(data-href="https://www.facebook.com/HotelAmalfiRome/" data-tabs="timeline" data-height="270" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false")
+									div.fb-page
 							.col-sm-12.col-md-3.col-sm-pull-0.col-md-pull-6
 								.footer-logo
 									img(src='/images/logo-footer.png' alt="Hotel Amalfi")
@@ -132,3 +122,30 @@ html
 				template: '<div class="col-xs-4 col-md-4"><a href="{{link}}"><img class="img-responsive" src="{{image}}" /></a></div>'
 			});
 			userFeed.run();
+
+		script.
+			$(document).ready(function() {
+				var updateFooterFeed = function() {
+					$('.fb-page').socialfeed({
+						facebook:{
+							accounts: ['!HotelAmalfiRome'],  //Array: Specify a list of accounts from which to pull wall posts
+							limit: 3,                                   //Integer: max number of posts to load
+							access_token: '241519906244189|422056d03310821c589d997f78e90ede'  //String: "APP_ID|APP_SECRET"
+						},
+						// GENERAL SETTINGS
+						length: 80,
+						show_media: false,
+						template: '/js/bower_components/social-feed/templateFooter.html',
+						// Moderation function - if returns false, template will have class hidden
+						moderation: function(content) {
+							return (content.text) ? content.text.indexOf('fuck') == -1 : true;
+						},
+						//update_period: 5000,
+						// When all the posts are collected and displayed - this function is evoked
+						callback: function() {
+							console.log('all posts are collected');
+						}
+					});
+				};
+				updateFooterFeed();
+			});
