@@ -26,7 +26,7 @@ nav.navbar.navbar-default.navbar-fixed-top
 					a(href='/'+[getLocale(req)]+'/'): img.img-responsive(src='/images/logo-scroll-white.png' alt="Hotel Amalfi Roma")
 			ul.nav.navbar-nav.navbar-right
 				li
-					a.text-uppercase.booknow-opener(href='#') #{__('BOOKNOW')}
+					a.text-uppercase.booknow-opener(href='#' class="book-trigger") #{__('BOOKNOW')}
 //-- end navbar
 
 .menu
@@ -97,5 +97,5 @@ nav.navbar.navbar-default.navbar-fixed-top
 									li: a.text-uppercase(class="googleplus" target="_blank" href=data.socialAndFooter.googlePlus)
 						.col-sm-4.col-md-4.text-right.text-uppercase
 							p.booknow
-								a.booknow-opener(href='#') #{__('BOOKNOW')}
+								a.booknow-opener(href='#' class="book-trigger") #{__('BOOKNOW')}
 //-- end menu
