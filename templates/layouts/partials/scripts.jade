@@ -26,6 +26,11 @@ if user && user.canAccessKeystone
 //- Add scripts that are globally required by your site here.
 
 script(type="text/javascript").
+	$('.menu-opener').on('click', function(){
+		jQuery('.menu').css('dispaly', 'block');
+	});
+
+script(type="text/javascript").
 	$(function () {
 		window.setInterval(function(){
 			var date = new Date();
