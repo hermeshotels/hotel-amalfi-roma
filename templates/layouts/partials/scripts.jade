@@ -30,6 +30,19 @@ script(type="text/javascript").
 		jQuery('.menu').css('display', 'block');
 	});
 
+	$('.menu-closer').on('click', function(){
+		jQuery('.menu').css('display', 'none');
+	});
+
+	jQuery(window).on('scroll', function(){
+		var scrollValue = jQuery(window).scrollTop();
+		if(scrollValue > 100){
+			jQuery('.navbar').addClass('navbar-inverse');
+		}else{
+			jQuery('.navbar').removeClass('navbar-inverse');
+		}
+	});
+
 script(type="text/javascript").
 	$(function () {
 		window.setInterval(function(){
