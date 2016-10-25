@@ -50,6 +50,7 @@ exports = module.exports = function(app) {
 	app.get('/blog/post/:post', routes.views.post);
 	app.get('/gallery', routes.views.gallery);
 	app.get('/hotelamalfirome', routes.views.hashtag);
+	app.get('/tripadvisor', routes.views.tripadvisor);
 	app.all('/contact', routes.views.contact);
 	app.all('/contatti', routes.views.contact);
 	app.get('/privacy', routes.views.privacy);

@@ -1,6 +1,6 @@
 var keystone=require("keystone");
 var Types=keystone.Field.Types;
-var Pages=["SocialAndFooter","Home","Rooms","Services","Blog","Gallery","#HotelAmalfiRome","Contact","Privacy"];
+var Pages=["SocialAndFooter","Home","Rooms","Services","Blog","Gallery","#HotelAmalfiRome","Contact","Privacy","TripAdvisor"];
 var SpecialPage=new keystone.List("SpecialPage",{map:{name:"specialPageTitle"},plural:"SpecialPages"});
 SpecialPage.add({
 	active:{type:Types.Boolean},
@@ -14,6 +14,19 @@ SpecialPage.add({
 		description:{
 			type:String
 		}
+	},
+
+	tripAdvisor:{
+		title: {
+			type:String,dependsOn:{page:"TripAdvisor"}
+		},
+		subTitle: {
+			type:String,dependsOn:{page:"TripAdvisor"}
+		},
+		headerImage:{type:Types.CloudinaryImage,dependsOn:{page:"TripAdvisor"}},
+		textBlockContent:{
+			type:Types.Html,wysiwyg:true,dependsOn:{page:"TripAdvisor"}
+		},
 	},
 
 

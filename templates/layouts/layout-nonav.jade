@@ -1,0 +1,112 @@
+include ../mixins/flash-messages
+
+doctype html
+html
+
+	include partials/head
+
+	block seo
+		if data.meta
+			if data.meta.title[getLocale(req)]
+				title= data.meta.title[getLocale(req)]
+				meta(property="og:title" content=data.meta.title[getLocale(req)])
+				meta(name="twitter:title" content=data.meta.title[getLocale(req)])
+			if data.meta.description[getLocale(req)]
+				meta(name="description" content=data.meta.description[getLocale(req)])
+				meta(property="og:description" content=data.meta.description[getLocale(req)])
+				meta(name="twitter:description" content=data.meta.description[getLocale(req)])
+
+
+	//- HTML BODY
+	body
+		block header
+
+		block content
+
+		.footer
+			.container-fluid
+				.row
+					.col-xs-12.col-sm-12.col-md-12.col-lg-12
+						.control-group &nbsp;
+						.row
+							.col-sm-12.col-md-3.col-sm-push-0.col-md-push-6
+							.col-sm-12.col-md-3.col-sm-push-0.col-md-push-6
+							.col-sm-12.col-md-3.col-sm-pull-0.col-md-pull-6
+								.footer-logo
+									img(src='/images/logo-footer.png' alt="Hotel Amalfi")
+							.col-sm-12.col-md-3.col-sm-pull-0.col-md-pull-6
+								.footer-logo
+									!= data.socialAndFooter.contentBelowLogo
+								.menu-content
+									.menu-footer.row
+										ul
+											if data.socialAndFooter.facebook
+												li: a.text-uppercase(class="facebook" target="_blank" href=data.socialAndFooter.facebook)
+											if data.socialAndFooter.instagram
+												li: a.text-uppercase(class="instagram" target="_blank" href=data.socialAndFooter.instagram)
+											if data.socialAndFooter.twitter
+												li: a.text-uppercase(class="twitter" target="_blank" href=data.socialAndFooter.twitter)
+											if data.socialAndFooter.pinterest
+												li: a.text-uppercase(class="pinterest" target="_blank" href=data.socialAndFooter.pinterest)
+											if data.socialAndFooter.googlePlus
+												li: a.text-uppercase(class="googleplus" target="_blank" href=data.socialAndFooter.googlePlus)
+						.control-group &nbsp;
+		//-- end footer
+		.credits
+			.container-fluid
+				.row
+					.col-xs-12.col-sm-12.col-md-12.col-lg-12.text-center
+						a(href='#') Powered by WEBJ
+		//-- end credits
+
+		include partials/scripts
+
+		block js
+
+		script(src='/js/lightbox.js')
+
+		script(type="text/javascript").
+			$(function () {
+				lightbox.option({
+					'resizeDuration': 200,
+					'wrapAround': true
+				});
+			});
+		script(type="text/javascript").
+			var userFeed = new Instafeed({
+				get: 'user',
+				userId: '3040700627',
+				accessToken: '3040700627.56e7aaa.77a98c29cae040c19ceb2b0cd9859503',
+				target: 'pp-instagram',
+				limit: 9,
+				resolution: 'low_resolution',
+				template: '<div class="col-xs-4 col-md-4"><a href="{{link}}"><img class="img-responsive" src="{{image}}" /></a></div>'
+			});
+			userFeed.run();
+		
+		script.
+			$(document).ready(function() {
+				var updateFooterFeed = function() {
+					$('.fb-page').socialfeed({
+						facebook:{
+							accounts: ['!HotelAmalfiRome'],  //Array: Specify a list of accounts from which to pull wall posts
+							limit: 3,                                   //Integer: max number of posts to load
+							access_token: '241519906244189|422056d03310821c589d997f78e90ede'  //String: "APP_ID|APP_SECRET"
+						},
+						// GENERAL SETTINGS
+						length: 80,
+						show_media: false,
+						template: '/js/bower_components/social-feed/templateFooter.html',
+						// Moderation function - if returns false, template will have class hidden
+						moderation: function(content) {
+							return (content.text) ? content.text.indexOf('fuck') == -1 : true;
+						},
+						//update_period: 5000,
+						// When all the posts are collected and displayed - this function is evoked
+						callback: function() {
+							console.log('all posts are collected');
+						}
+					});
+				};
+				updateFooterFeed();
+			});
