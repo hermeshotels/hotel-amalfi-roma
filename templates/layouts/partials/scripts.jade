@@ -16,6 +16,7 @@ script(src="/js/bower_components/masonry/masonry.js")
 script(src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment-with-locales.min.js")
 script(src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.4/moment-timezone.min.js")
 script(src="http://www.hermeshotels.it/plugin/dist/booking-plugin.js")
+script(src='/js/script.js')
 
 
 //- The KeystoneJS Content Editor provides support for ks-editable data attributes,
@@ -26,6 +27,7 @@ if user && user.canAccessKeystone
 //- Add scripts that are globally required by your site here.
 
 script(type="text/javascript").
+	/*
 	$('.menu-opener').on('click', function(){
 		jQuery('.menu').css('display', 'block');
 	});
@@ -33,6 +35,7 @@ script(type="text/javascript").
 	$('.menu-closer').on('click', function(){
 		jQuery('.menu').css('display', 'none');
 	});
+	*/
 
 	jQuery(window).on('scroll', function(){
 		var scrollValue = jQuery(window).scrollTop();
