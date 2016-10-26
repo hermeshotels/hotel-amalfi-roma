@@ -71,4 +71,9 @@ html
 					'resizeDuration': 200,
 					'wrapAround': true
 				});
+				
+				$("#calltoaction").click(function(){
+					console.log("google event");
+					ga('send', 'event', 'Book', 'TripAdvisor');
+				});
 			});
