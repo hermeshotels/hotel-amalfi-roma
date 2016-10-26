@@ -1259,6 +1259,14 @@ SOCIAL
 .social-feed-element .attachment {
     margin-top: 10px;
 }
+.facebook-image {
+    width: 30%;
+    margin: 0px 0px 10px 10px;
+}
+.facebook-image .attachment {
+    width: 100%;
+}
+
 .social-feed-element:hover {
     box-shadow: none;
 }
