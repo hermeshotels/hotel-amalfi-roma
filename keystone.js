@@ -49,7 +49,7 @@ keystone.set('google api key', 'AIzaSyBgufrjPoBcjLEr4cd-v3EGlNxVQMOAtoc');
 
 //Init i18n
 i18n.configure({
-	locales: ['it', 'en'],
+	locales: ['it', 'en', 'ru'],
 	directory: __dirname + '/i18n'
 });
 

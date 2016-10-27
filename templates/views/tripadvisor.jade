@@ -1,4 +1,4 @@
-extends ../layouts/layout-nonav
+extends ../layouts/layout-special-page
 
 block css
 	link(href="/styles/jquery.socialfeed.css" rel="stylesheet" type="text/css")
@@ -33,3 +33,12 @@ block content
 				h2=data.page.title
 			div(class="col-md-12 col-lg-12", style="margin-top: 30px; margin-bottom: 30px;")
 				!= data.page.textBlockContent
+
+block js
+	script(type="text/javascript").
+		$(function () {
+			$("#calltoaction").click(function(){
+				console.log("google event");
+				ga('send', 'event', 'Book', 'TripAdvisor');
+			});
+		});
