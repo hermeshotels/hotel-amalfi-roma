@@ -107,9 +107,10 @@ block content
 				h3.text-uppercase #{__("Tags")}
 				.block-sidebar
 					ul.tags-group.row
-						each tag in data.tags
-							li.text-uppercase.col-sm-12.col-md-6
-								a(href='/'+[getLocale(req)]+'/blog/tag/' + tag.key, class=data.tag && data.tag.id == tag.id ? 'active' : false)= tag.name
+						if data.tags
+							each tag in data.tags
+								li.text-uppercase.col-sm-12.col-md-6
+									a(href='/'+[getLocale(req)]+'/blog/tag/' + tag.key, class=data.tag && data.tag.id == tag.id ? 'active' : false)= tag.name
 				hr/
 
 		.col-sm-6.col-md-6.blog-content

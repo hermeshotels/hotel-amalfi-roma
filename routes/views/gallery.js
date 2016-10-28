@@ -34,8 +34,10 @@ exports = module.exports = function(req, res) {
 						console.log(err);
 						return next(err);
 					} else {
-						locals.data.page = page.gallery;
-						locals.data.meta = page.meta;
+						if(page){
+							locals.data.page = page.gallery;
+							locals.data.meta = page.meta;
+						}
 						next(err);
 					}
 				});
