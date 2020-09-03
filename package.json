@@ -7,7 +7,7 @@
     "dotenv": "^1.1.0",
     "i18n": "^0.7.0",
     "keystone": "^0.3.16",
-    "node-sass": "^3.3.2",
+    "node-sass": "^4.14.1",
     "node-sass-middleware": "^0.9.7",
     "request": "^2.69.0",
     "underscore": "^1.8.3",
